@@ -1,0 +1,12 @@
+<h3>Region</h3>
+<form #f="ngForm"(ngSubmit)=addRegion(f.value)>
+  <p>Id:</p><input name="Id" type="text" ngModel/><br/>
+  <p>Name:</p><input name="Name" type="text" ngModel/><br/>
+  <input type="submit"/>
+
+</form>
+<div>
+  <ul>
+    <li *ngFor="let region of regions">{{region.Name}}</li>
+  </ul>
+</div>

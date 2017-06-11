@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
+import { RegionComponent } from './region/region.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountryComponent
+    CountryComponent,
+    RegionComponent
   ],
   imports: [
     BrowserModule,
