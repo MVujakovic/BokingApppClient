@@ -1,11 +1,12 @@
-<h3>Countries</h3>
+<h3>{{name}}</h3>
 <form #f="ngForm"(ngSubmit)=addCountry(f.value)>
-  <p>Id:</p><input name="Id" type="text" ngModel/><br/>
-  <p>Name:</p><input name="Name" type="text" ngModel/><br/>
-  <p>Code:</p><input name="Code" type="text" ngModel/><br/>
-  <input type="submit"/>
-
+  <p>Id:<input name="Id" type="text" ngModel/></p>
+  <p>Name:<input name="Name" type="text" ngModel/></p>
+  <p>Code:<input name="Code" type="text" ngModel/></p>
+  <input type="submit" value="Create"/>
 </form>
+
+<h3>Countries:</h3>
 <div>
   <ul>
     <li *ngFor="let country of countries">{{country.Name}}</li>
