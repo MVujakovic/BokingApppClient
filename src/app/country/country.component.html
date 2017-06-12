@@ -1,6 +1,5 @@
 <h3>{{name}}</h3>
 <form #f="ngForm"(ngSubmit)="addCountry(f.value, f)">
-  <p>Id:<input name="Id" type="text" ngModel/></p>
   <p>Name:<input name="Name" type="text" ngModel/></p>
   <p>Code:<input name="Code" type="text" ngModel/></p>
   <input type="submit" value="Create"/>
@@ -9,6 +8,10 @@
 <h3>Countries:</h3>
 <div>
   <ul>
-    <li *ngFor="let country of countries">{{country.Name}}</li>
+    <li *ngFor="let country of countries">
+      
+      {{country.Id}} <br/>
+       {{country.Name}} <br/>
+       {{country.Code}} <br/> </li>
   </ul>
 </div>

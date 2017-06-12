@@ -3,17 +3,24 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {Country} from '../country/country.model';
+import { Region } from '../region/region.model';
+import { Place } from '../place/place.model';
 
 @Injectable()
-export class CountriesService{
+export class PlacesService{
     
     constructor (private http: Http){
 
     }
 
-    getCountries(): Observable<any> {
+    getPlaces(): Observable<any> {
 
-        return this.http.get("http://localhost:54042/api/Countries").map(this.extractData);        
+        return this.http.get("http://localhost:54042/api/Places").map(this.extractData);        
+    }
+
+    getPlacesWithAcc():Observable<any> {
+
+        return this.http.get("http://localhost:54042/api/Places2").map(this.extractData);        
     }
 
     private extractData(res: Response) {
@@ -21,7 +28,7 @@ export class CountriesService{
         return body || [];
     }
 
-    postCountry(newCountry:Country): Observable<any>  {
+    postPlace(newPlace:Place): Observable<any>  {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
@@ -29,17 +36,10 @@ export class CountriesService{
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
 
-        newCountry.Id=1;
+        newPlace.Id=1;
 
         return this.http.post(
-        'http://localhost:54042/api/CountryPost',
-        newCountry, opts); //hardkodovati id da ne bude 0
-
-        // return this.http.post(
-        // 'http://localhost:54042/api/CountryPost',
-        // JSON.stringify({
-        //     Name: newCountry.Name,
-        //     Code: newCountry.Code
-        // }), opts);
+        'http://localhost:54042/api/PlacesPost',
+        newPlace, opts);
     }
 }

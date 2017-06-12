@@ -1,0 +1,29 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addPlace(f.value, f)">
+  <p>Name:</p><input name="Name" type="text" ngModel/><br/>
+  <p>RegionId:</p><input name="RegionId" type="text" ngModel/><br/>
+  <input type="submit" value="Create"/>
+</form>
+
+<h3>Places:</h3>
+<div>
+  <ul>
+      <!--Ovo je za prikaz places sa regionima -->
+    <!--<li *ngFor="let place of places">      
+        {{place.Id}} <br/>
+        {{place.Name}} <br/>
+        {{place.Region.Name}} <br/> </li>-->
+
+        <!--Ovo je za prikaz places sa smestajima -->
+    <li *ngFor="let place of places">      
+        {{place.Id}} <br/>
+        {{place.Name}} <br/>
+
+        <ul>
+        <li *ngFor="let accomodation of place.Accomodations">
+            {{accomodation.Name}} <br/>
+        </li> 
+        </ul>
+     </li>
+  </ul>
+</div>

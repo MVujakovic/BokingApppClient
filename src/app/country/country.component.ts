@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {Country} from './country.model';
 import { Http, Response } from '@angular/http';
 import {NgForm} from '@angular/forms';
 import { CountriesService } from '../services/countries.service'
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
 
 @Component({
   selector: 'app-country',
@@ -12,16 +16,14 @@ import { CountriesService } from '../services/countries.service'
 })
 export class CountryComponent implements OnInit {
 
+  countries: Country[];
 
-  countries: Country[]; //mozda treba object
-
-  constructor(private countriesService: CountriesService) {
-   
+  constructor(private countriesService: CountriesService, private ref:ChangeDetectorRef) {
    }
 
   ngOnInit() {
     this.countriesService.getCountries().subscribe(
-      (c: any) => {this.countries = c; console.log(this.countries)},//You can set the type to Product.
+      (c: any) => {this.countries = c; console.log(this.countries)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
   }
@@ -29,11 +31,15 @@ export class CountryComponent implements OnInit {
   addCountry(newCountry:Country,form:NgForm):void{
     this.countriesService.postCountry(newCountry).subscribe(this.onPost);
     form.reset();
+    //this.ref.detectChanges();
+    //this.ref.markForCheck();
      //alert("Sad Radi!!");
     }
 
   onPost(res : any) : void{
-    alert("Post!");
+    //alert("Post!");
     console.log(res.json());
+    //this.ref.detectChanges();
+    //this.ref.markForCheck();
   }
 }
