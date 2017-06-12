@@ -1,5 +1,5 @@
 <h3>{{name}}</h3>
-<form #f="ngForm"(ngSubmit)=addCountry(f.value)>
+<form #f="ngForm"(ngSubmit)="addCountry(f.value, f)">
   <p>Id:<input name="Id" type="text" ngModel/></p>
   <p>Name:<input name="Name" type="text" ngModel/></p>
   <p>Code:<input name="Code" type="text" ngModel/></p>

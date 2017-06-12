@@ -1,5 +1,5 @@
-import {Region} from '../region/region.component';
-import { Accomodation } from '../accomodation/accomodation.component';
+import {Region} from '../region/region.model';
+import { Accomodation } from '../accomodation/accomodation.model';
 
 export class Place {
     Id: number;

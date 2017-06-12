@@ -13,9 +13,9 @@ export class RegionComponent implements OnInit {
 
   constructor() {
     this.regions=[
-    new Region(1,"Srem"),
-    new Region(2,"Banat"),
-    new Region(3,"Backa")
+    new Region(1,"Srem",1),
+    new Region(2,"Banat",1),
+    new Region(3,"Backa",1)
     ];
    }
 
