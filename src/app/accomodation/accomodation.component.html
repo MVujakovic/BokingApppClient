@@ -1,0 +1,43 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addAccomodation(f.value, f)">
+    <!-- Ova forma se mora izmeniti -->
+  <p>Name:<input name="Name" type="text" ngModel/></p>
+  <p>Description:<input name="Description" type="text" ngModel/></p>
+  <!-- Adresa uvek bude null iz nekog razloga -->
+  <p>Address:<input name="Address" type="text" ngModel/></p>
+  <p>AverageGrade:<input name="AverageGrade" type="text" ngModel/></p>
+  <p>Latitude:<input name="Latitude" type="text" ngModel/></p>
+  <p>Longitude:<input name="Longitude" type="text" ngModel/></p>
+  <!-- ImageUrl u bazi bude prazno polje,skontati kako radi ovo za fajl -->
+  <p>ImageUrl:<input name="ImageUrl" type="file" ngModel/></p>
+  <!-- Approved bude uvek false, skontati kako radi ovaj radio button -->
+  <p>Approved:<input name="Approved" type="radio" ngModel/></p>
+  <p>PlaceId:<input name="PlaceId" type="text" ngModel/></p>
+  <p>OwnerId:<input name="OwnerId" type="text" ngModel/></p>
+  <p>AccomodationTypeId:<input name="AccomodationTypeId" type="text" ngModel/></p>
+  <input type="submit" value="Create"/>
+</form>
+
+<h3>Accomodations:</h3>
+<div>
+  <ul>
+    <li *ngFor="let accomodation of accomodations">
+      
+        {{accomodation.Id}} <br/>
+        {{accomodation.Name}} <br/>
+        {{accomodation.Description}} <br/> 
+        {{accomodation.AverageGrade}} <br/><br/>
+
+        <!-- Ovo je za prikaz soba koje su u tom smestaju -->
+        <!--<ul>
+            <li *ngFor="let room od accomodation.Rooms">
+                {{room.Id}}<br/>
+                {{room.RoomNumber}}<br/>
+                {{room.BedCount}}<br/>
+                {{room.Description}}<br/>
+                {{room.PricePerNight}}<br/>
+            </li>
+        </ul>-->
+    </li>
+  </ul>
+</div>

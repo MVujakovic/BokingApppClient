@@ -10,13 +10,14 @@ import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
 import { AppUserComponent } from './appUser/appUser.component';
 import { AccomodationTypeComponent } from './accomodationType/accomodationType.component';
-
+import { AccomodationComponent } from './accomodation/accomodation.component';
 
 import {CountriesService} from './services/countries.service';
 import { RegionsService } from './services/regions.service';
 import { PlacesService } from './services/places.service';
 import { AppUsersService } from './services/appUsers.service';
 import { AccomodationTypesService } from './services/accomodationTypes.service';
+import { AccomodationsService } from './services/accomodations.service';
 
 
 
@@ -25,7 +26,8 @@ const Routes = [
   {path: "region",component:RegionComponent},
   {path: "place",component:PlaceComponent},
   {path:"appUser",component:AppUserComponent},
-  {path:"accomodationType",component:AccomodationTypeComponent}
+  {path:"accomodationType",component:AccomodationTypeComponent},
+  {path:"accomodation",component:AccomodationComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 
@@ -36,7 +38,8 @@ const Routes = [
     RegionComponent,
     PlaceComponent,
     AppUserComponent,
-    AccomodationTypeComponent
+    AccomodationTypeComponent,
+    AccomodationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ const Routes = [
     RegionsService,
     PlacesService,
     AppUsersService,
-    AccomodationTypesService
+    AccomodationTypesService,
+    AccomodationsService
   ],
   bootstrap: [AppComponent]
 })
