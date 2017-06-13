@@ -1,6 +1,6 @@
 <h2>Register</h2>
 
-<form #f="ngForm"(ngSubmit)="addUser(f.value, f)">
+<!--<form #f="ngForm"(ngSubmit)="addUser(f.value, f)">
   <div class="container">
    
     <label><b>Name</b></label>
@@ -29,4 +29,45 @@
   
  
   </div>
-</form>
+</form>-->
+
+<div class="container">
+  <h3>Register User</h3>
+  <form #f="ngForm"(ngSubmit)="addUser(f.value, f)">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" name="Name" ngModel/>  
+    </div>
+	<div class="form-group">
+      <label for="lastname">Lastname:</label>
+      <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="Lastname" ngModel/>  
+    </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter username" name="Username" ngModel/>  
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="Email" ngModel/>  
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="Password" ngModel/>
+    </div>
+	 <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="ConfirmPassword" ngModel/>
+    </div>
+	 <div class="form-group">
+      <label for="role">Role:</label>
+      <input type="text" class="form-control" id="role" placeholder="Admin, Manager, AppUser?" name="Role" ngModel/>
+    </div>
+    <!-- <div class="checkbox"> -->
+      <!-- <label><input type="checkbox" name="remember"> Remember me</label> -->
+    <!-- </div> -->
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+
+
