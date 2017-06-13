@@ -1,0 +1,32 @@
+<h2>Register</h2>
+
+<form #f="ngForm"(ngSubmit)="addUser(f.value, f)">
+  <div class="container">
+   
+    <label><b>Name</b></label>
+    <input type="text"  name="Name" ngModel/>
+    
+    <label><b>Lastname</b></label>
+    <input type="text"  name="Lastname" ngModel/>
+
+    <label><b>Username</b></label>
+    <input type="text"  name="Username"   ngModel/>
+
+    <label><b>Email</b></label>
+    <input type="text"  name="Email"  ngModel/>
+
+    <label><b>Password</b></label>
+    <input type="password"  name="Password"  ngModel/>
+   
+    <label><b>Repeat Password</b></label>
+    <input type="password"  name="ConfirmPassword"  ngModel/>
+    
+    <label><b>Role</b></label>
+    <input type="text" placeholder="Admin, Manager, AppUser?" name="Role"  ngModel/>
+
+
+    <input type="submit" value="Sign Up"/>
+  
+ 
+  </div>
+</form>
