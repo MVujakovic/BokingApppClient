@@ -18,6 +18,10 @@ import { PlacesService } from './services/places.service';
 import { AppUsersService } from './services/appUsers.service';
 import { AccomodationTypesService } from './services/accomodationTypes.service';
 import { AccomodationsService } from './services/accomodations.service';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { RegisterService } from './services/register.service';
+
 
 
 
@@ -27,7 +31,8 @@ const Routes = [
   {path: "place",component:PlaceComponent},
   {path:"appUser",component:AppUserComponent},
   {path:"accomodationType",component:AccomodationTypeComponent},
-  {path:"accomodation",component:AccomodationComponent}
+  {path:"accomodation",component:AccomodationComponent},
+  {path:"Register",component:RegisterComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 
@@ -39,7 +44,9 @@ const Routes = [
     PlaceComponent,
     AppUserComponent,
     AccomodationTypeComponent,
-    AccomodationComponent
+    AccomodationComponent,
+    RegisterComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,13 +55,15 @@ const Routes = [
     HttpModule,
     JsonpModule   
   ],
+  // kasnije cemo da sredimo ove provajdere, da vidimo sta gde treba da bude dostupno, da ne bude sve u appmodule
   providers: [
     CountriesService,
     RegionsService,
     PlacesService,
     AppUsersService,
     AccomodationTypesService,
-    AccomodationsService
+    AccomodationsService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })
