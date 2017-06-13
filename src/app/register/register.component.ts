@@ -1,4 +1,5 @@
-import {NgForm} from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user/user.model';
 import { RegisterService } from '../services/register.service';
@@ -17,8 +18,9 @@ import {
 })
 export class RegisterComponent implements OnInit {
 
+  choosenRole:string;
   constructor(private registerService: RegisterService) { }
-
+  
   ngOnInit() {
   }
 
@@ -30,6 +32,10 @@ export class RegisterComponent implements OnInit {
     // u.Password=newUser.Password;
     // u.ConfirmPassword=newUser.ConfirmPassword;
     // u.Role=newUser.Role;
+    
+    
+
+    newUser.Role=this.choosenRole;
 
     this.registerService.postUser(newUser).subscribe(this.onPost);
     form.reset();

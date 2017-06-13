@@ -36,7 +36,11 @@ const Routes = [
   {path:"accomodationType",component:AccomodationTypeComponent},
   {path:"accomodation",component:AccomodationComponent},
   {path:"Register",component:RegisterComponent},
-  {path:"Login",component:LoginComponent}
+  {path:"Login",component:LoginComponent},
+  // ne znam kako da napravimo da bude kao home ali da se ne ponavlja
+  // ova komponenta appcomponent, razmiliti o tome
+  // mozda da stavimo onaj  pocetni html u neku drugu komponentu..
+  {path: "",component:AppComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 

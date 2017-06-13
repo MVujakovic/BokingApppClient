@@ -1,0 +1,8 @@
+  [] => component to template
+  () => template to component  
+  [(ngModel)] is a contracted form of [ngModel]="currentHero.name" (ngModelChange)="currentHero.name=$event"> 
+  https://angular.io/guide/template-syntax#!#ngModel
+
+  The brackets tell Angular to evaluate the template expression. 
+  If you omit the brackets, Angular treats the string as a constant and initializes the target property with that string. 
+  It does not evaluate the string!
