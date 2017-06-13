@@ -35,6 +35,10 @@ export class AccomodationsService{
         opts.headers = headers;
 
         newAccomodation.Id=1;
+       // newAccomodation.PlaceId=newAccomodation.Place.Id;
+       // newAccomodation.AccomodationTypeId=newAccomodation.AccomodationType.Id;
+        //newAccomodation.Place=null;
+        //newAccomodation.AccomodationType=null;
 
         return this.http.post(
         'http://localhost:54042/api/AccomodationsPost',
