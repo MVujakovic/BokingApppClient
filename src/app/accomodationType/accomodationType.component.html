@@ -1,0 +1,16 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addAccomodationType(f.value, f)">
+  <p>Name:<input name="Name" type="text" ngModel/></p>
+  <input type="submit" value="Create"/>
+</form>
+
+<h3>AccomodationTypes:</h3>
+<div>
+  <ul>
+    <li *ngFor="let accomodationType of accomodationTypes">
+      
+      {{accomodationType.Id}} <br/>
+       {{accomodationType.Name}} <br/>
+      </li>
+  </ul>
+</div>
