@@ -21,6 +21,9 @@ import { AccomodationsService } from './services/accomodations.service';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { RegisterService } from './services/register.service';
+import { LoginComponent } from './login/login.component';
+import { LogInService } from './services/login.service';
+import { ComponentFixture } from '@angular/core/testing';
 
 
 
@@ -32,7 +35,8 @@ const Routes = [
   {path:"appUser",component:AppUserComponent},
   {path:"accomodationType",component:AccomodationTypeComponent},
   {path:"accomodation",component:AccomodationComponent},
-  {path:"Register",component:RegisterComponent}
+  {path:"Register",component:RegisterComponent},
+  {path:"Login",component:LoginComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 
@@ -47,6 +51,7 @@ const Routes = [
     AccomodationComponent,
     RegisterComponent,
     UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ const Routes = [
     AppUsersService,
     AccomodationTypesService,
     AccomodationsService,
-    RegisterService
+    RegisterService,
+    LogInService
   ],
   bootstrap: [AppComponent]
 })

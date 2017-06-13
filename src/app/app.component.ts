@@ -7,7 +7,7 @@ import {Country} from './country/country.model'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Booking App';
   //countries:Country[];
 }
 
