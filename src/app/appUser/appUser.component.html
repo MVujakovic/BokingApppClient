@@ -1,0 +1,38 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addAppUser(f.value, f)">
+  <p>FullName:</p><input name="FullName" type="text" ngModel/><br/>
+  <input type="submit" value="Create"/>
+</form>
+
+<h3>AppUsers</h3>
+<div>
+    <!--<ul>
+        <li *ngFor="let appUser od appUsers">
+            {{appUser.FullName}} <br/>-->
+
+            <!-- Ovo je za prikaz sa komentarima -->
+            <!--<ul>
+                <li *ngFor="let comment of appUser.Comments">
+                    {{comment.Grade}}<br/>
+                    {{comment.Text}}<br/>
+                </li>
+            </ul>-->
+
+            <!-- Ovo je za prikaz sa smestajima -->
+            <!--<ul>
+                <li *ngFor="let accomodation of appUser.Accomodations">
+                    {{accomodation.Name}}<br/>
+                    {{accomodation.Description}}<br/>
+                </li>
+            </ul>-->
+
+            <!-- Ovo je za prikaz sa RoomReservations -->
+            <!--<ul>
+                <li *ngFor="let roomReservation of appUser.RoomReservations">
+                    {{roomReservation.StartDate}}<br/>
+                    {{roomReservation.EndDate}}<br/>
+                </li>
+            </ul>-->
+        <!--</li>
+    </ul>-->
+</div>

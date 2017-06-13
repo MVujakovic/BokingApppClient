@@ -8,16 +8,20 @@ import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
 import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
+import { AppUserComponent } from './appUser/appUser.component';
+
 
 import {CountriesService} from './services/countries.service';
 import { RegionsService } from './services/regions.service';
 import { PlacesService } from './services/places.service';
+import { AppUsersService } from './services/appUsers.service';
 
 
 const Routes = [
   {path: "country", component:CountryComponent},
   {path: "region",component:RegionComponent},
   {path: "place",component:PlaceComponent},
+  {path:"appUser",component:AppUserComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 
@@ -26,7 +30,8 @@ const Routes = [
     AppComponent,
     CountryComponent,
     RegionComponent,
-    PlaceComponent
+    PlaceComponent,
+    AppUserComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ const Routes = [
   providers: [
     CountriesService,
     RegionsService,
-    PlacesService
+    PlacesService,
+    AppUsersService
   ],
   bootstrap: [AppComponent]
 })
