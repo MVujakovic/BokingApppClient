@@ -183,28 +183,6 @@ export class RoomReservationsComponent implements OnInit {
 
     }, 3000);
     
-      // for(var i=0;i<this.Reservations.length;i++){
-      //   if(this.Reservations[i].StartDate<newRoomReservation.StartDate){
-      //     if(this.Reservations[i].EndDate>=newRoomReservation.StartDate){
-      //       this.isAlreadyRes=true;
-      //      // break;
-      //     }
-      //     else{
-      //       //this.isAlreadyRes=false;
-      //     }
-      //   }
-      //   else if(this.Reservations[i].StartDate==newRoomReservation.StartDate){
-      //     this.isAlreadyRes=true;
-      //     //break;
-      //   }
-      //   else if(this.Reservations[i].StartDate<=newRoomReservation.EndDate){
-      //     this.isAlreadyRes=true;
-      //     //break;
-      //   }
-      //   else{
-      //     //this.isAlreadyRes=false;
-      //   }
-      // }
     // this.Reservations.forEach(eachObj=>{
     //   if(eachObj.StartDate<newRoomReservation.StartDate){
     //     if(eachObj.EndDate>=newRoomReservation.StartDate){
@@ -225,22 +203,6 @@ export class RoomReservationsComponent implements OnInit {
     //   }
       
     // });
-
-    // if(this.isAlreadyRes){
-      
-    //     this.dataContainer.nativeElement.innerHTML = "Room is already reserved.";
-        
-    // }
-    // else{
-      // newRoomReservation.RoomId=this.roomId;
-      // newRoomReservation.AppUserId=1; //ovo treba da bude id korisnika koji rezervise
-      // newRoomReservation.Timestamp=new Date(Date.now());
-      // this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
-      // form.reset(); 
-      // this.dataContainer.nativeElement.innerHTML = "";
-    // }
-    
-    // this.isAlreadyRes=false;
   }
   
   onPost(res : any) : void{

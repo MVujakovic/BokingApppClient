@@ -68,4 +68,5 @@ export class AccomodationComponent implements OnInit {
     //alert("Post!");
     console.log(res.json());
   }
+
 }
