@@ -7,7 +7,7 @@ import { Region } from '../region/region.model';
 
 @Injectable()
 export class RegionsService{
-    
+    s:string;
     constructor (private http: Http){
 
     }
@@ -15,6 +15,12 @@ export class RegionsService{
     getRegions(): Observable<any> {
 
         return this.http.get("http://localhost:54042/api/Regions").map(this.extractData);        
+    }
+
+    getRegionById(id:number): Observable<any> {
+        this.s='http://localhost:54042/api/Region/'+id;
+        return this.http.get(this.s).map(this.extractData); 
+        //return this.http.get("http://localhost:54042/api/Region/${id}").map(this.extractData);        
     }
 
     private extractData(res: Response) {
