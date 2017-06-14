@@ -1,0 +1,50 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addRoom(f.value, f)">
+    <div>
+        <label for="RoomNumber">RoomNumber: </label>
+        <input name="RoomNumber" type="text" ngModel/>
+    </div>
+    <div>
+        <label for="BedCount">BedCount: </label>
+        <input name="BedCount" type="text" ngModel/>
+    </div>
+    <div>
+        <label for="Description">Description: </label>
+        <input name="Description" type="text" ngModel/>
+    </div>
+    <div>
+        <label for="PricePerNight">PricePerNight: </label>
+        <input name="PricePerNight" type="text" ngModel/>
+    </div>
+    <div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accId" id="accId" [(ngModel)]="accId">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+</form>
+
+<h3>Rooms:</h3>
+<div>
+  <ul>
+    <li *ngFor="let room of rooms">      
+        <!--{{room.Accomodation.Name}} <br/>-->
+        {{room.Id}} <br/>
+        {{room.RoomNumber}} <br/>
+        {{room.BedCount}} <br/>
+        {{room.Description}} <br/><br/>
+        <ul>
+        <li *ngFor="let roomRes of room.RoomReservations">
+            {{roomRes.Id}} <br/>
+            {{roomRes.StartDate}} <br/>
+            {{roomRes.EndDate}} <br/>
+            <!-- Verovatno se mora uraditi include AppUsera da bi moglo ovo da se prikaze -->
+            <!--{{roomRes.AppUser.Name}}<br/><br/>-->
+        </li> 
+        </ul>
+     </li>
+  </ul>
+</div>

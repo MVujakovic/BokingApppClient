@@ -8,7 +8,7 @@ import { Place } from '../place/place.model';
 
 @Injectable()
 export class PlacesService{
-    
+    s:string;
     constructor (private http: Http){
 
     }
@@ -21,6 +21,12 @@ export class PlacesService{
     getPlacesWithAcc():Observable<any> {
 
         return this.http.get("http://localhost:54042/api/Places2").map(this.extractData);        
+    }
+
+    getPlaceById(id:number): Observable<any> {
+        this.s='http://localhost:54042/api/Place/'+id;
+        return this.http.get(this.s).map(this.extractData); 
+        //return this.http.get("http://localhost:54042/api/Places/${id}").map(this.extractData);        
     }
 
     private extractData(res: Response) {

@@ -6,7 +6,7 @@ import {Country} from '../country/country.model';
 
 @Injectable()
 export class CountriesService{
-    
+    s:string;
     constructor (private http: Http){
 
     }
@@ -14,6 +14,12 @@ export class CountriesService{
     getCountries(): Observable<any> {
 
         return this.http.get("http://localhost:54042/api/Countries").map(this.extractData);        
+    }
+
+    getCountryById(id:number): Observable<any> {
+        this.s='http://localhost:54042/api/Country/'+id;
+        return this.http.get(this.s).map(this.extractData); 
+        //return this.http.get('http://localhost:54042/api/Country/id').map(this.extractData);        
     }
 
     private extractData(res: Response) {

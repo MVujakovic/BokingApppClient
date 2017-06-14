@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { CommentComponent } from './comment/comment.component';
+import { RoomComponent } from './room/room.component';
+import { RoomReservationsComponent } from './roomReservations/roomReservations.component';
 
 import {CountriesService} from './services/countries.service';
 import { RegionsService } from './services/regions.service';
@@ -27,11 +29,9 @@ import { RegisterService } from './services/register.service';
 import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
 import { CommentsService } from './services/comments.service';
+
 import { AuthenticationService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
-
-
-
 const Routes = [
   {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
   {path:"bookingApp", component: HomeComponent},
@@ -43,8 +43,9 @@ const Routes = [
   {path: "place",component:PlaceComponent},
   {path:"appUser",component:AppUserComponent},
   {path:"accomodationType",component:AccomodationTypeComponent},
-  {path:"accomodation",component:AccomodationComponent},
-
+  {path:"comment",component:CommentComponent},
+  {path:"room",component:RoomComponent},
+  {path:"roomReservations",component:RoomReservationsComponent},
   // {path:"accomodation",component:AccomodationComponent},
 
   // testing guards:
@@ -52,7 +53,9 @@ const Routes = [
   // will be executed and decide whether or not a user can actually access the route.
   {path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
   {path:"comment",component:CommentComponent}
-]
+]  {path:"room",component:RoomComponent},
+  {path:"roomReservations",component:RoomReservationsComponent},
+
 
 @NgModule({
   declarations: [
@@ -67,7 +70,9 @@ const Routes = [
     UserComponent,
     LoginComponent,
     HomeComponent,
-    CommentComponent
+    CommentComponent,
+    RoomComponent,
+    RoomReservationsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,7 @@ const Routes = [
     HttpModule,
     JsonpModule   
   ],
+
 
   // kasnije cemo da sredimo ove provajdere, 
   // da vidimo sta gde treba da bude dostupno, da ne bude sve u appmodule
@@ -89,8 +95,10 @@ const Routes = [
     RegisterService,
     LogInService,
     CommentsService,
-    AuthenticationService
-  ],
+    RoomsService,
+    AuthenticationService,
+    RoomReservatonsService
+],
 
   bootstrap: [AppComponent]
 })
