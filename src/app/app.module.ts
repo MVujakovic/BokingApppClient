@@ -24,8 +24,7 @@ import { RegisterService } from './services/register.service';
 import { LoginComponent } from './login/login.component';
 import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
-
-
+import { HomeComponent } from './home/home.component';
 
 
 const Routes = [
@@ -40,7 +39,8 @@ const Routes = [
   // ne znam kako da napravimo da bude kao home ali da se ne ponavlja
   // ova komponenta appcomponent, razmiliti o tome
   // mozda da stavimo onaj  pocetni html u neku drugu komponentu..
-  {path: "",component:AppComponent}
+  {path: '',redirectTo:'/BookingApp',pathMatch: 'full'},
+  {path:"BookingApp", component: HomeComponent}
   //{path: '', redirectTo: "/country", pathMatch: 'full'}
 ]
 
@@ -55,7 +55,8 @@ const Routes = [
     AccomodationComponent,
     RegisterComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
