@@ -11,6 +11,10 @@ import { PlaceComponent } from './place/place.component';
 import { AppUserComponent } from './appUser/appUser.component';
 import { AccomodationTypeComponent } from './accomodationType/accomodationType.component';
 import { AccomodationComponent } from './accomodation/accomodation.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
 
 import {CountriesService} from './services/countries.service';
 import { RegionsService } from './services/regions.service';
@@ -18,13 +22,10 @@ import { PlacesService } from './services/places.service';
 import { AppUsersService } from './services/appUsers.service';
 import { AccomodationTypesService } from './services/accomodationTypes.service';
 import { AccomodationsService } from './services/accomodations.service';
-import { RegisterComponent } from './register/register.component';
-import { UserComponent } from './user/user.component';
 import { RegisterService } from './services/register.service';
-import { LoginComponent } from './login/login.component';
 import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
-import { HomeComponent } from './home/home.component';
+
 
 
 const Routes = [
@@ -36,12 +37,8 @@ const Routes = [
   {path:"accomodation",component:AccomodationComponent},
   {path:"Register",component:RegisterComponent},
   {path:"Login",component:LoginComponent},
-  // ne znam kako da napravimo da bude kao home ali da se ne ponavlja
-  // ova komponenta appcomponent, razmiliti o tome
-  // mozda da stavimo onaj  pocetni html u neku drugu komponentu..
-  {path: '',redirectTo:'/BookingApp',pathMatch: 'full'},
-  {path:"BookingApp", component: HomeComponent}
-  //{path: '', redirectTo: "/country", pathMatch: 'full'}
+  {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
+  {path:"bookingApp", component: HomeComponent}
 ]
 
 @NgModule({
