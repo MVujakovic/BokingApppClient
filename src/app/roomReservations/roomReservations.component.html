@@ -1,0 +1,35 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addRoomReservation(f.value, f)">   
+    <div>
+        <label for="StartDate">StartDate: </label>
+        <input name="StartDate" type="date" ngModel/>
+    </div>
+    <div>
+        <label for="EndDate">EndDate: </label>
+        <input name="EndDate" type="date" ngModel/>
+    </div>
+    <!-- Timestamp treba sam automatski da se popuni tenutnim datumom(valjda) -->
+    <!-- AppUserId treba da se popuni na osnovu id korisnika koji rezervise smestaj -->
+    <div>
+        <label for="Room">Room:</label>
+        <select name="roomId" id="roomId" [(ngModel)]="roomId">
+        <option *ngFor="let r of rooms" value={{r.Id}}>{{r.RoomNumber}}</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+</form>
+
+<h3>RoomReservations:</h3>
+<div>
+  <ul>
+    <li *ngFor="let roomRes of roomReservations">      
+        {{roomRes.Id}} <br/>
+        {{roomRes.StartDate}} <br/>
+        {{roomRes.EndDate}} <br/>
+        {{roomRes.RoomId}}<br/>
+        {{roomRes.AppUser.FullName}}<br/><br/>
+     </li>
+  </ul>
+</div>

@@ -8,6 +8,5 @@ export class Room {
     PricePerNight: number;
     RoomReservations: RoomReservations[];
     Accomodation: Accomodation;
-
     AccomodationId: number;
 }
