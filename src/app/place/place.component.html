@@ -1,8 +1,21 @@
 <h3>{{name}}</h3>
 <form #f="ngForm"(ngSubmit)="addPlace(f.value, f)">
-  <p>Name:</p><input name="Name" type="text" ngModel/><br/>
+    <div>
+        <label for="Name">Name: </label>
+        <input name="Name" type="text" ngModel/>
+    </div>
+    <div>
+         <label for="Region">Region:</label>
+        <select name="regionId" id="regionId" [(ngModel)]="regionId">
+        <option *ngFor="let r of regions" value={{r.Id}}>{{r.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+  <!--<p>Name:</p><input name="Name" type="text" ngModel/><br/>
   <p>RegionId:</p><input name="RegionId" type="text" ngModel/><br/>
-  <input type="submit" value="Create"/>
+  <input type="submit" value="Create"/>-->
 </form>
 
 <h3>Places:</h3>

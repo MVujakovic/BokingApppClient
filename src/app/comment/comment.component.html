@@ -1,0 +1,35 @@
+<h3>{{name}}</h3>
+<form #f="ngForm"(ngSubmit)="addComment(f.value, f)">
+    <div>
+        <label for="Grade">Grade: </label>
+        <input name="Grade" type="text" ngModel/>
+    </div>
+    <div>
+        <label for="Text">Text: </label>
+        <input name="Text" type="text" ngModel/>
+    </div>
+    <div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accomodationId" id="accomodationId" [(ngModel)]="accomodationId">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+  <!--<p>Name:</p><input name="Name" type="text" ngModel/><br/>
+  <p>RegionId:</p><input name="RegionId" type="text" ngModel/><br/>
+  <input type="submit" value="Create"/>-->
+</form>
+
+<h3>Comments:</h3>
+<div>
+  <ul>
+    <li *ngFor="let comment of comments">      
+        {{comment.Id}} <br/>
+        {{comment.Grade}} <br/>
+        {{comment.Text}}<br/>
+        {{comment.Accomodation.Name}}<br/><br/>
+     </li>
+  </ul>
+</div>

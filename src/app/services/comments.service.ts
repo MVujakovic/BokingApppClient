@@ -2,23 +2,18 @@ import {Injectable} from "@angular/core";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Accomodation } from '../accomodation/accomodation.model';
+import { Comment } from '../comment/comment.model';
 
 @Injectable()
-export class AccomodationsService{
+export class CommentsService{
     
     constructor (private http: Http){
 
     }
 
-    getAccomodations(): Observable<any> {
+    getComments(): Observable<any> {
 
-        return this.http.get("http://localhost:54042/api/Accomodations").map(this.extractData);        
-    }
-
-    getAccomodationsWithRooms(): Observable<any> {
-
-        return this.http.get("http://localhost:54042/api/Accomodations2").map(this.extractData);        
+        return this.http.get("http://localhost:54042/api/Comments").map(this.extractData);        
     }
 
     private extractData(res: Response) {
@@ -26,7 +21,7 @@ export class AccomodationsService{
         return body || [];
     }
 
-    postAccomodation(newAccomodation:Accomodation): Observable<any>  {
+    postComment(newComment:Comment): Observable<any>  {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
@@ -34,10 +29,10 @@ export class AccomodationsService{
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
 
-        newAccomodation.Id=1;
+        newComment.Id=1;
 
         return this.http.post(
-        'http://localhost:54042/api/AccomodationsPost',
-        newAccomodation, opts);
+        'http://localhost:54042/api/CommentPost',
+        newComment, opts);
     }
 }

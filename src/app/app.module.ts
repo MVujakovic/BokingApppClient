@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { CommentComponent } from './comment/comment.component';
 
 import {CountriesService} from './services/countries.service';
 import { RegionsService } from './services/regions.service';
@@ -25,6 +26,8 @@ import { AccomodationsService } from './services/accomodations.service';
 import { RegisterService } from './services/register.service';
 import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
+import { CommentsService } from './services/comments.service';
+
 
 
 
@@ -35,6 +38,7 @@ const Routes = [
   {path:"appUser",component:AppUserComponent},
   {path:"accomodationType",component:AccomodationTypeComponent},
   {path:"accomodation",component:AccomodationComponent},
+  {path:"comment",component:CommentComponent},
   {path:"Register",component:RegisterComponent},
   {path:"Login",component:LoginComponent},
   {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
@@ -53,7 +57,8 @@ const Routes = [
     RegisterComponent,
     UserComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,8 @@ const Routes = [
     AccomodationTypesService,
     AccomodationsService,
     RegisterService,
-    LogInService
+    LogInService,
+    CommentsService
   ],
   bootstrap: [AppComponent]
 })
