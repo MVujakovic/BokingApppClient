@@ -6,7 +6,7 @@ import { Room } from '../room/room.model';
 
 @Injectable()
 export class RoomsService{
-    
+    s:string;
     constructor (private http: Http){
 
     }
@@ -14,6 +14,12 @@ export class RoomsService{
     getRooms(): Observable<any> {
 
         return this.http.get("http://localhost:54042/api/Rooms").map(this.extractData);        
+    }
+
+    getRoomById(id:number): Observable<any> {
+        this.s='http://localhost:54042/api/Rooms/'+id;
+        return this.http.get(this.s).map(this.extractData); 
+        //return this.http.get('http://localhost:54042/api/Room/id').map(this.extractData);        
     }
 
     private extractData(res: Response) {

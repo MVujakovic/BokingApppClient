@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {NgForm} from '@angular/forms';
 import { RoomReservations } from './roomReservations.model';
@@ -25,6 +25,7 @@ import {
   providers: [RoomReservatonsService,RoomsService,CountriesService,RegionsService,PlacesService,AccomodationsService]
 })
 export class RoomReservationsComponent implements OnInit {
+  @ViewChild('dataContainer') dataContainer: ElementRef;
 
   roomReservations: RoomReservations[];
   rooms: Room[];
@@ -40,8 +41,10 @@ export class RoomReservationsComponent implements OnInit {
   placeId:number;
   accomodation:Accomodation;
   accId:number;
-  room:Room;
+  roomWithRes:Room;
   roomId: number;
+  Reservations:RoomReservations[];
+  isAlreadyRes:boolean;
   aaa:boolean;
 
   constructor(private roomReservationsService: RoomReservatonsService,
@@ -54,6 +57,7 @@ export class RoomReservationsComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.isAlreadyRes=false;
     this.roomReservationsService.getRoomReservations().subscribe(
       (c: any) => {this.roomReservations = c; console.log(this.roomReservations)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
@@ -129,11 +133,114 @@ export class RoomReservationsComponent implements OnInit {
   }
 
   addRoomReservation(newRoomReservation:RoomReservations,form:NgForm):void{
-    newRoomReservation.RoomId=this.roomId;
-    newRoomReservation.AppUserId=1; //ovo treba da bude id korisnika koji rezervise
-    newRoomReservation.Timestamp=new Date(Date.now());
-     this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
-    form.reset(); 
+
+    this.roomsService.getRoomById(this.roomId).subscribe(
+      t => {
+        this.roomWithRes = t as Room; 
+        this.Reservations = this.roomWithRes.RoomReservations;
+        this.aaa=false;
+      });
+
+      setTimeout(()=>{
+      for(var i=0;i<this.Reservations.length;i++){
+        if(this.Reservations[i].StartDate<newRoomReservation.StartDate){
+          if(this.Reservations[i].EndDate>=newRoomReservation.StartDate){
+            this.isAlreadyRes=true;
+           // break;
+          }
+          else{
+            //this.isAlreadyRes=false;
+          }
+        }
+        else if(this.Reservations[i].StartDate===newRoomReservation.StartDate){
+          this.isAlreadyRes=true;
+          //break;
+        }
+        else if(this.Reservations[i].StartDate<=newRoomReservation.EndDate){
+          this.isAlreadyRes=true;
+          //break;
+        }
+        else{
+          //this.isAlreadyRes=false;
+        }
+      }
+
+      if(this.isAlreadyRes){
+      
+        this.dataContainer.nativeElement.innerHTML = "Room is already reserved.";
+        
+    }
+    else{
+      newRoomReservation.RoomId=this.roomId;
+      newRoomReservation.AppUserId=1; //ovo treba da bude id korisnika koji rezervise
+      newRoomReservation.Timestamp=new Date(Date.now());
+      this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
+      form.reset(); 
+      this.dataContainer.nativeElement.innerHTML = "";
+    }
+    
+    this.isAlreadyRes=false;
+
+    }, 3000);
+    
+      // for(var i=0;i<this.Reservations.length;i++){
+      //   if(this.Reservations[i].StartDate<newRoomReservation.StartDate){
+      //     if(this.Reservations[i].EndDate>=newRoomReservation.StartDate){
+      //       this.isAlreadyRes=true;
+      //      // break;
+      //     }
+      //     else{
+      //       //this.isAlreadyRes=false;
+      //     }
+      //   }
+      //   else if(this.Reservations[i].StartDate==newRoomReservation.StartDate){
+      //     this.isAlreadyRes=true;
+      //     //break;
+      //   }
+      //   else if(this.Reservations[i].StartDate<=newRoomReservation.EndDate){
+      //     this.isAlreadyRes=true;
+      //     //break;
+      //   }
+      //   else{
+      //     //this.isAlreadyRes=false;
+      //   }
+      // }
+    // this.Reservations.forEach(eachObj=>{
+    //   if(eachObj.StartDate<newRoomReservation.StartDate){
+    //     if(eachObj.EndDate>=newRoomReservation.StartDate){
+    //       this.isAlreadyRes=true;
+    //     }
+    //     else{
+    //       this.isAlreadyRes=false;
+    //     }
+    //   }
+    //   else if(eachObj.StartDate==newRoomReservation.StartDate){
+    //     this.isAlreadyRes=true;
+    //   }
+    //   else if(eachObj.StartDate<=newRoomReservation.EndDate){
+    //     this.isAlreadyRes=true;
+    //   }
+    //   else{
+    //     this.isAlreadyRes=false;
+    //   }
+      
+    // });
+
+    // if(this.isAlreadyRes){
+      
+    //     this.dataContainer.nativeElement.innerHTML = "Room is already reserved.";
+        
+    // }
+    // else{
+      // newRoomReservation.RoomId=this.roomId;
+      // newRoomReservation.AppUserId=1; //ovo treba da bude id korisnika koji rezervise
+      // newRoomReservation.Timestamp=new Date(Date.now());
+      // this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
+      // form.reset(); 
+      // this.dataContainer.nativeElement.innerHTML = "";
+    // }
+    
+    // this.isAlreadyRes=false;
   }
   
   onPost(res : any) : void{
