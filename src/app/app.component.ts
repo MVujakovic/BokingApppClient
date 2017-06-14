@@ -8,7 +8,6 @@ import {Country} from './country/country.model'
 })
 export class AppComponent {
   title = 'Booking App';
-  //countries:Country[];
 }
 
 

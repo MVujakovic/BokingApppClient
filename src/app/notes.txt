@@ -6,3 +6,9 @@
   The brackets tell Angular to evaluate the template expression. 
   If you omit the brackets, Angular treats the string as a constant and initializes the target property with that string. 
   It does not evaluate the string!
+
+  Videti kako cemo onu validaciju da sredimo, recimo za registraciju, namesteno je da ne moze da se submituje ako
+  nisu sva polja puna, ali nema feedbacka nikakvog
+
+ - sto se tice ovih .css fajlova sto ih ima negde - nista to ne radi, sve sam kopirala neke snipete s neta pa cemo kasnije gledati, znas da nemam pojma to
+

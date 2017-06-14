@@ -11,9 +11,6 @@ export class RegisterService{
 
     }
 
-    // kontam da nam get users ne ide ovde, msm tek kad se uloguje i ako je admin
-    // moze da vidi sve usere..
-
     postUser(newUser:User) :Observable<any> {
         const headers: Headers=new Headers();
         headers.append('Accept', 'application/json');

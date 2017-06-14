@@ -27,22 +27,31 @@ import { RegisterService } from './services/register.service';
 import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
 import { CommentsService } from './services/comments.service';
-
+import { AuthenticationService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
 
 
 
 const Routes = [
+  {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
+  {path:"bookingApp", component: HomeComponent},
+  {path:"Register",component:RegisterComponent},
+  {path:"Login",component:LoginComponent},
+
   {path: "country", component:CountryComponent},
   {path: "region",component:RegionComponent},
   {path: "place",component:PlaceComponent},
   {path:"appUser",component:AppUserComponent},
   {path:"accomodationType",component:AccomodationTypeComponent},
   {path:"accomodation",component:AccomodationComponent},
-  {path:"comment",component:CommentComponent},
-  {path:"Register",component:RegisterComponent},
-  {path:"Login",component:LoginComponent},
-  {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
-  {path:"bookingApp", component: HomeComponent}
+
+  // {path:"accomodation",component:AccomodationComponent},
+
+  // testing guards:
+  // each time the home route is hit, the AuthGuard function
+  // will be executed and decide whether or not a user can actually access the route.
+  {path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
+  {path:"comment",component:CommentComponent}
 ]
 
 @NgModule({
@@ -67,7 +76,9 @@ const Routes = [
     HttpModule,
     JsonpModule   
   ],
-  // kasnije cemo da sredimo ove provajdere, da vidimo sta gde treba da bude dostupno, da ne bude sve u appmodule
+
+  // kasnije cemo da sredimo ove provajdere, 
+  // da vidimo sta gde treba da bude dostupno, da ne bude sve u appmodule
   providers: [
     CountriesService,
     RegionsService,
@@ -77,8 +88,10 @@ const Routes = [
     AccomodationsService,
     RegisterService,
     LogInService,
-    CommentsService
+    CommentsService,
+    AuthenticationService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
