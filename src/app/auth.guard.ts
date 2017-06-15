@@ -7,25 +7,17 @@ import { AuthenticationService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
 
-  canActivate() {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // Check to see if a user has a valid JWT  
     // If they do, return true and allow the user to load the home component
 
-    if (localStorage.getItem('user') == null) {
-      this.router.navigate(['Login']);
+    if (localStorage.getItem('username') == null) {
       return false;
+      //this.router.navigate(['login']);
+
+    } else {
+      return true;
     }
 
-    return true;
-
   }
-
-  //  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-  //       if (localStorage.getItem('currentUser')) {
-  //           return true;
-  //       }
-
-  //       this.router.navigate(['/Login'], { queryParams: { returnUrl: state.url }});
-  //       return false;
-  //   }
 }

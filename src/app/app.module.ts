@@ -37,13 +37,23 @@ import { CommentsService } from './services/comments.service';
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 
-const ChildRoutesHome=[
-  {path:"login",component:LoginComponent}
+const ChildRoutesHome = [
+  { path: "login", component: LoginComponent },
+  { path: "appUser", component: AppUserComponent },
+  { path: "country", component: CountryComponent },
+  { path: "region", component: RegionComponent },
+  { path: "place", component: PlaceComponent },
+  { path: "accomodationType", component: AccomodationTypeComponent },
+  { path: "accomodation", component: AccomodationComponent,canActivate:[AuthGuard] },
+  { path: "room", component: RoomComponent },
+  { path: "roomReservations", component: RoomReservationsComponent },
+  { path: "comment", component: CommentComponent },
 ]
 
 const Routes = [
   { path: '', redirectTo: '/bookingApp', pathMatch: 'full' },
-  { path: "bookingApp", component: HomeComponent, children:ChildRoutesHome },
+  // { path: '**', component: HomeComponent },
+  { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
 
@@ -52,13 +62,13 @@ const Routes = [
   { path: "region", component: RegionComponent },
   { path: "place", component: PlaceComponent },
   { path: "accomodationType", component: AccomodationTypeComponent },
- 
-  { path: "accomodation", component: AccomodationComponent },
+
+ // { path: "accomodation", component: AccomodationComponent },
   // testing guards:
   // each time the home route is hit, the AuthGuard function
   // will be executed and decide whether or not a user can actually access the route.
-  // {path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
-  
+  { path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
+
   { path: "room", component: RoomComponent },
   { path: "roomReservations", component: RoomReservationsComponent },
   { path: "comment", component: CommentComponent },

@@ -1,24 +1,18 @@
 <div class="login jumbotron center-block">
   <h2>Login</h2>
-  <!--<form #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>-->
-    <form #f="ngForm" (ngSubmit)="login()">
-
-    <!--<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">-->
+  <!--opet sam izgubila sto godina sto ova validacija nesto nije radila, pa zbog toga nije mogao da se uloguje kako treba-->
+  <form #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
     <div class="form-group">
       <label for="Username">Username:</label>
       <input type="text" class="form-control" id="username" placeholder="Enter username" name="Username" [(ngModel)]="Username" required/>
-      <!--<div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>-->
     </div>
 
     <div class="form-group">
       <label for="Password">Password:</label>
       <input type="password" class="form-control" id="password" placeholder="Enter password" name="Password" [(ngModel)]="Password" required/>
     </div>
-
-    <button type="submit" [disabled]="!f.form.valid">Submit</button>
-     <!--<input type="submit" value="Login"/>-->
-
-    <!--<br><a [routerLink]="['/Register']">Click here to Signup</a>-->
+    <button type="submit" [disabled]="!f.form.valid">Login</button>
+     <!--<input type="submit" value="Login" [disabled]="!f.form.valid"/>-->
   </form>
 </div>
 

@@ -10,26 +10,29 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   username: string;
-  loggedIn:boolean; //ova je promenljiva samo za debug, nikad se ne uloguje! iance jedva se vidi ispis 'false' na gui-u. 
+  loggedIn: boolean;
+  //role:string;
   title = 'BookingApp'
-  constructor(private authService:AuthenticationService,public router: Router,) { }
+  constructor(private authService: AuthenticationService, public router: Router, ) { }
 
   ngOnInit() {
   }
-   
-  logOut(){
+
+  logout() {
+    
     this.authService.logOut();
+    this.router.navigate(["bookingApp"]);
   }
 
-  isLoggedIn() : boolean{
-    this.username = localStorage.getItem("userToken");
+  isLoggedIn(): boolean {
+    this.username = localStorage.getItem("username");
 
-    this.loggedIn=this.authService.isLoggedIn();
-    return  this.loggedIn;
+    this.loggedIn = this.authService.isLoggedIn();
+    return this.loggedIn;
   }
 
-  logIn(){
-        this.router.navigate(["bookingApp/login"]);
-    }
+  getRole():string{
+    return this.authService.getCurrentUserRole();
+  }
 
 }
