@@ -8,6 +8,7 @@ import { Accomodation } from '../accomodation/accomodation.model';
 export class AccomodationsService{
     s:string;
     s2:string;
+    s3:string;
     constructor (private http: Http){
 
     }
@@ -52,5 +53,17 @@ export class AccomodationsService{
         return this.http.post(
         'http://localhost:54042/api/AccomodationsPost',
         newAccomodation, opts);
+    }
+
+    putAccomodation(id:number,newAccomodation:Accomodation):Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        this.s3='http://localhost:54042/api/AccomodationsMod/'+id;
+        return this.http.put(this.s3,newAccomodation,opts);
     }
 }

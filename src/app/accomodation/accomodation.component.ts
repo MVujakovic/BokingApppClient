@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {NgForm} from '@angular/forms';
 import { Accomodation } from './accomodation.model';
@@ -19,6 +19,7 @@ import {
   providers: [AccomodationsService]
 })
 export class AccomodationComponent implements OnInit {
+  @ViewChild('dataContainer') dataContainer: ElementRef;
 
   accomodations: Accomodation[];
   Places:Place[];
@@ -26,6 +27,11 @@ export class AccomodationComponent implements OnInit {
   imageUrl:string;
   placeId:number;
   accTypeId:number;
+  //Approved:string;
+  Approved:boolean;
+  accName:string ='';
+  accom:Accomodation;
+
 
   constructor( private accomodationsService: AccomodationsService,
   private placesService:PlacesService,
@@ -67,6 +73,26 @@ export class AccomodationComponent implements OnInit {
   onPost(res : any) : void{
     //alert("Post!");
     console.log(res.json());
+  }
+
+  putAccomodation(newAccomodation:Accomodation, form:NgForm):void{
+    this.accom.Approved=newAccomodation.Approved;
+    this.accomodationsService.putAccomodation(this.accom.Id,this.accom).subscribe(this.onPost);
+    this.Approved=false;
+    this.dataContainer.nativeElement.innerHTML="";
+  }
+
+  onEdit(acc:Accomodation){
+    // if(acc.Approved){
+    //   this.Approved="true";
+    // }
+    // else{
+    //   this.Approved="false;"
+    // }
+    this.dataContainer.nativeElement.innerHTML=acc.Name;
+
+    this.Approved=acc.Approved;
+    this.accom=acc;
   }
 
 }

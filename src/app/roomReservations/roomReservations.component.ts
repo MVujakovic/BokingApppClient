@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {NgForm} from '@angular/forms';
 import { RoomReservations } from './roomReservations.model';
@@ -63,8 +63,6 @@ export class RoomReservationsComponent implements OnInit {
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
-    //za dobavljanje svih soba bi se prvo trebala odabrati country,
-    //regija,grad i smestaj
     this.countriesService.getCountries().subscribe(
       (c: any) => {this.countries = c; console.log(this.countries)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}

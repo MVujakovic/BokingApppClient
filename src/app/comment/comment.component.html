@@ -15,12 +15,11 @@
         </select>
     </div>
     <div>
-        <input type="submit" value="Create"/>
+        <input type="submit" [disabled]="isValid()" value="Create"/>
     </div>
-  <!--<p>Name:</p><input name="Name" type="text" ngModel/><br/>
-  <p>RegionId:</p><input name="RegionId" type="text" ngModel/><br/>
-  <input type="submit" value="Create"/>-->
 </form>
+<div #dataContainer [innerHTML]="theHtmlString">
+</div>
 
 <h3>Comments:</h3>
 <div>

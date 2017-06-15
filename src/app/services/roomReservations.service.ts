@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 import { RoomReservations } from '../roomReservations/roomReservations.model';
 @Injectable()
 export class RoomReservatonsService{
-    
+    s:string;
+
     constructor (private http: Http){
 
     }
@@ -18,6 +19,11 @@ export class RoomReservatonsService{
     private extractData(res: Response) {
         let body = res.json();
         return body || [];
+    }
+
+    getAccomodations(id:number):Observable<any>{
+        this.s="http://localhost:54042/api/RoomResByUserId/"+id;
+        return this.http.get(this.s).map(this.extractData);
     }
 
     postRoomReservation(newRoomRes:RoomReservations): Observable<any>  {
