@@ -32,14 +32,12 @@
     </div>
     <div>
         <label for="Place">Place:</label>
-        <!--<select>-->
         <select name="placeId" id="placeId" [(ngModel)]="placeId">
         <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
         </select>
     </div>
     <div>
         <label for="AccomodationTypeId">AccomodationType:</label>
-        <!--<select>-->
         <select name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
         <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
         </select>
@@ -50,6 +48,39 @@
     <!-- Valjda ownerId treba da se smesti na osnovu korisnika koji unosi ove podatke -->
 </form>
 </div>
+
+<!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
+<div>
+<h3>Approve accomodation:</h3>
+<form #f2="ngForm"(ngSubmit)="putAccomodation(f2.value, f2)">
+<!--<label>Approved:</label>-->
+<div>
+    <div #dataContainer [innerHTML]="theHtmlString">
+    </div>
+    <label>
+        <input type="checkbox" name="Approved" [(ngModel)]="Approved">
+        <!--<input type="radio" name="Approved" [(ngModel)]="Approved"/>-->
+        Approved</label>
+</div>
+<div>
+    <input type="submit" value="Change"/>
+</div>
+</form>
+
+<h3>Accomodations:</h3>
+<div>
+    <ul>
+        <li *ngFor="let acc of accomodations">
+            <span>{{acc.Id}}</span><br/>{{acc.Name}}
+            <button (click)="onEdit(acc)">Edit</button>
+        </li>
+    </ul>
+</div>
+
+</div>
+
+<!-- Kraj odobravanja smestaja -->
+
 
 <h3>Accomodations:</h3>
 <div>
