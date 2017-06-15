@@ -7,6 +7,7 @@ import { Accomodation } from '../accomodation/accomodation.model';
 @Injectable()
 export class AccomodationsService{
     s:string;
+    s2:string;
     constructor (private http: Http){
 
     }
@@ -21,11 +22,17 @@ export class AccomodationsService{
         return this.http.get("http://localhost:54042/api/Accomodations2").map(this.extractData);        
     }
 
+    getAccomodationsByOwnerId(id:number):Observable<any>{
+        this.s2='http://localhost:54042/api/AccomodationsByOwnerId/'+id;
+        return this.http.get(this.s2).map(this.extractData);   
+    }
+
     getAccomodationById(id:number): Observable<any> {
         this.s='http://localhost:54042/api/Accomodation/'+id;
         return this.http.get(this.s).map(this.extractData); 
        // return this.http.get("http://localhost:54042/api/Accomodations/${id}").map(this.extractData);        
     }
+
 
     private extractData(res: Response) {
         let body = res.json();

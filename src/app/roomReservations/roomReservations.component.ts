@@ -53,7 +53,7 @@ export class RoomReservationsComponent implements OnInit {
   private regionsService:RegionsService,
   private placesService:PlacesService,
   private accomodationsService:AccomodationsService) {
-    
+    this.accomodations=[];
    }
 
   ngOnInit() {
@@ -109,7 +109,13 @@ export class RoomReservationsComponent implements OnInit {
     this.placesService.getPlaceById(this.placeId).subscribe(
       p => {
         this.place = p as Place; 
-        this.accomodations = this.place.Accomodations;
+        for(var i=0;i<this.place.Accomodations.length;i++){
+          if(this.place.Accomodations[i].Approved==true){
+            var pl=this.place.Accomodations[i] as Accomodation;
+            this.accomodations.push(pl);
+          }
+        }
+        //this.accomodations = this.place.Accomodations;
       });
   }
 

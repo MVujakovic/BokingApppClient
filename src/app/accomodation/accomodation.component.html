@@ -32,14 +32,12 @@
     </div>
     <div>
         <label for="Place">Place:</label>
-        <!--<select>-->
         <select name="placeId" id="placeId" [(ngModel)]="placeId">
         <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
         </select>
     </div>
     <div>
         <label for="AccomodationTypeId">AccomodationType:</label>
-        <!--<select>-->
         <select name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
         <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
         </select>

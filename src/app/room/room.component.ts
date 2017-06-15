@@ -33,11 +33,17 @@ export class RoomComponent implements OnInit {
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
-    //za dobavljanje svih smestaja; mozda bi se prvo trebala odabrati country,region,place
-    this.accomodationsService.getAccomodations().subscribe(
+    //za dobavljanje svih smestaja treba da se prosledi id korisnika, pa da se dobiju samo smestaji tog odredjenog korisnika
+    //ovde ce trebati da se stavi idMenadzera koji hoce da dodaje sobe u svoje smestaje!!!
+    this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
       (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
+
+    // this.accomodationsService.getAccomodations().subscribe(
+    //   (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
+    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    // );
   }
 
   addRoom(newRoom:Room,form:NgForm):void{
