@@ -9,6 +9,7 @@ export class AccomodationsService{
     s:string;
     s2:string;
     s3:string;
+    s4:string;
     constructor (private http: Http){
 
     }
@@ -26,6 +27,11 @@ export class AccomodationsService{
     getAccomodationsByOwnerId(id:number):Observable<any>{
         this.s2='http://localhost:54042/api/AccomodationsByOwnerId/'+id;
         return this.http.get(this.s2).map(this.extractData);   
+    }
+
+    getAccomodationsByGrade(id:number):Observable<any>{
+        this.s4='http://localhost:54042/api/AccomodationsByGrade/'+id;
+        return this.http.get(this.s4).map(this.extractData); 
     }
 
     getAccomodationById(id:number): Observable<any> {

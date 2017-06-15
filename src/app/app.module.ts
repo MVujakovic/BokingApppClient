@@ -19,6 +19,7 @@ import { AccomodationComponent } from './accomodation/accomodation.component';
 import { CommentComponent } from './comment/comment.component';
 import { RoomComponent } from './room/room.component';
 import { RoomReservationsComponent } from './roomReservations/roomReservations.component';
+import { SearchComponent } from './search/search.component';
 
 import { AuthenticationService } from './services/auth.service';
 import { LogInService } from './services/login.service';
@@ -36,6 +37,7 @@ import { CommentsService } from './services/comments.service';
 
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
+
 
 const ChildRoutesHome = [
   { path: "login", component: LoginComponent },
@@ -89,7 +91,8 @@ const Routes = [
     UserComponent,
     RoomReservationsComponent,
     RoomComponent,
-    CommentComponent
+    CommentComponent,
+    SearchComponent
 
   ],
   imports: [
