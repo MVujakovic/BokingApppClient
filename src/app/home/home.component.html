@@ -37,13 +37,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>username:{{username}} loggedIn: {{loggedIn}}</li>
-                <li><a routerLink="/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 
-                <li *ngIf="!isLoggedIn()"><a routerLink="/Login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
+                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
                 <!--<li *ngIf="isLoggedIn()"><button (click)="logout()" title="Logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</button></li>-->
 
-                <!--<li><a routerLink="/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a routerLink="/Login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>-->
+                <!--<li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>-->
             </ul>
         </div>
     </nav>

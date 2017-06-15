@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   username: string;
   loggedIn:boolean; //ova je promenljiva samo za debug, nikad se ne uloguje! iance jedva se vidi ispis 'false' na gui-u. 
   title = 'BookingApp'
-  constructor(private authService:AuthenticationService) { }
+  constructor(private authService:AuthenticationService,public router: Router,) { }
 
   ngOnInit() {
   }
@@ -27,5 +28,8 @@ export class HomeComponent implements OnInit {
     return  this.loggedIn;
   }
 
+  logIn(){
+        this.router.navigate(["bookingApp/login"]);
+    }
 
 }
