@@ -30,8 +30,12 @@ import { LogInService } from './services/login.service';
 import { ComponentFixture } from '@angular/core/testing';
 import { CommentsService } from './services/comments.service';
 
+
 import { AuthenticationService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
+import { RoomsService } from './services/rooms.service';
+import { RoomReservatonsService } from './services/roomReservations.service';
+
 const Routes = [
   {path: '',redirectTo:'/bookingApp',pathMatch: 'full'},
   {path:"bookingApp", component: HomeComponent},
@@ -52,10 +56,10 @@ const Routes = [
   // each time the home route is hit, the AuthGuard function
   // will be executed and decide whether or not a user can actually access the route.
   {path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
-  {path:"comment",component:CommentComponent}
-]  {path:"room",component:RoomComponent},
+  {path:"comment",component:CommentComponent},
+ {path:"room",component:RoomComponent},
   {path:"roomReservations",component:RoomReservationsComponent},
-
+] 
 
 @NgModule({
   declarations: [
