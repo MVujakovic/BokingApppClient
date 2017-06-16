@@ -37,16 +37,19 @@ import { CommentsService } from './services/comments.service';
 
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
+import { SearchAccomComponent } from './search-accom/search-accom.component';
 
 
 const ChildRoutesHome = [
   { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  
   { path: "appUser", component: AppUserComponent },
   { path: "country", component: CountryComponent },
   { path: "region", component: RegionComponent },
   { path: "place", component: PlaceComponent },
   { path: "accomodationType", component: AccomodationTypeComponent },
-  { path: "accomodation", component: AccomodationComponent,canActivate:[AuthGuard] },
+  { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
   { path: "room", component: RoomComponent },
   { path: "roomReservations", component: RoomReservationsComponent },
   { path: "comment", component: CommentComponent },
@@ -54,26 +57,25 @@ const ChildRoutesHome = [
 
 const Routes = [
   { path: '', redirectTo: '/bookingApp', pathMatch: 'full' },
-  // { path: '**', component: HomeComponent },
+  { path: "other", redirectTo: "/bookingApp" },
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  // { path: "register", component: RegisterComponent },
+  // { path: "login", component: LoginComponent },
+  // { path: "appUser", component: AppUserComponent },
+  // { path: "country", component: CountryComponent },
+  // { path: "region", component: RegionComponent },
+  // { path: "place", component: PlaceComponent },
+  // { path: "accomodationType", component: AccomodationTypeComponent },
 
-  { path: "appUser", component: AppUserComponent },
-  { path: "country", component: CountryComponent },
-  { path: "region", component: RegionComponent },
-  { path: "place", component: PlaceComponent },
-  { path: "accomodationType", component: AccomodationTypeComponent },
-
- // { path: "accomodation", component: AccomodationComponent },
+  // { path: "accomodation", component: AccomodationComponent },
   // testing guards:
   // each time the home route is hit, the AuthGuard function
   // will be executed and decide whether or not a user can actually access the route.
-  { path:"accomodation",component:AccomodationComponent, canActivate:[AuthGuard]},
+  // { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
 
-  { path: "room", component: RoomComponent },
-  { path: "roomReservations", component: RoomReservationsComponent },
-  { path: "comment", component: CommentComponent },
+  // { path: "room", component: RoomComponent },
+  // { path: "roomReservations", component: RoomReservationsComponent },
+  // { path: "comment", component: CommentComponent },
 ]
 
 @NgModule({
@@ -92,7 +94,8 @@ const Routes = [
     RoomReservationsComponent,
     RoomComponent,
     CommentComponent,
-    SearchComponent
+    SearchComponent,
+    SearchAccomComponent
 
   ],
   imports: [

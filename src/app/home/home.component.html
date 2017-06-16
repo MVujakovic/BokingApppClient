@@ -5,13 +5,11 @@
     <title>{{title}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
+    <!--<nav class="navbar navbar-light" style="background-color: #e3f2fd;">-->
+    <nav class="navbar navbar-inverse bg-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" routerLink="">{{title}}</a>
@@ -27,48 +25,58 @@
                         <li><a routerLink="/regions">Regions</a></li>-->
                     </ul>
                 </li>
-                <li><a routerLink="/country">Country</a></li>
-                <li><a routerLink="/region">Region</a></li>
-                <li><a routerLink="/place">Place</a></li>
-                <li  *ngIf="getRole()=='Admin'" ><a routerLink="/appUser">AppUsers</a></li>
-                <li><a routerLink="/accomodationType">AccomodationType</a></li>
-                <li><a routerLink="/accomodation">Accomodations</a></li>
+                <li><a routerLink="/bookingApp/country">Country</a></li>
+                <li><a routerLink="/bookingApp/region">Region</a></li>
+                <li><a routerLink="/bookingApp/place">Place</a></li>
+                <li *ngIf="getRole()=='Admin'"><a routerLink="/bookingApp/appUser">AppUsers</a></li>
+                <li><a routerLink="/bookingApp/accomodationType">AccomodationType</a></li>
+                <li><a routerLink="/bookingApp/accomodation">Accomodations</a></li>
                 <!--<form class="navbar-form navbar-left">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </form>-->         
+                </form>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
-                <li *ngIf="!isLoggedIn()"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li *ngIf="isLoggedIn()" (click)="logout()"><a><span  class="glyphicon glyphicon-log-out"></span>LogOut {{username}}</a> </li>
             </ul>
         </div>
     </nav>
-    <!--<div class="container">
-        <h3>Right Aligned Navbar</h3>
-        <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-    </div>-->
+
+    <!--<div style='float:left'>primer za levo desno</div>
+    <div style='float:right'>primer za levo desno</div>
+    <div style='clear:both'></div>-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="jumbotron">
+                    <h2>Find accomodation</h2>
+                     <!--<app-search-accom></app-search-accom>-->
+                     <app-search></app-search>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="jumbotron">
+                    <h2>Router outlet things..</h2>
+                     <router-outlet></router-outlet>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr>
+    <footer>
+        <p> &copy; Klasnic, Vujakovic</p>
+    </footer>
+   
 
 </body>
 
 </html>
-
-
-<!--<app-accomodation></app-accomodation>-->
-<!--<h2>Countries</h2>
-<app-country></app-country>
-
-<h2>Regions</h2>
-<app-region></app-region>-->
-
-<!--<h2>Places</h2>
-<app-place></app-place>-->
-
-
-
-
-<router-outlet></router-outlet>
