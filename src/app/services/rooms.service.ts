@@ -7,6 +7,7 @@ import { Room } from '../room/room.model';
 @Injectable()
 export class RoomsService{
     s:string;
+    s2:string;
     constructor (private http: Http){
 
     }
@@ -40,5 +41,17 @@ export class RoomsService{
         return this.http.post(
         'http://localhost:54042/api/RoomsPost',
         newRoom, opts);
+    }
+
+    putRoom(id:number,newRoom:Room):Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        this.s2='http://localhost:54042/api/RoomsMod/'+id;
+        return this.http.put(this.s2,newRoom,opts);
     }
 }

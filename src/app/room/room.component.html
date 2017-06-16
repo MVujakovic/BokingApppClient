@@ -48,3 +48,61 @@
      </li>
   </ul>
 </div>
+
+<!-- Edit soba -->
+<div>
+    <h3>Rooms for editing:</h3>
+    <!-- ovde treba da izaberem prvo smestaj koji pripada vlasniku -->
+    <div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accIdEdit" id="accIdEdit" [(ngModel)]="accIdEdit" (change)="accSelected()">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Room:</label>
+        <select name="roomId" id="roomId" [(ngModel)]="roomId" (change)="roomSelected()">
+            <option *ngFor="let room of roomsByAccomodation" value={{room.Id}}>{{room.RoomNumber}}</option>
+        </select>
+    </div>
+    <!--<div *ngIf="isSelectedChanged()">
+    <ul>
+        
+        <li *ngFor="let room of roomsByAccomodation">
+            <span>{{room.RoomNumber}}</span>
+            <button (click)="onEditRoom(room)">Edit</button>
+        </li>
+    </ul>
+    </div>-->
+
+    <h3>Edit rooms:</h3>
+    <form #f2="ngForm"(ngSubmit)="editRoom(f2.value, f2)">
+    <div>
+        <label for="RoomNumber">RoomNumber: </label>
+        <input name="RoomNumber" type="text" [(ngModel)]="RoomNumber"/>
+    </div>
+    <div>
+        <label for="BedCount">BedCount: </label>
+        <input name="BedCount" type="text" [(ngModel)]="BedCount"/>
+    </div>
+    <div>
+        <label for="Description">Description: </label>
+        <input name="Description" type="text" [(ngModel)]="Description"/>
+    </div>
+    <div>
+        <label for="PricePerNight">PricePerNight: </label>
+        <input name="PricePerNight" type="text" [(ngModel)]="PricePerNight"/>
+    </div>
+    <!-- Nema poente menjati accomodation jer se soba nalazi u tom smestaju-->
+    <!--<div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accId" id="accId" [(ngModel)]="accId">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>-->
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+    </form>
+</div>
+<!-- Kraj edita -->

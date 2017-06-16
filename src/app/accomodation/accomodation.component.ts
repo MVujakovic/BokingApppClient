@@ -143,7 +143,6 @@ export class AccomodationComponent implements OnInit {
   }
 
   onEditAccomodation(acc:Accomodation){
-    //napraviti da mogu da se edit samo smestaji ciji je korisnik vlasnik
     this.Name=acc.Name;
     this.Description=acc.Description;
     this.Address=acc.Address;
