@@ -31,6 +31,20 @@ export class AccomodationComponent implements OnInit {
   Approved:boolean;
   accName:string ='';
   accom:Accomodation;
+  
+
+  //za edit
+  accomByOwner:Accomodation[];
+  accomEdit:Accomodation;
+  Name:String;
+  Description:String;
+  Address:String;
+  AverageGrade:String;
+  Latitude:String;
+  Longitude:String;
+  ImageEdit:string;
+  PlaceIdEdit:number;
+  AccomodationTypeIdEdit:number;
 
 
   constructor( private accomodationsService: AccomodationsService,
@@ -60,12 +74,18 @@ export class AccomodationComponent implements OnInit {
       (c: any) => {this.AccomodationTypes = c; console.log(this.AccomodationTypes)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
+
+    //ovde treba da se prosledi automatski id korisnika
+    this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+      (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
   }
 
   addAccomodation(newAccomodation:Accomodation,form:NgForm):void{
     newAccomodation.AccomodationTypeId=this.accTypeId;
     newAccomodation.PlaceId=this.placeId;
-    newAccomodation.OwnerId=1;
+    newAccomodation.OwnerId=1; //ovde treba id onog koji kreira smesta
      this.accomodationsService.postAccomodation(newAccomodation).subscribe(this.onPost);
     form.reset();
   }
@@ -93,6 +113,49 @@ export class AccomodationComponent implements OnInit {
 
     this.Approved=acc.Approved;
     this.accom=acc;
+  }
+
+  editAccomodation(newAccomodation:Accomodation, form:NgForm):void{
+    this.accomEdit.Name=newAccomodation.Name;
+    this.accomEdit.Address=newAccomodation.Address;
+    this.accomEdit.AverageGrade=newAccomodation.AverageGrade;
+    this.accomEdit.Description=newAccomodation.Description;
+    this.accomEdit.Latitude=newAccomodation.Latitude;
+    this.accomEdit.Longitude=newAccomodation.Longitude;
+    this.accomEdit.PlaceId=this.PlaceIdEdit;
+    this.accomEdit.AccomodationTypeId=this.AccomodationTypeIdEdit;
+    this.accomodationsService.putAccomodation(this.accomEdit.Id,this.accomEdit).subscribe(this.onPost);
+
+    // newAccomodation.AccomodationTypeId=this.AccomodationTypeIdEdit;
+    // newAccomodation.PlaceId=this.PlaceIdEdit;
+    // newAccomodation.OwnerId=this.accomEdit.OwnerId;
+    // this.accomodationsService.putAccomodation(this.accomEdit.Id,newAccomodation).subscribe(this.onPost);
+    form.reset();
+    
+    this.Name="";
+    this.Description="";
+    this.Address="";
+    this.AverageGrade="";
+    this.Latitude="";
+    this.Longitude="";
+    this.PlaceIdEdit=0;
+    this.AccomodationTypeIdEdit=0;
+  }
+
+  onEditAccomodation(acc:Accomodation){
+    this.Name=acc.Name;
+    this.Description=acc.Description;
+    this.Address=acc.Address;
+    this.AverageGrade=acc.AverageGrade.toString();
+    this.Latitude=acc.Latitude.toString();
+    this.Longitude=acc.Longitude.toString();
+    this.PlaceIdEdit=acc.PlaceId;
+    this.AccomodationTypeIdEdit=acc.AccomodationTypeId;
+    this.accomEdit=acc;
+  }
+
+  onDeleteAccomodation(acc:Accomodation){
+    this.accomodationsService.delete(acc.Id).subscribe(this.onDeleteAccomodation);
   }
 
 }

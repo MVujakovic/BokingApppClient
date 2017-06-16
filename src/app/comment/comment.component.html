@@ -21,6 +21,7 @@
 <div #dataContainer [innerHTML]="theHtmlString">
 </div>
 
+<!-- Obican ispis svih komentara -->
 <h3>Comments:</h3>
 <div>
   <ul>
@@ -32,3 +33,41 @@
      </li>
   </ul>
 </div>
+<!-- Kraj obicnog ispisa -->
+
+<!-- Edit komentara -->
+<div>
+    <h3>Edit comments:</h3>
+    <form #f2="ngForm"(ngSubmit)="editComment(f2.value, f2)">
+    <div>
+        <label for="Grade">Grade: </label>
+        <input name="Grade" type="text" [(ngModel)]="Grade"/>
+    </div>
+    <div>
+        <label for="Text">Text: </label>
+        <input name="Text" type="text" [(ngModel)]="Text"/>
+    </div>
+    <!-- Nema mi poente da menjaju u komentaru smestaj koji komentarisu -->
+    <!--<div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accomodationIdEdit" id="accomodationIdEdit" [(ngModel)]="accomodationIdEdit">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>-->
+    <div>
+        <input type="submit" value="Create"/>
+    </div>
+    </form>
+    <h3>Comments for editing:</h3>
+    <div>
+    <ul>
+        <li *ngFor="let comm of commentsByOwner">
+            <!--<span>{{acc.Name}}</span><br/>-->
+            <span>{{comm.Id}}</span><br/>{{comm.Accomodation.Name}}
+            <button (click)="onEditComment(comm)">Edit</button>
+            <button (click)="onDeleteComment(comm)">Delete</button>
+        </li>
+    </ul>
+    </div>
+</div>
+<!-- Kraj edita -->

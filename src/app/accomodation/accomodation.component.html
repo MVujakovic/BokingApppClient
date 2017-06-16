@@ -1,5 +1,8 @@
 <h3>{{name}}</h3>
 <div>
+    <h3>
+        Add new accomodation:
+    </h3>
 <form #f="ngForm"(ngSubmit)="addAccomodation(f.value, f)">
     <div>
         <label for="Name">Name: </label>
@@ -49,6 +52,11 @@
 </form>
 </div>
 
+<br/>
+<br/>
+<br/>
+<br/>
+
 <!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
 <div>
 <h3>Approve accomodation:</h3>
@@ -81,8 +89,79 @@
 
 <!-- Kraj odobravanja smestaja -->
 
+<br/>
+<br/>
+<br/>
+<br/>
 
-<h3>Accomodations:</h3>
+<!--Edit smestaja(PUT) -->
+<div>
+    <h3>Edit accomodation:</h3>
+    <form #f3="ngForm"(ngSubmit)="editAccomodation(f3.value, f3)">
+        <div>
+            <label for="Name">Name: </label>
+            <input name="Name" type="text" [(ngModel)]="Name"/>
+        </div>
+        <div>
+            <label for="Description">Description:</label>
+            <input name="Description" type="text" [(ngModel)]="Description"/>
+        </div>
+        <div>
+            <label for="Address">Address:</label>
+            <input name="Address" type="text" [(ngModel)]="Address"/>
+        </div>
+        <div>
+            <label for="AverageGrade">AverageGrade:</label>
+            <input name="AverageGrade" type="text" [(ngModel)]="AverageGrade"/>
+        </div>
+        <div>
+            <label for="Latitude">Latitude:</label>
+            <input name="Latitude" type="text" [(ngModel)]="Latitude"/>
+        </div>
+        <div>
+            <label for="Longitude">Longitude:</label>
+            <input name="Longitude" type="text" [(ngModel)]="Longitude"/>
+        </div>
+        <div>
+            <!-- Ovo za sliku razmisliti kako uraditi -->
+            <input name="ImageUrl" type="file" value="Choose image" id="accImage"  ngModel/>       
+        </div>
+        <div>
+            <label for="place">Place:</label>
+            <select name="PlaceIdEdit" id="PlaceIdEdit" [(ngModel)]="PlaceIdEdit">
+                <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="accomodationTypeIdEdit">AccomodationType:</label>
+            <select name="AccomodationTypeIdEdit" id="AccomodationTypeIdEdit" [(ngModel)]="AccomodationTypeIdEdit">
+                <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
+
+    <h3>Accomodations for editing:</h3>
+    <div>
+    <ul>
+        <li *ngFor="let acc of accomByOwner">
+            <!--<span>{{acc.Name}}</span><br/>-->
+            <span>{{acc.Id}}</span><br/>{{acc.Name}}
+            <button (click)="onEditAccomodation(acc)">Edit</button>
+            <button (click)="onDeleteAccomodation(acc)">Delete</button>
+        </li>
+    </ul>
+    </div>
+</div>
+<!-- Kraj edita -->
+<br/>
+<br/>
+<br/>
+<br/>
+
+<h3>List of all ccomodations:</h3>
 <div>
   <ul>
     <li *ngFor="let accomodation of accomodations">
