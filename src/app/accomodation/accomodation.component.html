@@ -1,5 +1,8 @@
 <h3>{{name}}</h3>
 <div>
+    <h3>
+        Add new accomodation:
+    </h3>
 <form #f="ngForm"(ngSubmit)="addAccomodation(f.value, f)">
     <div>
         <label for="Name">Name: </label>
@@ -49,6 +52,11 @@
 </form>
 </div>
 
+<br/>
+<br/>
+<br/>
+<br/>
+
 <!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
 <div>
 <h3>Approve accomodation:</h3>
@@ -80,6 +88,11 @@
 </div>
 
 <!-- Kraj odobravanja smestaja -->
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 <!--Edit smestaja(PUT) -->
 <div>
@@ -137,14 +150,18 @@
             <!--<span>{{acc.Name}}</span><br/>-->
             <span>{{acc.Id}}</span><br/>{{acc.Name}}
             <button (click)="onEditAccomodation(acc)">Edit</button>
+            <button (click)="onDeleteAccomodation(acc)">Delete</button>
         </li>
     </ul>
     </div>
 </div>
 <!-- Kraj edita -->
+<br/>
+<br/>
+<br/>
+<br/>
 
-
-<h3>Accomodations:</h3>
+<h3>List of all ccomodations:</h3>
 <div>
   <ul>
     <li *ngFor="let accomodation of accomodations">

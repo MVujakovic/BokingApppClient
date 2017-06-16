@@ -8,6 +8,7 @@ import { Comment } from '../comment/comment.model';
 export class CommentsService{
     s:string;
     s2:string;
+    s3:string;
     constructor (private http: Http){
 
     }
@@ -52,5 +53,10 @@ export class CommentsService{
 
         this.s='http://localhost:54042/api/CommentsMod/'+id;
         return this.http.put(this.s,newComment,opts);
+    }
+
+    delete(id : number) : Observable<any> {
+        this.s3='http://localhost:54042/api/CommentDelete/'+id;
+        return this.http.delete(this.s3);
     }
 }

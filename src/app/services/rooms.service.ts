@@ -8,6 +8,7 @@ import { Room } from '../room/room.model';
 export class RoomsService{
     s:string;
     s2:string;
+    s3:string;
     constructor (private http: Http){
 
     }
@@ -53,5 +54,10 @@ export class RoomsService{
 
         this.s2='http://localhost:54042/api/RoomsMod/'+id;
         return this.http.put(this.s2,newRoom,opts);
+    }
+
+    delete(id:number): Observable<any> {
+        this.s3='http://localhost:54042/api/RoomsDelete/'+id;
+        return this.http.delete(this.s3);
     }
 }

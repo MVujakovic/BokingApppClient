@@ -111,4 +111,8 @@ export class CommentComponent implements OnInit {
     this.Text=comm.Text;
     this.commEdit=comm;
   }
+
+  onDeleteComment(comm:Comment){
+    this.commentsService.delete(comm.Id).subscribe(this.onDeleteComment);
+  }
 }

@@ -154,4 +154,8 @@ export class AccomodationComponent implements OnInit {
     this.accomEdit=acc;
   }
 
+  onDeleteAccomodation(acc:Accomodation){
+    this.accomodationsService.delete(acc.Id).subscribe(this.onDeleteAccomodation);
+  }
+
 }

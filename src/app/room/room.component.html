@@ -1,4 +1,5 @@
 <h3>{{name}}</h3>
+<h3>Add new room:</h3>
 <form #f="ngForm"(ngSubmit)="addRoom(f.value, f)">
     <div>
         <label for="RoomNumber">RoomNumber: </label>
@@ -27,7 +28,7 @@
     </div>
 </form>
 
-<h3>Rooms:</h3>
+<h3>List of all rooms:</h3>
 <div>
   <ul>
     <li *ngFor="let room of rooms">      
@@ -48,6 +49,10 @@
      </li>
   </ul>
 </div>
+
+<br/>
+<br/>
+<br/>
 
 <!-- Edit soba -->
 <div>
@@ -104,5 +109,27 @@
         <input type="submit" value="Create"/>
     </div>
     </form>
+   
+    <br/>
+    <br/>
+    <br/>
+    <h3>Delete room:</h3>
+    <div>
+         <label for="Accomodation">Accomodation:</label>
+        <select name="accIdDelete" id="accIdDelete" [(ngModel)]="accIdDelete" (change)="accDeleteSelected()">
+        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>
+    <div>
+        <label>Room:</label>
+        <select name="roomIdDelete" id="roomIdDelete" [(ngModel)]="roomIdDelete" (change)="roomSelectedDelete()">
+            <option *ngFor="let room of roomsForDel" value={{room.Id}}>{{room.RoomNumber}}</option>
+        </select>
+    </div>
+    <div>
+        <button (click)="deleteRoom()">Delete</button>
+    </div>
+
+
 </div>
 <!-- Kraj edita -->

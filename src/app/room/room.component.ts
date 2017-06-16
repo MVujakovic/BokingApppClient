@@ -34,8 +34,13 @@ export class RoomComponent implements OnInit {
   accIdEdit:number;
   accomodation:Accomodation;
 
-  //currChanges=0;
-  //changeCounter=0;
+  //za delete
+  accIdDelete:number;
+  accForDelete:Accomodation;
+  roomsForDel:Room[];
+  roomForDelete:Room;
+  roomIdDelete:number;
+
 
   constructor(private roomsService: RoomsService,
   private accomodationsService: AccomodationsService) {
@@ -69,6 +74,28 @@ export class RoomComponent implements OnInit {
   
   onPost(res : any) : void{
     console.log(res.json());
+  }
+
+  accDeleteSelected(){
+    this.accomodationsService.getAccomodationById(this.accIdDelete).subscribe(
+      a => {
+        this.accForDelete = a as Accomodation;
+        this.roomsForDel=[];
+        this.roomsForDel = this.accForDelete.Rooms;
+      });
+  }
+
+  roomSelectedDelete(){
+    this.roomsService.getRoomById(this.roomIdDelete).subscribe(
+      r => {
+        this.roomForDelete = r as Room;
+      });
+  }
+
+  deleteRoom(){
+    this.roomsService.delete(this.roomForDelete.Id).subscribe(this.deleteRoom);
+    this.accIdDelete=0;
+    this.roomIdDelete=0;
   }
 
   accSelected(){

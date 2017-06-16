@@ -11,6 +11,7 @@ export class AccomodationsService{
     s3:string;
     s4:string;
     s5:string;
+    s6:string;
     constructor (private http: Http){
 
     }
@@ -72,5 +73,10 @@ export class AccomodationsService{
 
         this.s3='http://localhost:54042/api/AccomodationsMod/'+id;
         return this.http.put(this.s3,newAccomodation,opts);
+    }
+
+    delete(id : number) : Observable<any> {
+        this.s6='http://localhost:54042/api/AccomodationDelete/'+id;
+        return this.http.delete(this.s6);
     }
 }
