@@ -40,7 +40,7 @@ export class CommentComponent implements OnInit {
     );
 
     //ovde ce kao parametar ici id usera koji hoce da pise komentar
-    this.roomReservationsService.getAccomodations(1).subscribe(
+    this.roomReservationsService.getAccomodations(3).subscribe(
       (c: any) => {
         this.accomodations = c; 
         console.log(this.accomodations);

@@ -10,6 +10,7 @@ export class AccomodationsService{
     s2:string;
     s3:string;
     s4:string;
+    s5:string;
     constructor (private http: Http){
 
     }
