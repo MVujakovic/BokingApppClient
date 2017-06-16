@@ -27,6 +27,12 @@ export class CommentComponent implements OnInit {
   accomodationId: number;
   appUserId:number;//odredjuje se na osnovu korisnika koji pise komentar
 
+  //za edit
+  Grade:String;
+  Text:String;
+  commentsByOwner:Comment[];
+  commEdit:Comment;
+
   constructor(private commentsService: CommentsService,
   private accomodationsService: AccomodationsService,
   private roomReservationsService:RoomReservatonsService) {
@@ -39,8 +45,14 @@ export class CommentComponent implements OnInit {
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
-    //ovde ce kao parametar ici id usera koji hoce da pise komentar
-    this.roomReservationsService.getAccomodations(3).subscribe(
+    //ovde treba da se prosledi id korisnika koji je ulogovan
+    this.commentsService.getCommentsByUserId(1).subscribe(
+      (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    //ovde ce kao parametar ici id usera koji hoce da pise komentar(koji je ulogovan)
+    this.roomReservationsService.getAccomodations(1).subscribe(
       (c: any) => {
         this.accomodations = c; 
         console.log(this.accomodations);
@@ -82,5 +94,21 @@ export class CommentComponent implements OnInit {
 
   isValid(){
     return this.isDisabled;
+  }
+
+  editComment(newComment:Comment,form:NgForm):void{
+    this.commEdit.Grade=newComment.Grade;
+    this.commEdit.Text=newComment.Text;
+    this.commentsService.putComment(this.commEdit.Id,this.commEdit).subscribe(this.onPost);
+    form.reset();
+
+    this.Grade="";
+    this.Text="";
+  }
+
+  onEditComment(comm:Comment){
+    this.Grade=comm.Grade.toString();
+    this.Text=comm.Text;
+    this.commEdit=comm;
   }
 }
