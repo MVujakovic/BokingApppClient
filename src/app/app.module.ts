@@ -49,8 +49,8 @@ import { AlertModule } from 'ngx-bootstrap';
 import { CarouselComponent } from './carousel/carousel.component';
 
 const ChildRoutesHome = [
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  // { path: "login", component: LoginComponent },
+  // { path: "register", component: RegisterComponent },
   
   { path: "appUser", component: AppUserComponent },
   { path: "country", component: CountryComponent },
@@ -67,8 +67,8 @@ const Routes = [
   { path: '', redirectTo: '/bookingApp', pathMatch: 'full' },
   { path: "other", redirectTo: "/bookingApp" },
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
-  // { path: "register", component: RegisterComponent },
-  // { path: "login", component: LoginComponent },
+   { path: "register", component: RegisterComponent },
+   { path: "login", component: LoginComponent },
   // { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },

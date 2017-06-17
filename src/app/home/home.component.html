@@ -40,8 +40,10 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
-                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li *ngIf="!isLoggedIn()"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
+                <li *ngIf="!isLoggedIn()"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <!--<li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
+                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
                 <li *ngIf="isLoggedIn()" (click)="logout()"><a><span  class="glyphicon glyphicon-log-out"></span>LogOut {{username}}</a> </li>
             </ul>
         </div>
@@ -64,12 +66,11 @@
                     <!--<h2>Router outlet things..</h2>
                      <router-outlet></router-outlet>-->
                        <app-carousel></app-carousel>
-                </div>
-              
+                </div>             
             </div>
         </div>
     </div>
-
+    <router-outlet></router-outlet>
     <hr>
     <footer>
         <p> &copy; Klasnic, Vujakovic</p>

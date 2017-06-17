@@ -9,7 +9,7 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class AuthenticationService {
 
-   // public token: string;
+    // public token: string;
 
     constructor(private http: Http) { }
 
@@ -30,10 +30,12 @@ export class AuthenticationService {
 
                     //this.token = token;
                     var role = response.headers.get('role');
+                    var id = response.headers.get('id');
 
                     localStorage.setItem("username", username);
                     localStorage.setItem("role", role);
-                   // localStorage.setItem("token_id", this.token);
+                    // localStorage.setItem("token_id", this.token);
+                    localStorage.setItem("id", id);
                     localStorage.setItem("token_id", token);
 
                     return true;
@@ -74,11 +76,11 @@ export class AuthenticationService {
         var role: string;
         role = localStorage.getItem("role");
 
-        if(role==null){
+        if (role == null) {
             //alert("There is no role associated with user.");
             // ruter nesto..
-            role=""; // znak da je neko obican posetioc 
-        }else{
+            role = ""; // znak da je neko obican posetioc 
+        } else {
             return role;
         }
     }

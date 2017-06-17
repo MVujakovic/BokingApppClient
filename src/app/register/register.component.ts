@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     // u.ConfirmPassword=newUser.ConfirmPassword;
     // u.Role=newUser.Role;
     
-    
+
 
     newUser.Role=this.choosenRole;
 
