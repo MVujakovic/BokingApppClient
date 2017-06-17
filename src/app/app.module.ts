@@ -35,10 +35,18 @@ import { RoomsService } from './services/rooms.service';
 import { RoomReservatonsService } from './services/roomReservations.service';
 import { CommentsService } from './services/comments.service';
 
+// RECOMMENDED (doesn't work with system.js)
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+// or
+//import { CarouselModule } from 'ngx-bootstrap';
+
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 import { SearchAccomComponent } from './search-accom/search-accom.component';
 
+
+import { AlertModule } from 'ngx-bootstrap';
+import { CarouselComponent } from './carousel/carousel.component';
 
 const ChildRoutesHome = [
   { path: "login", component: LoginComponent },
@@ -95,12 +103,15 @@ const Routes = [
     RoomComponent,
     CommentComponent,
     SearchComponent,
-    SearchAccomComponent
+    SearchAccomComponent,
+    CarouselComponent 
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(Routes),
+    AlertModule.forRoot(),
+    CarouselModule.forRoot(),
     FormsModule,
     HttpModule,
     JsonpModule
