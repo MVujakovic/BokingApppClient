@@ -19,7 +19,7 @@ ako ne bude radilo pokreni cp kao admin i kucaj
 npm install ngx-bootstrap --save
 
 ako bude javio gresku neku, kucaj i 
-npm install @angular/animations@4.1.3
+npm install @angular/animations@4.1.3 
 
 pa onda opet ngx
 

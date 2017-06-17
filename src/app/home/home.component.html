@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <!--<nav class="navbar navbar-light" style="background-color: #e3f2fd;">-->
     <nav class="navbar navbar-inverse bg-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -25,7 +24,7 @@
                         <li><a routerLink="/regions">Regions</a></li>-->
                     </ul>
                 </li>
-                <li><a routerLink="/bookingApp/country">Country</a></li>
+                <li><a routerLink="/bookingApp/country" (click)="goTo('content')"> country</a></li>
                 <li><a routerLink="/bookingApp/region">Region</a></li>
                 <li><a routerLink="/bookingApp/place">Place</a></li>
                 <li *ngIf="getRole()=='Admin'"><a routerLink="/bookingApp/appUser">AppUsers</a></li>
@@ -44,40 +43,58 @@
                 <li *ngIf="!isLoggedIn()"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <!--<li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
                 <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                <li *ngIf="isLoggedIn()" (click)="logout()"><a><span  class="glyphicon glyphicon-log-out"></span>LogOut {{username}}</a> </li>
+                <li *ngIf="isLoggedIn()" (click)="logout()"><a><span  class="glyphicon glyphicon-log-out"></span>LogOut</a></li>
+                <li *ngIf="isLoggedIn()"><a routerLink="/userDetails"><span class="glyphicon glyphicon-edit"></span>{{username}}</a>
+                    <ul class="dropdown-menu">
+                        <!--<li><a routerLink="/accomodations">Accomodations</a></li>
+                        <li><a routerLink="/regions">Regions</a></li>-->
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!--<div style='float:left'>primer za levo desno</div>
-    <div style='float:right'>primer za levo desno</div>
-    <div style='clear:both'></div>-->
     <div class="container-fluid">
-        <div class="row">
+
+        <div class="row-fluid">
             <div class="col-sm-5">
-                <div class="jumbotron">
+                <div class="well sidebar-nav">
                     <h2>Find accomodation</h2>
-                     <!--<app-search-accom></app-search-accom>-->
-                     <app-search></app-search>
+                    <app-search></app-search>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Heading</h2>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                            mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                            mollis euismod. Donec sed odio dui. </p>
+                        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h2>Heading</h2>
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                            mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                            mollis euismod. Donec sed odio dui. </p>
+                        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+                    </div>
                 </div>
             </div>
+
             <div class="col-sm-7">
                 <div class="jumbotron">
-                    <!--<h2>Router outlet things..</h2>
-                     <router-outlet></router-outlet>-->
-                       <app-carousel></app-carousel>
-                </div>             
+                    <app-carousel></app-carousel>
+                </div>
             </div>
         </div>
+        <div class=row id="content">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <router-outlet></router-outlet>
     <hr>
     <footer>
         <p> &copy; Klasnic, Vujakovic</p>
     </footer>
-   
-
-
 </body>
 
 </html>

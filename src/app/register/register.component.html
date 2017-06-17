@@ -1,33 +1,34 @@
-
 <div class="container">
-  <h3>Register User</h3>
-  <form #f="ngForm" (ngSubmit)="f.form.valid && addUser(f.value, f)" validate>
+
+  <form class="form-signin" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f.value, f)" validate>
+    <h2>Register User</h2>
     <div class="form-group">
-      <label for="name">Name:</label>
+      <label class="sr-only" for="name">Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter name" name="Name" ngModel required/>
     </div>
     <div class="form-group">
-      <label for="lastname">Lastname:</label>
+      <label class="sr-only" for="lastname">Lastname:</label>
       <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="Lastname" ngModel required/>
     </div>
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label class="sr-only" for="username">Username:</label>
       <input type="text" class="form-control" id="username" placeholder="Enter username" name="Username" ngModel required/>
     </div>
     <div class="form-group">
-      <label for="email">Email:</label>
+      <label class="sr-only" for="email">Email:</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email" name="Email" ngModel required/>
     </div>
     <div class="form-group">
-      <label for="password">Password:</label>
+      <label class="sr-only" for="password">Password:</label>
       <input type="password" class="form-control" id="password" placeholder="Enter password" name="Password" ngModel required/>
     </div>
     <div class="form-group">
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="ConfirmPassword" ngModel required/>
+      <label class="sr-only" for="confirmPassword">Confirm Password:</label>
+      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="ConfirmPassword" ngModel
+        required/>
     </div>
     <div class=form-group>
-      <label for="userType">Choose a type: </label><br>
+      <label class="sr-only" for="userType">Choose a type: </label><br>
       <label><input type="radio" name="Role" [(ngModel)]="choosenRole" value="Admin"/> Administrator</label>
       <label><input type="radio" name="Role" [(ngModel)]="choosenRole" value="Manager"/> Manager</label>
       <label><input type="radio" name="Role"[(ngModel)]="choosenRole" value="AppUser"/> App User</label>
@@ -41,7 +42,10 @@
     <!-- <div class="checkbox"> -->
     <!-- <label><input type="checkbox" name="remember"> Remember me</label> -->
     <!-- </div> -->
-     <button routerLink="/bookingApp" class="btn btn-default">Back</button>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <div class="btn-group">
+      <button routerLink="/bookingApp" class="btn btn-primary">Back</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
   </form>
 </div>

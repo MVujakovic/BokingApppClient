@@ -13,7 +13,12 @@ export class HomeComponent implements OnInit {
   loggedIn: boolean;
   //role:string;
   title = 'BookingApp'
-  constructor(private authService: AuthenticationService, public router: Router, ) { }
+  constructor(private authService: AuthenticationService, public router: Router, ) {
+
+
+       
+        
+   }
 
   ngOnInit() {
   }
@@ -35,4 +40,7 @@ export class HomeComponent implements OnInit {
     return this.authService.getCurrentUserRole();
   }
 
+  goTo(location: string): void {
+    window.location.hash = location;
+}
 }

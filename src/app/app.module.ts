@@ -42,7 +42,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
-import { SearchAccomComponent } from './search-accom/search-accom.component';
+
 
 
 import { AlertModule } from 'ngx-bootstrap';
@@ -53,7 +53,7 @@ const ChildRoutesHome = [
   // { path: "register", component: RegisterComponent },
   
   { path: "appUser", component: AppUserComponent },
-  { path: "country", component: CountryComponent },
+  { path: "country", component: CountryComponent},
   { path: "region", component: RegionComponent },
   { path: "place", component: PlaceComponent },
   { path: "accomodationType", component: AccomodationTypeComponent },
@@ -103,7 +103,6 @@ const Routes = [
     RoomComponent,
     CommentComponent,
     SearchComponent,
-    SearchAccomComponent,
     CarouselComponent 
 
   ],
