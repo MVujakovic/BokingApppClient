@@ -34,6 +34,14 @@ export class AccomodationTypeComponent implements OnInit {
     //this.ref.detectChanges();
     //this.ref.markForCheck();
      //alert("Sad Radi!!");
+
+     setTimeout(()=>{
+       this.accomodationTypes=[];
+       this.accomodationTypesService.getAccomodationTypes().subscribe(
+      (c: any) => {this.accomodationTypes = c; console.log(this.accomodationTypes)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+      );
+     },1000);
     }
 
   onPost(res : any) : void{

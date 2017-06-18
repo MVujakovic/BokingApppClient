@@ -5,6 +5,8 @@ import {NgForm} from '@angular/forms';
 import { PlacesService } from '../services/places.service';
 import { Region } from '../region/region.model';
 import { RegionsService } from '../services/regions.service';
+import { Country } from '../country/country.model';
+import { CountriesService } from '../services/countries.service';
 import {
   Router,
   ActivatedRoute
@@ -21,9 +23,13 @@ export class PlaceComponent implements OnInit {
   places: Place[];
   regions: Region[];
   regionId: number;
+  countries:Country[];
+  countryId:number;
+  country:Country;
 
   constructor(private placesService: PlacesService,
-  private regionsService: RegionsService) {
+  private regionsService: RegionsService,
+  private countriesService:CountriesService) {
     
    }
 
@@ -40,12 +46,17 @@ export class PlaceComponent implements OnInit {
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
-    //za dobavljanje svih regiona; mozda bi se prvo trebala odabrati country,
-    //pa na osnovu zemlje da se ponude regioni za biranje
-    this.regionsService.getRegions().subscribe(
-      (c: any) => {this.regions = c; console.log(this.regions)},//You can set the type to Country
+    this.countriesService.getCountries().subscribe(
+      (c: any) => {this.countries = c; console.log(this.countries)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
+
+    //za dobavljanje svih regiona; mozda bi se prvo trebala odabrati country,
+    //pa na osnovu zemlje da se ponude regioni za biranje
+    // this.regionsService.getRegions().subscribe(
+    //   (c: any) => {this.regions = c; console.log(this.regions)},//You can set the type to Country
+    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    // );
   }
 
   addPlace(newPlace:Place,form:NgForm):void{
@@ -56,5 +67,16 @@ export class PlaceComponent implements OnInit {
   
   onPost(res : any) : void{
     console.log(res.json());
+  }
+
+  countrySelected()
+  {
+    this.countriesService.getCountryById(this.countryId).subscribe(
+      c => {
+        this.country = c as Country; 
+        this.regions=[];
+        //this.places=[];
+        this.regions = this.country.Regions;
+      });
   }
 }

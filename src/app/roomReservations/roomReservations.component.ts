@@ -79,6 +79,10 @@ export class RoomReservationsComponent implements OnInit {
     this.countriesService.getCountryById(this.countryId).subscribe(
       c => {
         this.country = c as Country; 
+        this.regions=[];
+        this.places=[];
+        this.accomodations=[];
+        this.rooms=[];
         this.regions = this.country.Regions;
       });
   }
@@ -93,6 +97,9 @@ export class RoomReservationsComponent implements OnInit {
     this.regionsService.getRegionById(this.regionId).subscribe(
       r => {
         this.region = r as Region; 
+        this.places=[];
+        this.accomodations=[];
+        this.rooms=[];
         this.places = this.region.Places;
       });
   }
@@ -107,6 +114,8 @@ export class RoomReservationsComponent implements OnInit {
     this.placesService.getPlaceById(this.placeId).subscribe(
       p => {
         this.place = p as Place; 
+        this.accomodations=[];
+        this.rooms=[];
         for(var i=0;i<this.place.Accomodations.length;i++){
           if(this.place.Accomodations[i].Approved==true){
             var pl=this.place.Accomodations[i] as Accomodation;
@@ -127,6 +136,7 @@ export class RoomReservationsComponent implements OnInit {
     this.accomodationsService.getAccomodationById(this.accId).subscribe(
       a => {
         this.accomodation = a as Accomodation; 
+        this.rooms=[];
         this.rooms = this.accomodation.Rooms;
       });
   }
@@ -141,8 +151,9 @@ export class RoomReservationsComponent implements OnInit {
     this.roomsService.getRoomById(this.roomId).subscribe(
       t => {
         this.roomWithRes = t as Room; 
+        this.Reservations=[];
         this.Reservations = this.roomWithRes.RoomReservations;
-        this.aaa=false;
+        //this.aaa=false;
       });
 
       setTimeout(()=>{

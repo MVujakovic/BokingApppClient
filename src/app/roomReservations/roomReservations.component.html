@@ -16,25 +16,25 @@
       <option *ngFor = "let c of countries" value={{c.Id}} >{{c.Name}}</option>
     </select>
     </div>
-    <div *ngIf="isSelectedCountry()">
+    <div>
     <label>Region:</label>
     <select name="regionId" id="regionId" [(ngModel)]="regionId" (change)="regionSelected()">
       <option *ngFor = "let r of regions" value={{r.Id}} >{{r.Name}}</option>
     </select>
     </div>
-    <div *ngIf="isSelectedRegion()">
+    <div>
     <label>Place:</label>
     <select name="placeId" id="placeId" [(ngModel)]="placeId" (change)="placeSelected()">
       <option *ngFor = "let p of places" value={{p.Id}} >{{p.Name}}</option>
     </select>
     </div>
-    <div *ngIf="isSelectedPlace()">
+    <div>
     <label>Accomodation:</label>
     <select name="accId" id="accId" [(ngModel)]="accId" (change)="accomSelected()">
       <option *ngFor = "let a of accomodations" value={{a.Id}} >{{a.Name}}</option>
     </select>
     </div>
-    <div *ngIf="isSelectedAccomodation()">
+        <div>
         <label for="Room">Room:</label>
         <select name="roomId" id="roomId" [(ngModel)]="roomId">
         <option *ngFor="let r of rooms" value={{r.Id}}>{{r.RoomNumber}}</option>

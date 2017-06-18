@@ -8,6 +8,17 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="form-group col-lg-2">
+            <label class="control-label">Country:</label>
+            <div>
+                <select class="form-control" name="countryId" id="countryId" [(ngModel)]="countryId" (change)="countrySelected()">
+                    <option *ngFor="let c of countries" value={{c.Id}}>{{c.Name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!--<div>
         <label for="Name">Name: </label>
         <input name="Name" type="text" ngModel/>

@@ -88,6 +88,21 @@ export class AccomodationComponent implements OnInit {
     newAccomodation.OwnerId=1; //ovde treba id onog koji kreira smesta
      this.accomodationsService.postAccomodation(newAccomodation).subscribe(this.onPost);
     form.reset();
+
+    setTimeout(()=>{
+    //za refresh lista
+    this.accomodations=[];
+    this.accomodationsService.getAccomodationsWithRooms().subscribe(
+      (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.accomByOwner=[];
+     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+      (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    }, 1000);
   }
   
   onPost(res : any) : void{
@@ -100,6 +115,22 @@ export class AccomodationComponent implements OnInit {
     this.accomodationsService.putAccomodation(this.accom.Id,this.accom).subscribe(this.onPost);
     this.Approved=false;
     this.dataContainer.nativeElement.innerHTML="";
+
+
+    setTimeout(()=>{
+    //za refresh lista
+    this.accomodations=[];
+    this.accomodationsService.getAccomodationsWithRooms().subscribe(
+      (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.accomByOwner=[];
+     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+      (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    }, 1000);
   }
 
   onEdit(acc:Accomodation){
@@ -140,6 +171,21 @@ export class AccomodationComponent implements OnInit {
     this.Longitude="";
     this.PlaceIdEdit=0;
     this.AccomodationTypeIdEdit=0;
+
+    setTimeout(()=>{
+     //za refresh lista
+    this.accomodations=[];
+    this.accomodationsService.getAccomodationsWithRooms().subscribe(
+      (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.accomByOwner=[];
+     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+      (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    }, 1000);
   }
 
   onEditAccomodation(acc:Accomodation){
@@ -156,6 +202,21 @@ export class AccomodationComponent implements OnInit {
 
   onDeleteAccomodation(acc:Accomodation){
     this.accomodationsService.delete(acc.Id).subscribe(this.onDeleteAccomodation);
+
+     setTimeout(()=>{
+     //za refresh lista
+    this.accomodations=[];
+    this.accomodationsService.getAccomodationsWithRooms().subscribe(
+      (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.accomByOwner=[];
+     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+      (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    }, 1000);
   }
 
 }

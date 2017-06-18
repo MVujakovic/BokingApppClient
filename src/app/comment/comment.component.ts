@@ -86,6 +86,21 @@ export class CommentComponent implements OnInit {
     newComment.AccomodationId=this.accomodationId;
      this.commentsService.postComment(newComment).subscribe(this.onPost);
     form.reset(); 
+
+    setTimeout(()=>{
+    //ovde treba da se prosledi id korisnika koji je ulogovan
+    this.commentsByOwner=[];
+    this.commentsService.getCommentsByUserId(1).subscribe(
+      (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.comments=[];
+    this.commentsService.getComments().subscribe(
+      (c: any) => {this.comments = c; console.log(this.comments)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
   
   onPost(res : any) : void{
@@ -104,6 +119,21 @@ export class CommentComponent implements OnInit {
 
     this.Grade="";
     this.Text="";
+
+    setTimeout(()=>{
+    //ovde treba da se prosledi id korisnika koji je ulogovan
+    this.commentsByOwner=[];
+    this.commentsService.getCommentsByUserId(1).subscribe(
+      (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.comments=[];
+    this.commentsService.getComments().subscribe(
+      (c: any) => {this.comments = c; console.log(this.comments)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
 
   onEditComment(comm:Comment){
@@ -114,5 +144,20 @@ export class CommentComponent implements OnInit {
 
   onDeleteComment(comm:Comment){
     this.commentsService.delete(comm.Id).subscribe(this.onDeleteComment);
+
+    setTimeout(()=>{
+    //ovde treba da se prosledi id korisnika koji je ulogovan
+    this.commentsByOwner=[];
+    this.commentsService.getCommentsByUserId(1).subscribe(
+      (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+
+    this.comments=[];
+    this.commentsService.getComments().subscribe(
+      (c: any) => {this.comments = c; console.log(this.comments)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
 }
