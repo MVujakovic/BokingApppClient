@@ -45,30 +45,42 @@ import { AuthGuard } from './auth.guard';
 
 
 
-import { AlertModule } from 'ngx-bootstrap';
+// import { AlertModule } from 'ngx-bootstrap';
 import { CarouselComponent } from './carousel/carousel.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
-const ChildRoutesHome = [
-  // { path: "login", component: LoginComponent },
-  // { path: "register", component: RegisterComponent },
-  
-  { path: "appUser", component: AppUserComponent },
-  { path: "country", component: CountryComponent},
+const ChildRoutesDashboard = [
+  { path: "country", component: CountryComponent },
   { path: "region", component: RegionComponent },
   { path: "place", component: PlaceComponent },
+  { path: "accomtype", component: AccomodationTypeComponent },
+  { path: "accom", component: AccomodationComponent },
+  { path: "room", component: RoomComponent }
+]
+const ChildRoutesHome = [
+  //  { path: "login", component: LoginComponent },
+  //  { path: "register", component: RegisterComponent },
+
+  { path: "appUser", component: AppUserComponent },
+  // { path: "country", component: CountryComponent },
+  // { path: "region", component: RegionComponent },
+  // { path: "place", component: PlaceComponent },
   { path: "accomodationType", component: AccomodationTypeComponent },
   { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
   { path: "room", component: RoomComponent },
   { path: "roomReservations", component: RoomReservationsComponent },
   { path: "comment", component: CommentComponent },
+
 ]
 
 const Routes = [
   { path: '', redirectTo: '/bookingApp', pathMatch: 'full' },
   { path: "other", redirectTo: "/bookingApp" },
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
-   { path: "register", component: RegisterComponent },
-   { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+  { path: "edit", component: LoginComponent },
+  { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard }
   // { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },
@@ -76,14 +88,14 @@ const Routes = [
   // { path: "accomodationType", component: AccomodationTypeComponent },
 
   // { path: "accomodation", component: AccomodationComponent },
-  // testing guards:
-  // each time the home route is hit, the AuthGuard function
-  // will be executed and decide whether or not a user can actually access the route.
+  // // testing guards:
+  // // each time the home route is hit, the AuthGuard function
+  // // will be executed and decide whether or not a user can actually access the route.
   // { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
 
   // { path: "room", component: RoomComponent },
   // { path: "roomReservations", component: RoomReservationsComponent },
-  // { path: "comment", component: CommentComponent },
+  // { path: "comment", component: CommentComponent }
 ]
 
 @NgModule({
@@ -103,13 +115,14 @@ const Routes = [
     RoomComponent,
     CommentComponent,
     SearchComponent,
-    CarouselComponent 
+    CarouselComponent,
+    DashboardComponent
 
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(Routes),
-    AlertModule.forRoot(),
+    // AlertModule.forRoot(),
     CarouselModule.forRoot(),
     FormsModule,
     HttpModule,

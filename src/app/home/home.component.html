@@ -1,61 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>{{title}}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-    <nav class="navbar navbar-inverse bg-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" routerLink="">{{title}}</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <!-- Ovo treba da ostane zakomentarisano da vidimo kasnije sta mozemo da iskoristimo 
-                napraviti search box da bude dostupan svakome, pa onda kad pozeli nesto da rezrvise mora imati nalog-->
-                <!--<li *ngIf="Admin==getRole()" class="active"><a routerLink="/countries">Countries</a></li>-->
-                <!--<li>{{getRole()}}</li>-->
-                <li *ngIf="getRole()=='Admin'" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">AppUsers<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <!--<li><a routerLink="/accomodations">Accomodations</a></li>
-                        <li><a routerLink="/regions">Regions</a></li>-->
-                    </ul>
-                </li>
-                <li><a routerLink="/bookingApp/country" (click)="goTo('content')"> country</a></li>
-                <li><a routerLink="/bookingApp/region">Region</a></li>
-                <li><a routerLink="/bookingApp/place">Place</a></li>
-                <li *ngIf="getRole()=='Admin'"><a routerLink="/bookingApp/appUser">AppUsers</a></li>
-                <li><a routerLink="/bookingApp/accomodationType">AccomodationType</a></li>
-                <li><a routerLink="/bookingApp/accomodation">Accomodations</a></li>
-                <!--<form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>-->
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="!isLoggedIn()"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
-                <li *ngIf="!isLoggedIn()"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <!--<li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/login"><span class="glyphicon glyphicon-log-in"></span> LogIn</a></li>
-                <li *ngIf="!isLoggedIn()"><a routerLink="/bookingApp/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-                <li *ngIf="isLoggedIn()" (click)="logout()"><a><span  class="glyphicon glyphicon-log-out"></span>LogOut</a></li>
-                <li *ngIf="isLoggedIn()"><a routerLink="/userDetails"><span class="glyphicon glyphicon-edit"></span>{{username}}</a>
-                    <ul class="dropdown-menu">
-                        <!--<li><a routerLink="/accomodations">Accomodations</a></li>
-                        <li><a routerLink="/regions">Regions</a></li>-->
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container-fluid">
-
         <div class="row-fluid">
             <div class="col-sm-5">
                 <div class="well sidebar-nav">
@@ -65,22 +9,21 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                            mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                            mollis euismod. Donec sed odio dui. </p>
+                        <p>Ovde cemo ubaciti nesto, videcemo sta....Ovde cemo ubaciti nesto, videcemo sta....
+                            Ovde cemo ubaciti nesto, videcemo sta....Ovde cemo ubaciti nesto, videcemo sta.... </p>
                         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
                     </div>
 
                     <div class="col-lg-6">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Ovde cemo ubaciti nesto, videcemo sta....
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
                             mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-7">
                 <div class="jumbotron">
                     <app-carousel></app-carousel>
@@ -91,10 +34,3 @@
             <router-outlet></router-outlet>
         </div>
     </div>
-    <hr>
-    <footer>
-        <p> &copy; Klasnic, Vujakovic</p>
-    </footer>
-</body>
-
-</html>

@@ -1,39 +1,58 @@
 <h3>{{name}}</h3>
-<form #f="ngForm"(ngSubmit)="addPlace(f.value, f)">
-    <div>
+<form class="form" #f="ngForm" (ngSubmit)="addPlace(f.value, f)">
+
+    <div class="row">
+        <div class="form-group col-lg-2">
+            <label for="Name">Name</label>
+            <input class="form-control" name="Name" type="text" ngModel>
+        </div>
+    </div>
+
+    <!--<div>
         <label for="Name">Name: </label>
         <input name="Name" type="text" ngModel/>
+    </div>-->
+    <div class="row">
+        <div class="form-group col-lg-2">
+            <label class="control-label">Region:</label>
+            <div>
+                <select class="form-control" name="regionId" id="regionId" [(ngModel)]="regionId">
+                         <option *ngFor = "let r of regions" value={{r.Id}} >{{r.Name}}</option></select>
+            </div>
+        </div>
     </div>
-    <div>
-         <label for="Region">Region:</label>
+
+    <!--<div>
+        <label for="Region">Region:</label>
         <select name="regionId" id="regionId" [(ngModel)]="regionId">
         <option *ngFor="let r of regions" value={{r.Id}}>{{r.Name}}</option>
         </select>
-    </div>
-    <div>
-        <input type="submit" value="Create"/>
-    </div>
+    </div>-->
+
+    <button type="submit" class="btn btn-default">Create</button>
+    <!--<div>
+        <input type="submit" value="Create" />
+    </div>-->
 </form>
 
 <h3>Places:</h3>
 <div>
-  <ul>
-      <!--Ovo je za prikaz places sa regionima -->
-    <!--<li *ngFor="let place of places">      
+    <ul>
+        <!--Ovo je za prikaz places sa regionima -->
+        <!--<li *ngFor="let place of places">      
         {{place.Id}} <br/>
         {{place.Name}} <br/>
         {{place.Region.Name}} <br/> </li>-->
 
         <!--Ovo je za prikaz places sa smestajima -->
-    <li *ngFor="let place of places">      
-        {{place.Id}} <br/>
-        {{place.Name}} <br/>
+        <li *ngFor="let place of places">
+            {{place.Id}} <br/> {{place.Name}} <br/>
 
-        <ul>
-        <li *ngFor="let accomodation of place.Accomodations">
-            {{accomodation.Name}} <br/>
-        </li> 
-        </ul>
-     </li>
-  </ul>
+            <ul>
+                <li *ngFor="let accomodation of place.Accomodations">
+                    {{accomodation.Name}} <br/>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>

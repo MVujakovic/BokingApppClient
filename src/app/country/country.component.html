@@ -1,17 +1,29 @@
 <h3>{{name}}</h3>
-<form #f="ngForm"(ngSubmit)="addCountry(f.value, f)">
-  <p>Name:<input name="Name" type="text" ngModel/></p>
-  <p>Code:<input name="Code" type="text" ngModel/></p>
-  <input type="submit" value="Create"/>
+<form #f="ngForm" (ngSubmit)="addCountry(f.value, f)">
+
+  <div class="row">
+    <div class="form-group col-lg-2">
+      <label for="Name">Name</label>
+      <input class="form-control" name="Name" type="text" ngModel>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-lg-2">
+      <label for="Code">Code</label>
+      <input class="form-control" name="Code" type="text" ngModel>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-default">Create</button>
 </form>
 
 <h3>Countries:</h3>
 <div>
   <ul>
     <li *ngFor="let country of countries">
-      
-      {{country.Id}} <br/>
-       {{country.Name}} <br/>
-       {{country.Code}} <br/> </li>
+      <!--{{country.Id}} <br/> {{country.Name}} <br/> {{country.Code}} <br/>-->
+      {{country.Name}}, {{country.Code}} <br/>
+    </li>
   </ul>
 </div>

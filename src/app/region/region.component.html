@@ -1,18 +1,30 @@
 <h3>{{name}}</h3>
-<form #f="ngForm"(ngSubmit)=addRegion(f.value,f)>
-  <div>
-        <label for="Name">Name: </label>
-        <input name="Name" type="text" ngModel/>
+<form class="form" #f="ngForm" (ngSubmit)=addRegion(f.value,f)>
+  <div class="row">
+    <div class="form-group col-lg-2">
+      <label for="Name">Name</label>
+      <input class="form-control" name="Name" type="text" ngModel>
+    </div>
   </div>
-  <div>
+
+  <div class="row">
+    <div class="form-group col-lg-2">
+      <label class="control-label">Country:</label>
+      <div>
+        <select class="form-control" name="countryId" id="countryId" [(ngModel)]="countryId">
+                         <option *ngFor = "let c of countries" value={{c.Id}} >{{c.Name}}</option></select>
+      </div>
+    </div>
+  </div>
+
+  <!--<div>
     <label for="Country">Country:</label>
-        <select name="countryId" id="countryId" [(ngModel)]="countryId">
+    <select name="countryId" id="countryId" [(ngModel)]="countryId">
         <option *ngFor="let c of countries" value={{c.Id}}>{{c.Name}}</option>
         </select>
-  </div>
-  <div>
-    <input type="submit" value="Create"/>
-  </div>
+  </div>-->
+
+  <button type="submit" class="btn btn-default">Create</button>
 
 </form>
 
@@ -20,9 +32,8 @@
 <div>
   <ul>
     <li *ngFor="let region of regions">
-      {{region.Id}} <br/>
-      {{region.Name}} <br/>
-      {{region.Country.Name}} <br/>
-      </li>
+      <!--{{region.Id}} <br/> {{region.Name}} <br/> {{region.Country.Name}} <br/>-->
+          <b>{{region.Name}},</b> {{region.Country.Name}} <br/>
+    </li>
   </ul>
 </div>

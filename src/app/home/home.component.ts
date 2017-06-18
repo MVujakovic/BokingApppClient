@@ -14,17 +14,13 @@ export class HomeComponent implements OnInit {
   //role:string;
   title = 'BookingApp'
   constructor(private authService: AuthenticationService, public router: Router, ) {
-
-
-       
-        
-   }
+  }
 
   ngOnInit() {
   }
 
   logout() {
-    
+
     this.authService.logOut();
     this.router.navigate(["bookingApp"]);
   }
@@ -36,11 +32,11 @@ export class HomeComponent implements OnInit {
     return this.loggedIn;
   }
 
-  getRole():string{
+  getRole(): string {
     return this.authService.getCurrentUserRole();
   }
 
   goTo(location: string): void {
     window.location.hash = location;
-}
+  }
 }
