@@ -63,6 +63,14 @@ export class PlaceComponent implements OnInit {
     newPlace.RegionId=this.regionId;
      this.placesService.postPlace(newPlace).subscribe(this.onPost);
     form.reset(); 
+
+    setTimeout(()=>{
+    this.places=[];
+    this.placesService.getPlacesWithAcc().subscribe(
+      (c: any) => {this.places = c; console.log(this.places)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
   
   onPost(res : any) : void{

@@ -34,6 +34,14 @@ export class CountryComponent implements OnInit {
     //this.ref.detectChanges();
     //this.ref.markForCheck();
      //alert("Sad Radi!!");
+
+     setTimeout(()=>{
+       this.countries=[];
+       this.countriesService.getCountries().subscribe(
+      (c: any) => {this.countries = c; console.log(this.countries)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+     },1000);
     }
 
   onPost(res : any) : void{

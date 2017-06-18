@@ -43,6 +43,14 @@ export class RegionComponent implements OnInit {
     newRegion.CountryId=this.countryId;
      this.regionsService.postRegion(newRegion).subscribe(this.onPost);
     form.reset();
+
+    setTimeout(()=>{
+      this.regions=[];
+      this.regionsService.getRegions().subscribe(
+      (c: any) => {this.regions = c; console.log(this.regions)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
   
   onPost(res : any) : void{

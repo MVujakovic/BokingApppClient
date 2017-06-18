@@ -70,6 +70,13 @@ export class RoomComponent implements OnInit {
     newRoom.AccomodationId=this.accId;
      this.roomsService.postRoom(newRoom).subscribe(this.onPost);
     form.reset(); 
+
+    setTimeout(()=>{
+    this.roomsService.getRooms().subscribe(
+      (c: any) => {this.rooms = c; console.log(this.rooms)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
   
   onPost(res : any) : void{
@@ -96,6 +103,13 @@ export class RoomComponent implements OnInit {
     this.roomsService.delete(this.roomForDelete.Id).subscribe(this.deleteRoom);
     this.accIdDelete=0;
     this.roomIdDelete=0;
+
+    setTimeout(()=>{
+    this.roomsService.getRooms().subscribe(
+      (c: any) => {this.rooms = c; console.log(this.rooms)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
 
   accSelected(){
@@ -153,6 +167,13 @@ export class RoomComponent implements OnInit {
     this.PricePerNight="";
     this.accIdEdit=0;
     this.roomId=0;
+
+    setTimeout(()=>{
+    this.roomsService.getRooms().subscribe(
+      (c: any) => {this.rooms = c; console.log(this.rooms)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },1000);
   }
 
   // onEditRoom(room:Room){

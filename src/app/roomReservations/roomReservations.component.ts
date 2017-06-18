@@ -192,32 +192,22 @@ export class RoomReservationsComponent implements OnInit {
       this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
       form.reset(); 
       this.dataContainer.nativeElement.innerHTML = "";
+
+      setTimeout(()=>{
+        this.roomReservations=[];
+    //za refresh lista
+    this.roomReservationsService.getRoomReservations().subscribe(
+      (c: any) => {this.roomReservations = c; console.log(this.roomReservations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+  },2000);
+
     }
     
     this.isAlreadyRes=false;
 
-    }, 3000);
-    
-    // this.Reservations.forEach(eachObj=>{
-    //   if(eachObj.StartDate<newRoomReservation.StartDate){
-    //     if(eachObj.EndDate>=newRoomReservation.StartDate){
-    //       this.isAlreadyRes=true;
-    //     }
-    //     else{
-    //       this.isAlreadyRes=false;
-    //     }
-    //   }
-    //   else if(eachObj.StartDate==newRoomReservation.StartDate){
-    //     this.isAlreadyRes=true;
-    //   }
-    //   else if(eachObj.StartDate<=newRoomReservation.EndDate){
-    //     this.isAlreadyRes=true;
-    //   }
-    //   else{
-    //     this.isAlreadyRes=false;
-    //   }
-      
-    // });
+  }, 2000);
+  
   }
   
   onPost(res : any) : void{
