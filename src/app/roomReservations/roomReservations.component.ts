@@ -26,6 +26,7 @@ import {
 })
 export class RoomReservationsComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
+  //@ViewChild('dataCointainer') dataContainer2:ElementRef;
 
   roomReservations: RoomReservations[];
   rooms: Room[];
@@ -47,6 +48,21 @@ export class RoomReservationsComponent implements OnInit {
   isAlreadyRes:boolean;
   aaa:boolean;
 
+  //za edit
+  accomodationsByUserId:Accomodation[];
+  accIdEdit:number;
+  accForEdit:Accomodation;
+  roomResByUserId:RoomReservations[];
+  roomReservationId:number;
+  StartDate:Date;
+  EndDate:Date;
+  roomResEdit:RoomReservations;
+  isAlreadyRes2:boolean;
+
+  y:number;
+
+
+
   constructor(private roomReservationsService: RoomReservatonsService,
   private roomsService: RoomsService,
   private countriesService:CountriesService,
@@ -54,6 +70,7 @@ export class RoomReservationsComponent implements OnInit {
   private placesService:PlacesService,
   private accomodationsService:AccomodationsService) {
     this.accomodations=[];
+    this.accomodationsByUserId=[];
    }
 
   ngOnInit() {
@@ -71,6 +88,12 @@ export class RoomReservationsComponent implements OnInit {
     //   (c: any) => {this.rooms = c; console.log(this.rooms)},//You can set the type to Country
     //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     // );
+
+    //ovde treba da se prosledi id usera koji je ulogovan
+    this.roomReservationsService.getAccRes(1).subscribe(
+      (a:any)=>{this.accomodationsByUserId=a;console.log(this.accomodationsByUserId)},
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
 
   }
 
@@ -212,5 +235,103 @@ export class RoomReservationsComponent implements OnInit {
   
   onPost(res : any) : void{
     console.log(res.json());
+  }
+
+  accForEditSelected(){
+    this.accomodationsService.getAccomodationById(this.accIdEdit).subscribe(
+      a=>{
+        this.accForEdit=a as Accomodation;
+        this.roomResByUserId=[];
+      }
+    );
+
+    setTimeout(()=>{
+      //ovo gde je kec treba da se prosledi id usera koji je ulogovan
+      this.accomodationsService.getRoomReservations(this.accForEdit.Id,1).subscribe(
+        (r:any)=>{this.roomResByUserId=r; console.log(this.roomResByUserId)},
+        error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+      );
+    },1000);
+  }
+
+  roomReservationSelected(){
+    this.roomReservationsService.getRoomResById(this.roomReservationId).subscribe(
+      r=>{
+        this.roomResEdit=r as RoomReservations;
+
+        this.StartDate=this.roomResEdit.StartDate;
+        this.EndDate=this.roomResEdit.EndDate;
+      }
+    );
+  }
+
+  editReservation(newRes:RoomReservations,form:NgForm){
+    this.roomResEdit.StartDate=newRes.StartDate;
+      this.roomResEdit.EndDate=newRes.EndDate;
+    this.roomsService.getRoomById(this.roomResEdit.RoomId).subscribe(
+      t => {
+        this.roomWithRes = t as Room; 
+        this.Reservations=[];
+        this.Reservations = this.roomWithRes.RoomReservations;
+        //this.aaa=false;
+      });
+
+      setTimeout(()=>{
+      for(var i=0;i<this.Reservations.length;i++){
+        if(this.Reservations[i].StartDate<this.roomResEdit.StartDate){
+          if(this.Reservations[i].EndDate>=this.roomResEdit.StartDate){
+            this.isAlreadyRes2=true;
+           // break;
+          }
+          else{
+            //this.isAlreadyRes=false;
+          }
+        }
+        else if(this.Reservations[i].StartDate===this.roomResEdit.StartDate){
+          this.isAlreadyRes2=true;
+          //break;
+        }
+        else if(this.Reservations[i].StartDate<=this.roomResEdit.EndDate){
+          this.isAlreadyRes2=true;
+          //break;
+        }
+        else{
+          //this.isAlreadyRes=false;
+        }
+      }
+
+      if(this.isAlreadyRes2){
+      
+       // this.dataContainer2.nativeElement.innerHTML = "Room is already reserved.";
+        
+    }
+    else{
+      
+      this.roomResEdit.Timestamp=new Date(Date.now());
+      this.roomReservationsService.putRes(this.roomResEdit.Id,this.roomResEdit).subscribe(this.onPost);
+      
+      form.reset();
+      this.StartDate=new Date(Date.now());
+      this.EndDate=new Date(Date.now());
+      this.roomReservationId=0;
+      this.accIdEdit=0;
+      //this.dataContainer2.nativeElement.innerHTML = "";
+
+      setTimeout(()=>{
+      this.roomReservations=[];
+    //za refresh lista
+    this.roomReservationsService.getRoomReservations().subscribe(
+      (c: any) => {this.roomReservations = c; console.log(this.roomReservations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+    },2000);
+    }
+    
+    this.isAlreadyRes2=false;
+
+  }, 2000);
+    
+
+    
   }
 }

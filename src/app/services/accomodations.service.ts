@@ -12,6 +12,7 @@ export class AccomodationsService{
     s4:string;
     s5:string;
     s6:string;
+    s7:string;
     constructor (private http: Http){
 
     }
@@ -40,6 +41,11 @@ export class AccomodationsService{
         this.s='http://localhost:54042/api/Accomodation/'+id;
         return this.http.get(this.s).map(this.extractData); 
        // return this.http.get("http://localhost:54042/api/Accomodations/${id}").map(this.extractData);        
+    }
+
+    getRoomReservations(id:number,id2:number) :Observable<any>{
+        this.s7='http://localhost:54042/api/AccomodationReservationsByUser/'+id+'/'+id2;
+        return this.http.get(this.s7).map(this.extractData);
     }
 
 
