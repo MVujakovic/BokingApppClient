@@ -133,7 +133,7 @@ export class CommentComponent implements OnInit {
       (c: any) => {this.comments = c; console.log(this.comments)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
-    },1000);
+    },2000);
   }
 
   onEditComment(comm:Comment){
