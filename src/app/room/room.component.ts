@@ -5,6 +5,7 @@ import { Room } from './room.model';
 import { RoomsService } from '../services/rooms.service';
 import { Accomodation } from '../accomodation/accomodation.model';
 import { AccomodationsService } from '../services/accomodations.service';
+import { AuthenticationService } from '../services/auth.service';
 import {
   Router,
   ActivatedRoute
@@ -17,6 +18,7 @@ import {
   providers: [RoomsService]
 })
 export class RoomComponent implements OnInit {
+  userId:number;
 
   rooms: Room[];
   accomodations: Accomodation[];
@@ -43,11 +45,14 @@ export class RoomComponent implements OnInit {
 
 
   constructor(private roomsService: RoomsService,
-  private accomodationsService: AccomodationsService) {
+  private accomodationsService: AccomodationsService,
+  private authService: AuthenticationService) {
     this.roomsByAccomodation=[];
    }
 
   ngOnInit() {
+  this.userId=this.authService.getCurrentUserId();
+
     this.roomsService.getRooms().subscribe(
       (c: any) => {this.rooms = c; console.log(this.rooms)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
@@ -55,7 +60,7 @@ export class RoomComponent implements OnInit {
 
     //za dobavljanje svih smestaja treba da se prosledi id korisnika, pa da se dobiju samo smestaji tog odredjenog korisnika
     //ovde ce trebati da se stavi idMenadzera koji hoce da dodaje sobe u svoje smestaje!!!
-    this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+    this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
