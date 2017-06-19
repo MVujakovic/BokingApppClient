@@ -80,7 +80,8 @@ const Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "edit", component: LoginComponent },
-  { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard }
+  { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
+  { path: "userDetails", component:  UserComponent }
   // { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },

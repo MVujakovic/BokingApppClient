@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
+import { ChngPassUser } from '../user/chngPassUser.model';
+
 @Injectable()
 export class AuthenticationService {
 
@@ -31,10 +33,13 @@ export class AuthenticationService {
                     //this.token = token;
                     var role = response.headers.get('role');
                     var id = response.headers.get('id');
+                    var fullname = response.headers.get('fullname');
+                    var email = response.headers.get('email');
 
                     localStorage.setItem("username", username);
                     localStorage.setItem("role", role);
-                    // localStorage.setItem("token_id", this.token);
+                    localStorage.setItem("fullname", fullname);
+                    localStorage.setItem("email", email);
                     localStorage.setItem("id", id);
                     localStorage.setItem("token_id", token);
 
@@ -63,6 +68,9 @@ export class AuthenticationService {
         localStorage.removeItem('username');
         localStorage.removeItem('role');
         localStorage.removeItem('token_id');
+        localStorage.removeItem('id');
+        localStorage.removeItem('fullname');
+        localStorage.removeItem('email');
 
         const headers: Headers = new Headers();
         headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
@@ -83,5 +91,37 @@ export class AuthenticationService {
         } else {
             return role;
         }
+    }
+
+    // changePassword(oldPass:string,newPass:string,confirmPass:string){
+
+    //     const headers: Headers = new Headers();
+    //     headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
+    //     const opts: RequestOptions = new RequestOptions();
+    //     opts.headers = headers;
+
+    //     return this.http.post('http://localhost:54042/' + 'api/Account/ChangePassword', null, opts);
+    // }
+
+    changePassword(chngUser:ChngPassUser): Observable<any> {
+
+        const headers: Headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post('http://localhost:54042/' + 'api/Account/ChangePassword', chngUser, opts).map((response: Response) => {
+
+            if (response.ok) {
+                return true;
+            } else {
+
+                return false;
+            }
+
+        })
+            .catch((error) => {
+                return Observable.of(false);
+            });
     }
 }
