@@ -9,6 +9,7 @@ export class RoomReservatonsService{
     s2:string;
     s3:string;
     s4:string;
+    s5:string;
 
     constructor (private http: Http){
 
@@ -65,5 +66,10 @@ export class RoomReservatonsService{
 
         this.s3='http://localhost:54042/api/RoomReservationMod/'+id;
         return this.http.put(this.s3,newRes,opts);
+    }
+
+    delete(id:number):Observable<any>{
+        this.s5='http://localhost:54042/api/RoomReservationDelete/'+id;
+        return this.http.delete(this.s5);
     }
 }

@@ -26,7 +26,7 @@ import {
 })
 export class RoomReservationsComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
-  //@ViewChild('dataCointainer') dataContainer2:ElementRef;
+  @ViewChild('dataContainer2') dataContainer2:ElementRef;
 
   roomReservations: RoomReservations[];
   rooms: Room[];
@@ -59,7 +59,12 @@ export class RoomReservationsComponent implements OnInit {
   roomResEdit:RoomReservations;
   isAlreadyRes2:boolean;
 
-  y:number;
+  //za delete
+  accIdDelete:number;
+  accForDelete:Accomodation;
+  roomReservationDeleteId:number;
+  roomResForDelete:RoomReservations;
+  deleteRoomResByUserId:RoomReservations[];
 
 
 
@@ -302,7 +307,7 @@ export class RoomReservationsComponent implements OnInit {
 
       if(this.isAlreadyRes2){
       
-       // this.dataContainer2.nativeElement.innerHTML = "Room is already reserved.";
+        this.dataContainer2.nativeElement.innerHTML = "Room is already reserved.";
         
     }
     else{
@@ -315,7 +320,7 @@ export class RoomReservationsComponent implements OnInit {
       this.EndDate=new Date(Date.now());
       this.roomReservationId=0;
       this.accIdEdit=0;
-      //this.dataContainer2.nativeElement.innerHTML = "";
+      this.dataContainer2.nativeElement.innerHTML = "";
 
       setTimeout(()=>{
       this.roomReservations=[];
@@ -331,7 +336,49 @@ export class RoomReservationsComponent implements OnInit {
 
   }, 2000);
     
+}
 
-    
-  }
+accForDeleteSelected(){
+  this.accomodationsService.getAccomodationById(this.accIdDelete).subscribe(
+      a=>{
+        this.accForDelete=a as Accomodation;
+        this.deleteRoomResByUserId=[];
+      }
+    );
+
+    setTimeout(()=>{
+      //ovo gde je kec treba da se prosledi id usera koji je ulogovan
+      this.accomodationsService.getRoomReservations(this.accForDelete.Id,1).subscribe(
+        (r:any)=>{this.deleteRoomResByUserId=r; console.log(this.deleteRoomResByUserId)},
+        error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+      );
+    },1000);
+}
+
+roomResSelectedDelete(){
+  this.roomReservationsService.getRoomResById(this.roomReservationDeleteId).subscribe(
+      r=>{
+        this.roomResForDelete=r as RoomReservations;
+        var t=false;
+        //this.StartDate=this.roomResEdit.StartDate;
+        //this.EndDate=this.roomResEdit.EndDate;
+      }
+    );
+}
+
+deleteRoomReservation(){
+  this.roomReservationsService.delete(this.roomResForDelete.Id).subscribe();
+    this.accIdDelete=0;
+    this.roomReservationDeleteId=0;
+
+    setTimeout(()=>{
+        this.roomReservations=[];
+    //za refresh lista
+    this.roomReservationsService.getRoomReservations().subscribe(
+      (c: any) => {this.roomReservations = c; console.log(this.roomReservations)},//You can set the type to Country
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    );
+  },2000);
+}
+
 }

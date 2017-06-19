@@ -68,7 +68,7 @@
   </ul>
 </div>
 
-
+<!-- Edit -->
 <h3>Room reservations for editing:</h3>
     <div>
         <label for="Accomodation">Accomodation:</label>
@@ -78,7 +78,7 @@
     </div>
 
     <div>
-        <label>Room reservation</label>
+        <label>Room reservation:</label>
         <select name="roomReservationId" id="roomReservationId" [(ngModel)]="roomReservationId" (change)="roomReservationSelected()">
          <option *ngFor="let roomRes of roomResByUserId" value={{roomRes.Id}}>{{roomRes.StartDate}}</option>
         </select>
@@ -100,9 +100,28 @@
             <input type="submit" value="Create"/>
         </div>
 
+        <div #dataContainer2 [innerHTML]="theHtmlString">
+        </div>
+
     </form>
 
-<!--</div>-->
-    <!--<div #dataContainer2 [innerHTML]="theHtmlString">
-    </div>-->
-        <!--<label Name="Warning"></label>-->
+    <!-- Delete -->
+    <h3>Delete room reservation:</h3>
+    <div>
+        <label for="Accomodation">Accomodation:</label>
+        <select name="accIdDelete" id="accIdDelete" [(ngModel)]="accIdDelete" (change)="accForDeleteSelected()">
+        <option *ngFor="let acc of accomodationsByUserId" value={{acc.Id}}>{{acc.Name}}</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Room reservation:</label>
+        <select name="roomReservationDeleteId" id="roomReservationDeleteId" [(ngModel)]="roomReservationDeleteId" (change)="roomResSelectedDelete()">
+         <option *ngFor="let roomRes of deleteRoomResByUserId" value={{roomRes.Id}}>{{roomRes.StartDate}}</option>
+        </select>
+    </div>
+
+    <div>
+        <button (click)="deleteRoomReservation()">Delete</button>
+    </div>
+
