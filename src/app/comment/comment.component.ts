@@ -6,6 +6,7 @@ import { CommentsService } from '../services/comments.service';
 import { Accomodation } from '../accomodation/accomodation.model';
 import { AccomodationsService } from '../services/accomodations.service';
 import { RoomReservatonsService } from '../services/roomReservations.service';
+import { AuthenticationService } from '../services/auth.service';
 
 import {
   Router,
@@ -21,6 +22,8 @@ import {
 export class CommentComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
 
+  userId:number;
+
   isDisabled:boolean;
   comments: Comment[];
   accomodations: Accomodation[];
@@ -35,24 +38,27 @@ export class CommentComponent implements OnInit {
 
   constructor(private commentsService: CommentsService,
   private accomodationsService: AccomodationsService,
-  private roomReservationsService:RoomReservatonsService) {
+  private roomReservationsService:RoomReservatonsService,
+  private authService: AuthenticationService) {
     this.isDisabled=false;
    }
 
   ngOnInit() {
+    this.userId=this.authService.getCurrentUserId();
+
     this.commentsService.getComments().subscribe(
       (c: any) => {this.comments = c; console.log(this.comments)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
     //ovde treba da se prosledi id korisnika koji je ulogovan
-    this.commentsService.getCommentsByUserId(1).subscribe(
+    this.commentsService.getCommentsByUserId(this.userId).subscribe(
       (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
 
     //ovde ce kao parametar ici id usera koji hoce da pise komentar(koji je ulogovan)
-    this.roomReservationsService.getAccomodations(1).subscribe(
+    this.roomReservationsService.getAccomodations(this.userId).subscribe(
       (c: any) => {
         this.accomodations = c; 
         console.log(this.accomodations);
@@ -82,7 +88,7 @@ export class CommentComponent implements OnInit {
   addComment(newComment:Comment,form:NgForm):void{
     //Korisnik može oceniti smeštaj i ostaviti komentar o njemu, ali nakon boravka u smeštaju.
     //To je odradjeno :)
-    newComment.AppUserId=1;//id usera cemo preuzeti od korisnika koji pise komentar
+    newComment.AppUserId=this.userId;//id usera cemo preuzeti od korisnika koji pise komentar
     newComment.AccomodationId=this.accomodationId;
      this.commentsService.postComment(newComment).subscribe(this.onPost);
     form.reset(); 
@@ -90,7 +96,7 @@ export class CommentComponent implements OnInit {
     setTimeout(()=>{
     //ovde treba da se prosledi id korisnika koji je ulogovan
     this.commentsByOwner=[];
-    this.commentsService.getCommentsByUserId(1).subscribe(
+    this.commentsService.getCommentsByUserId(this.userId).subscribe(
       (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -123,7 +129,7 @@ export class CommentComponent implements OnInit {
     setTimeout(()=>{
     //ovde treba da se prosledi id korisnika koji je ulogovan
     this.commentsByOwner=[];
-    this.commentsService.getCommentsByUserId(1).subscribe(
+    this.commentsService.getCommentsByUserId(this.userId).subscribe(
       (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -148,7 +154,7 @@ export class CommentComponent implements OnInit {
     setTimeout(()=>{
     //ovde treba da se prosledi id korisnika koji je ulogovan
     this.commentsByOwner=[];
-    this.commentsService.getCommentsByUserId(1).subscribe(
+    this.commentsService.getCommentsByUserId(this.userId).subscribe(
       (c: any) => {this.commentsByOwner = c; console.log(this.commentsByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );

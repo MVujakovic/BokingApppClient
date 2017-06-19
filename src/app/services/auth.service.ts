@@ -84,4 +84,16 @@ export class AuthenticationService {
             return role;
         }
     }
+
+    getCurrentUserId():number{
+        var id:number;
+        var s=localStorage.getItem("id");
+        if(s==null){
+            s='';
+        } else{
+            id=parseInt(s);
+            return id;
+        }
+    }
+
 }

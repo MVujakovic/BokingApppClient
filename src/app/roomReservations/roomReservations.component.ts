@@ -13,6 +13,7 @@ import { RegionsService } from '../services/regions.service';
 import { PlacesService } from '../services/places.service';
 import { AccomodationsService } from '../services/accomodations.service';
 import { Place } from '../place/place.model';
+import { AuthenticationService } from '../services/auth.service';
 import {
   Router,
   ActivatedRoute
@@ -27,6 +28,8 @@ import {
 export class RoomReservationsComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
   @ViewChild('dataContainer2') dataContainer2:ElementRef;
+
+  userId:number;
 
   roomReservations: RoomReservations[];
   rooms: Room[];
@@ -73,13 +76,16 @@ export class RoomReservationsComponent implements OnInit {
   private countriesService:CountriesService,
   private regionsService:RegionsService,
   private placesService:PlacesService,
-  private accomodationsService:AccomodationsService) {
+  private accomodationsService:AccomodationsService,
+  private authService: AuthenticationService) {
     this.accomodations=[];
     this.accomodationsByUserId=[];
    }
 
   ngOnInit() {
     this.isAlreadyRes=false;
+    this.userId=this.authService.getCurrentUserId();
+
     this.roomReservationsService.getRoomReservations().subscribe(
       (c: any) => {this.roomReservations = c; console.log(this.roomReservations)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
@@ -95,7 +101,7 @@ export class RoomReservationsComponent implements OnInit {
     // );
 
     //ovde treba da se prosledi id usera koji je ulogovan
-    this.roomReservationsService.getAccRes(1).subscribe(
+    this.roomReservationsService.getAccRes(this.userId).subscribe(
       (a:any)=>{this.accomodationsByUserId=a;console.log(this.accomodationsByUserId)},
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -215,7 +221,7 @@ export class RoomReservationsComponent implements OnInit {
     }
     else{
       newRoomReservation.RoomId=this.roomId;
-      newRoomReservation.AppUserId=1; //ovo treba da bude id korisnika koji rezervise
+      newRoomReservation.AppUserId=this.userId; //ovo treba da bude id korisnika koji rezervise
       newRoomReservation.Timestamp=new Date(Date.now());
       this.roomReservationsService.postRoomReservation(newRoomReservation).subscribe(this.onPost);
       form.reset(); 
@@ -252,7 +258,7 @@ export class RoomReservationsComponent implements OnInit {
 
     setTimeout(()=>{
       //ovo gde je kec treba da se prosledi id usera koji je ulogovan
-      this.accomodationsService.getRoomReservations(this.accForEdit.Id,1).subscribe(
+      this.accomodationsService.getRoomReservations(this.accForEdit.Id,this.userId).subscribe(
         (r:any)=>{this.roomResByUserId=r; console.log(this.roomResByUserId)},
         error => {alert("Unsuccessful fetch operation!"); console.log(error);}
       );
@@ -348,7 +354,7 @@ accForDeleteSelected(){
 
     setTimeout(()=>{
       //ovo gde je kec treba da se prosledi id usera koji je ulogovan
-      this.accomodationsService.getRoomReservations(this.accForDelete.Id,1).subscribe(
+      this.accomodationsService.getRoomReservations(this.accForDelete.Id,this.userId).subscribe(
         (r:any)=>{this.deleteRoomResByUserId=r; console.log(this.deleteRoomResByUserId)},
         error => {alert("Unsuccessful fetch operation!"); console.log(error);}
       );

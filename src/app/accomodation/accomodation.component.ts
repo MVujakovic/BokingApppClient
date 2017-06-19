@@ -7,6 +7,7 @@ import { Place } from '../place/place.model';
 import { AccommodationType } from '../accomodationType/accommodationType.model';
 import { PlacesService } from '../services/places.service';
 import { AccomodationTypesService } from '../services/accomodationTypes.service';
+import { AuthenticationService } from '../services/auth.service';
 import {
   Router,
   ActivatedRoute
@@ -20,6 +21,8 @@ import {
 })
 export class AccomodationComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
+
+  userId:number;
 
   accomodations: Accomodation[];
   Places:Place[];
@@ -49,10 +52,13 @@ export class AccomodationComponent implements OnInit {
 
   constructor( private accomodationsService: AccomodationsService,
   private placesService:PlacesService,
-  private accomodationTypesService:AccomodationTypesService) {
+  private accomodationTypesService:AccomodationTypesService,
+  private authService: AuthenticationService) {
    }
 
   ngOnInit() {
+
+    this.userId=this.authService.getCurrentUserId();
     //za prikaz smestaja bez soba
     // this.accomodationsService.getAccomodations().subscribe(
     //   (c: any) => {this.accomodations = c; console.log(this.accomodations)},//You can set the type to Country
@@ -76,7 +82,7 @@ export class AccomodationComponent implements OnInit {
     );
 
     //ovde treba da se prosledi automatski id korisnika
-    this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+    this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -85,7 +91,7 @@ export class AccomodationComponent implements OnInit {
   addAccomodation(newAccomodation:Accomodation,form:NgForm):void{
     newAccomodation.AccomodationTypeId=this.accTypeId;
     newAccomodation.PlaceId=this.placeId;
-    newAccomodation.OwnerId=1; //ovde treba id onog koji kreira smesta
+    newAccomodation.OwnerId=this.userId; //ovde treba id onog koji kreira smesta
      this.accomodationsService.postAccomodation(newAccomodation).subscribe(this.onPost);
     form.reset();
 
@@ -98,7 +104,7 @@ export class AccomodationComponent implements OnInit {
     );
 
     this.accomByOwner=[];
-     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+     this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -126,7 +132,7 @@ export class AccomodationComponent implements OnInit {
     );
 
     this.accomByOwner=[];
-     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+     this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -181,7 +187,7 @@ export class AccomodationComponent implements OnInit {
     );
 
     this.accomByOwner=[];
-     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+     this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
@@ -212,7 +218,7 @@ export class AccomodationComponent implements OnInit {
     );
 
     this.accomByOwner=[];
-     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+     this.accomodationsService.getAccomodationsByOwnerId(this.userId).subscribe(
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
