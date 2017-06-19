@@ -48,6 +48,8 @@ import { AuthGuard } from './auth.guard';
 // import { AlertModule } from 'ngx-bootstrap';
 import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MapComponent } from './map/map.component';
+import{AgmCoreModule} from '@agm/core';
 
 const ChildRoutesDashboard = [
   { path: "country", component: CountryComponent },
@@ -116,8 +118,8 @@ const Routes = [
     CommentComponent,
     SearchComponent,
     CarouselComponent,
-    DashboardComponent
-
+    DashboardComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +128,9 @@ const Routes = [
     CarouselModule.forRoot(),
     FormsModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    //prilikom import-a mape prosleđujemo Google API key koji dobijamo preko google konzole
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
 
 

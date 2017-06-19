@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/auth.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,9 +10,10 @@ import { AuthenticationService } from './services/auth.service';
 export class AppComponent {
   username: string;
   loggedIn: boolean;
-  title = 'BookingApp'
+  title = 'BookingApp';
+
   constructor(private authService: AuthenticationService, public router: Router, ) {
-  }
+}
 
   ngOnInit() {
   }
