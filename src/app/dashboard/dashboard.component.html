@@ -13,8 +13,15 @@
       <!--ja sam ovde svuda napisala admin, jer sam navikla da se logujem sa adminom,
       ali ovde zapravo treba da bude samo manger
       i treba zastiti ovu rutu '/dashboard'-->
-     <hr *ngIf="getRole()=='Admin'" class="half-rule"/>
-     <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accomtype" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation Type</a></li>
+      <!--<li *ngIf="getRole()=='Admin' || getRole()=='Manager'" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">proba<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a routerLink="/accomodations">Accomodations</a></li>
+          <li><a routerLink="/regions">Regions</a></li>
+        </ul>
+      </li>-->
+
+      <hr *ngIf="getRole()=='Admin'" class="half-rule" />
+      <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accomtype" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation Type</a></li>
       <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accom" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation</a></li>
       <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/room" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Room</a></li>
     </ul>

@@ -1,7 +1,20 @@
 <h3>{{name}}</h3>
+
+<div class="container-fluid">
+  
+</div>
+
 <form #f="ngForm"(ngSubmit)="addAccomodationType(f.value, f)">
-  <p>Name:<input name="Name" type="text" ngModel/></p>
-  <input type="submit" value="Create"/>
+  
+    <div class="row">
+    <div class="form-group col-lg-2">
+      <label for="Name">Name</label>
+      <input class="form-control" name="Name" type="text" ngModel>
+    </div>
+  </div>
+
+    <button type="submit" class="btn btn-default">Create</button>
+
 </form>
 
 <h3>AccomodationTypes:</h3>
@@ -9,8 +22,9 @@
   <ul>
     <li *ngFor="let accomodationType of accomodationTypes">
       
-      {{accomodationType.Id}} <br/>
-       {{accomodationType.Name}} <br/>
+      <!--{{accomodationType.Id}} <br/>
+       {{accomodationType.Name}} <br/>-->
+        {{accomodationType.Name}}
       </li>
   </ul>
 </div>

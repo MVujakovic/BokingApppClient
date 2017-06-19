@@ -1,6 +1,6 @@
 <div>        
     <!-- Kreiramo mapu -->
-    <agm-map [latitude]="defaultInfo.centerLat" [longitude]="defaultInfo.centerLong" [zoom]="13">
+    <agm-map  [latitude]="defaultInfo.centerLat" [longitude]="defaultInfo.centerLong" [zoom]="13">
     
         <!-- Postavljamo markere -->
         <agm-marker *ngFor="let mapInfo of accomodationsMapInfo;" [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" [title]="mapInfo.title"

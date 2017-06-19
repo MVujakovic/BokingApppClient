@@ -102,15 +102,6 @@ export class AuthenticationService {
             return id;
         }
     }
-    // changePassword(oldPass:string,newPass:string,confirmPass:string){
-
-    //     const headers: Headers = new Headers();
-    //     headers.append('Authorization', 'Bearer ' + localStorage.getItem('token_id'));
-    //     const opts: RequestOptions = new RequestOptions();
-    //     opts.headers = headers;
-
-    //     return this.http.post('http://localhost:54042/' + 'api/Account/ChangePassword', null, opts);
-    // }
 
     changePassword(chngUser:ChngPassUser): Observable<any> {
 

@@ -1,186 +1,121 @@
-<h3>{{name}}</h3>
-<div>
-    <h3>
-        Add new accomodation:
-    </h3>
-<form #f="ngForm"(ngSubmit)="addAccomodation(f.value, f)">
-    <div>
-        <label for="Name">Name: </label>
-        <input name="Name" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Description">Description:</label>
-        <input name="Description" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Address">Address:</label>
-        <input name="Address" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="AverageGrade">AverageGrade:</label>
-        <input name="AverageGrade" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Latitude">Latitude:</label>
-        <input name="Latitude" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Longitude">Longitude:</label>
-        <input name="Longitude" type="text" ngModel/>
-    </div>
-    <div>
-        <!-- Ovo za sliku jos uvek ne radi,ostalo radi -->
-        <input name="ImageUrl" type="file" value="Choose image" id="accImage"  ngModel/>
-        
-    </div>
-    <div>
-        <label for="Place">Place:</label>
-        <select name="placeId" id="placeId" [(ngModel)]="placeId">
+<div class="роњ">
+
+    <form class="form-user">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Add</a></li>
+            <li><a href="#profile" data-toggle="tab">Edit</a></li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+
+            <div class="tab-pane active in row" id="home">
+                <!--<legend>Add new accomodation:<br></legend>-->
+                <h3>Add new accomodation:</h3>
+                <div class="col-lg-6" id="tab">
+
+                    <!--<form #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)" enctype="multipart/form-data">-->
+                    <form #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)">
+
+                        <div class="row">
+                            <label for="Name">Name: </label>
+                            <input name="Name" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <label for="Description">Description:</label>
+                            <input name="Description" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <label for="Address">Address:</label>
+                            <input name="Address" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <label for="AverageGrade">AverageGrade:</label>
+                            <input name="AverageGrade" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <label for="Latitude">Latitude:</label>
+                            <input name="Latitude" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <label for="Longitude">Longitude:</label>
+                            <input name="Longitude" type="text" ngModel/>
+                        </div>
+                        <div class="row">
+                            <!-- Ovo za sliku jos uvek ne radi,ostalo radi -->
+                            <input name="ImageUrl" type="file" value="Choose image" id="accImage" ngModel/>
+
+                        </div>
+                        <div class="row">
+                            <label for="Place">Place:</label>
+                            <select name="placeId" id="placeId" [(ngModel)]="placeId">
         <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
         </select>
-    </div>
-    <div>
-        <label for="AccomodationTypeId">AccomodationType:</label>
-        <select name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
+                        </div>
+                        <div class="row">
+                            <label for="AccomodationTypeId">AccomodationType:</label>
+                            <select name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
         <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
         </select>
-    </div>
-    <div>
-        <input type="submit" value="Create"/>
-    </div>
-    <!-- Valjda ownerId treba da se smesti na osnovu korisnika koji unosi ove podatke -->
-</form>
-</div>
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Create" />
+                        </div>
+                        <!-- Valjda ownerId treba da se smesti na osnovu korisnika koji unosi ove podatke -->
+                    </form>
+                </div>
 
-<br/>
-<br/>
-<br/>
-<br/>
+                <!--pagianciju cemo primenjivati i ovde-->
+                <div class="col-lg-6">
+                    <h3>List of all ccomodations:</h3>
+                    <div>
+                        <ul>
+                            <li *ngFor="let accomodation of accomodations">
 
-<!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
-<div>
-<h3>Approve accomodation:</h3>
-<form #f2="ngForm"(ngSubmit)="putAccomodation(f2.value, f2)">
-<!--<label>Approved:</label>-->
-<div>
-    <div #dataContainer [innerHTML]="theHtmlString">
-    </div>
-    <label>
-        <input type="checkbox" name="Approved" [(ngModel)]="Approved">
-        <!--<input type="radio" name="Approved" [(ngModel)]="Approved"/>-->
-        Approved</label>
-</div>
-<div>
-    <input type="submit" value="Change"/>
-</div>
-</form>
+                                {{accomodation.Name}} <br/> {{accomodation.Description}} <br/> {{accomodation.AverageGrade}}
+                                <br/><br/>
 
-<h3>Accomodations:</h3>
-<div>
-    <ul>
-        <li *ngFor="let acc of accomodations">
-            <span>{{acc.Id}}</span><br/>{{acc.Name}}
-            <button (click)="onEdit(acc)">Edit</button>
-        </li>
-    </ul>
-</div>
+                                <!-- Ovo je za prikaz soba koje su u tom smestaju -->
+                                <!--<ul>
+                                    <li *ngFor="let room od accomodation.Rooms">
+                                        {{room.Id}}<br/> {{room.RoomNumber}}
+                                        <br/> {{room.BedCount}}
+                                        <br/> {{room.Description}}
+                                        <br/> {{room.PricePerNight}}
+                                        <br/>
+                                    </li>
+                                </ul>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-</div>
+            </div>
 
-<!-- Kraj odobravanja smestaja -->
+            <div class="tab-pane fade form-user" id="profile">
 
-<br/>
-<br/>
-<br/>
-<br/>
+                <form #f="ngForm" (ngSubmit)="f.form.valid && changePassword(f.value, f)" validate id="tab2">
 
-<!--Edit smestaja(PUT) -->
-<div>
-    <h3>Edit accomodation:</h3>
-    <form #f3="ngForm"(ngSubmit)="editAccomodation(f3.value, f3)">
-        <div>
-            <label for="Name">Name: </label>
-            <input name="Name" type="text" [(ngModel)]="Name"/>
+                    <div class="form-group">
+                        <label class="sr-only" for="OldPassword">Old Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Old Password" name="OldPassword" ngModel required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="NewPassword">New Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="New Password" name="NewPassword" ngModel required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="confirmPassword">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="ConfirmPassword" ngModel
+                            required/>
+                    </div>
+                    <div>
+                        <button type="submit" [disabled]="!f.form.valid" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+
+            </div>
         </div>
-        <div>
-            <label for="Description">Description:</label>
-            <input name="Description" type="text" [(ngModel)]="Description"/>
-        </div>
-        <div>
-            <label for="Address">Address:</label>
-            <input name="Address" type="text" [(ngModel)]="Address"/>
-        </div>
-        <div>
-            <label for="AverageGrade">AverageGrade:</label>
-            <input name="AverageGrade" type="text" [(ngModel)]="AverageGrade"/>
-        </div>
-        <div>
-            <label for="Latitude">Latitude:</label>
-            <input name="Latitude" type="text" [(ngModel)]="Latitude"/>
-        </div>
-        <div>
-            <label for="Longitude">Longitude:</label>
-            <input name="Longitude" type="text" [(ngModel)]="Longitude"/>
-        </div>
-        <div>
-            <!-- Ovo za sliku razmisliti kako uraditi -->
-            <input name="ImageUrl" type="file" value="Choose image" id="accImage"  ngModel/>       
-        </div>
-        <div>
-            <label for="place">Place:</label>
-            <select name="PlaceIdEdit" id="PlaceIdEdit" [(ngModel)]="PlaceIdEdit">
-                <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
-            </select>
-        </div>
-        <div>
-            <label for="accomodationTypeIdEdit">AccomodationType:</label>
-            <select name="AccomodationTypeIdEdit" id="AccomodationTypeIdEdit" [(ngModel)]="AccomodationTypeIdEdit">
-                <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit" value="Submit"/>
-        </div>
+
     </form>
-
-    <h3>Accomodations for editing:</h3>
-    <div>
-    <ul>
-        <li *ngFor="let acc of accomByOwner">
-            <!--<span>{{acc.Name}}</span><br/>-->
-            <span>{{acc.Id}}</span><br/>{{acc.Name}}
-            <button (click)="onEditAccomodation(acc)">Edit</button>
-            <button (click)="onDeleteAccomodation(acc)">Delete</button>
-        </li>
-    </ul>
-    </div>
-</div>
-<!-- Kraj edita -->
-<br/>
-<br/>
-<br/>
-<br/>
-
-<h3>List of all ccomodations:</h3>
-<div>
-  <ul>
-    <li *ngFor="let accomodation of accomodations">
-      
-        {{accomodation.Id}} <br/>
-        {{accomodation.Name}} <br/>
-        {{accomodation.Description}} <br/> 
-        {{accomodation.AverageGrade}} <br/><br/>
-
-        <!-- Ovo je za prikaz soba koje su u tom smestaju -->
-        <!--<ul>
-            <li *ngFor="let room od accomodation.Rooms">
-                {{room.Id}}<br/>
-                {{room.RoomNumber}}<br/>
-                {{room.BedCount}}<br/>
-                {{room.Description}}<br/>
-                {{room.PricePerNight}}<br/>
-            </li>
-        </ul>-->
-    </li>
-  </ul>
 </div>

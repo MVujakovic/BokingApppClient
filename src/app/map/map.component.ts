@@ -8,7 +8,7 @@ import { AccomodationsService } from '../services/accomodations.service';
   selector: 'map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
-  styles: ['agm-map {height: 600px; width: 900px;}'] //postavljamo sirinu i visinu mape
+  styles: ['agm-map {height: 800px; width: 1200px;}'] //postavljamo sirinu i visinu mape
 })
 export class MapComponent implements OnInit {
 

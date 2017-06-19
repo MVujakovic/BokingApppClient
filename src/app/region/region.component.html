@@ -1,39 +1,45 @@
 <h3>{{name}}</h3>
-<form class="form" #f="ngForm" (ngSubmit)=addRegion(f.value,f)>
-  <div class="row">
-    <div class="form-group col-lg-2">
-      <label for="Name">Name</label>
-      <input class="form-control" name="Name" type="text" ngModel>
-    </div>
-  </div>
+<div class=row>
 
-  <div class="row">
-    <div class="form-group col-lg-2">
-      <label class="control-label">Country:</label>
-      <div>
-        <select class="form-control" name="countryId" id="countryId" [(ngModel)]="countryId">
-                         <option *ngFor = "let c of countries" value={{c.Id}} >{{c.Name}}</option></select>
+  <div class="col-lg-6"> 
+    <form class="form" #f="ngForm" (ngSubmit)=addRegion(f.value,f)>
+      <div class="row">
+        <div class="form-group col-lg-8">
+          <label for="Name">Name</label>
+          <input class="form-control" name="Name" type="text" ngModel>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!--<div>
+      <div class="row">
+        <div class="form-group col-lg-8">
+          <label class="control-label">Country:</label>
+          <div>
+            <select class="form-control" name="countryId" id="countryId" [(ngModel)]="countryId">
+                         <option *ngFor = "let c of countries" value={{c.Id}} >{{c.Name}}</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!--<div>
     <label for="Country">Country:</label>
     <select name="countryId" id="countryId" [(ngModel)]="countryId">
         <option *ngFor="let c of countries" value={{c.Id}}>{{c.Name}}</option>
         </select>
   </div>-->
+      <button type="submit" class="btn btn-default">Create</button>
+    </form>
+  </div>
 
-  <button type="submit" class="btn btn-default">Create</button>
-
-</form>
-
-<h3>Regions:</h3>
-<div>
-  <ul>
-    <li *ngFor="let region of regions">
-      <!--{{region.Id}} <br/> {{region.Name}} <br/> {{region.Country.Name}} <br/>-->
+  <div class="col-lg-6">
+    <h3>Regions:</h3>
+    <div>
+      <ul>
+        <li *ngFor="let region of regions">
+          <!--{{region.Id}} <br/> {{region.Name}} <br/> {{region.Country.Name}} <br/>-->
           <b>{{region.Name}},</b> {{region.Country.Name}} <br/>
-    </li>
-  </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
 </div>
