@@ -52,6 +52,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ShowAccommodationComponent } from './showAccomodation/showAccomodation.component';
+import { AccommApproveComponent } from './accomm-approve/accomm-approve.component';
 
 // localhost:4200/dashboard/path
 const ChildRoutesDashboard = [
@@ -60,6 +61,7 @@ const ChildRoutesDashboard = [
   { path: "place", component: PlaceComponent },
   { path: "accomtype", component: AccomodationTypeComponent },
   { path: "accom", component: AccomodationComponent },
+  { path: "accomApprove", component: AccommApproveComponent },
   { path: "room", component: RoomComponent },
   { path: "comments", component: CommentComponent },
   { path: "manageReservations", component: RoomReservationsComponent }
@@ -113,7 +115,8 @@ const Routes = [
     MapComponent,
     FilteredAccommodationsComponent,
     FilterFormComponent,
-    ShowAccommodationComponent
+    ShowAccommodationComponent,
+    AccommApproveComponent
   ],
   imports: [
     BrowserModule,

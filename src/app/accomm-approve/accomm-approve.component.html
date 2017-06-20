@@ -1,0 +1,30 @@
+<!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
+<div>
+  <h3>Approve accomodation:</h3>
+  <form #f2="ngForm" (ngSubmit)="putAccomodation(f2.value, f2)">
+
+    <div>
+      <div #dataContainer [innerHTML]="theHtmlString">
+      </div>
+      <label class="control-label col-sm-1">
+        <input class="form-control" type="checkbox" name="Approved" [(ngModel)]="Approved">
+    
+        Approved</label>
+    </div>
+
+    <div>
+      <input type="submit" value="Change" />
+    </div>
+  </form>
+  <br/>
+  <h3>Accomodations:</h3>
+  <div>
+    <ul>
+      <li *ngFor="let acc of accomodations">
+        <span>{{acc.Id}}</span><br/>{{acc.Name}}
+        <button class="btn btn-link" (click)="onEdit(acc)">Edit</button>
+      </li>
+    </ul>
+  </div>
+
+</div>

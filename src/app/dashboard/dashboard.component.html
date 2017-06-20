@@ -16,7 +16,8 @@
       <li *ngIf="getRole()=='Manager'"><a routerLink="/dashboard/accomtype" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation Type</a></li>
 
       <!--funkcionalnosti admina i managera se ovde razlikuju-->
-      <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accom" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation</a></li>
+      <li *ngIf="getRole()=='Admin'"><a routerLink="/dashboard/accomApprove" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Approve Accomodation</a></li>
+      <li *ngIf="getRole()=='Manager'"><a routerLink="/dashboard/accom" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation</a></li>
 
       <li *ngIf="getRole()=='Manager'"><a routerLink="/dashboard/room" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Room</a></li>
 
