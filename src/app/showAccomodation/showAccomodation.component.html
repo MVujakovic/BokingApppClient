@@ -1,12 +1,12 @@
+<div *ngFor="let acc of accoms">
 <div>
-<div>
-    <h3>{{accommodation.Name}}</h3>
+    <h3>{{acc.Name}}</h3>
 </div>
 <div>
-    <p> Rating: {{ accommodation.AverageGrade }} </p>
-    <p> Accommodation type: {{ accommodation.AccommodationType.Name }} </p>
-    <p> Description: {{ accommodation.Description }} <p>
-    <p> Adress: {{accommodation.Place.Name}},{{accommodation.Address}}</p>
+    <p> Rating: {{ acc.AverageGrade }} </p>
+    <p> Accommodation type: {{ acc.AccomodationType.Name }} </p>
+    <p> Description: {{ acc.Description }} <p>
+    <p> Adress: {{acc.Place.Name}},{{acc.Address}}</p>
 </div>
 </div>
 

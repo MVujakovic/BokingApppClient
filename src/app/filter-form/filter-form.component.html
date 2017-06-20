@@ -42,7 +42,7 @@
 
 <div *ngFor="let accommodation of Accomodations"> 
     <!--<p>{{accommodation.Name}}</p>-->
-    <a [routerLink]="['bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
+    <a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
     <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
 </div>
 

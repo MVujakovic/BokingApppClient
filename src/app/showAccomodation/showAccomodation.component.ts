@@ -7,6 +7,7 @@ import { AccommodationType } from '../accomodationType/accommodationType.model';
 import { User } from '../user/user.model';
 import { AppUser } from '../appUser/appUser.model';
 
+
 @Component({
   selector: 'showAccomodation',
   templateUrl: './showAccomodation.component.html',
@@ -19,12 +20,15 @@ export class ShowAccommodationComponent implements OnInit {
     accommodation: Accomodation;
     accommodations: Accomodation[];
     placeName: string;
+    //name:string;
+    accoms:Accomodation[];
 
     constructor(private accommodationService: AccomodationsService, private router: Router, private activatedRoute: ActivatedRoute,
     ) { 
 
     activatedRoute.params.subscribe(params => {this.accommodationId = params["Id"];});
 
+    this.accoms=[];
     this.accommodation = new Accomodation();
     this.accommodation.Owner = new AppUser();
     this.accommodation.Place = new Place();
@@ -33,10 +37,29 @@ export class ShowAccommodationComponent implements OnInit {
 
   ngOnInit() {
       
+
+     this.accommodationService.getAccomodationById(this.accommodationId).subscribe(
+      (a:any)=>{
+        
+        this.accommodation=undefined;
+        this.accommodation=a as Accomodation;
+        //this.name=this.accommodation.Name.toString();
+        console.log(this.accommodation);},
+        
+      //var d=true;},
+      
+      error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+     );
+
+     setTimeout(()=>{
+      this.accoms=[];
+      this.accoms.push(this.accommodation);
+     },1000);
      
-      this.accommodationService.getAccomodationById(this.accommodationId).subscribe(x => { this.accommodations = x.json();
-        this.accommodation = this.accommodations[0];
-    });
+    //   this.accommodationService.getAccomodationById(this.accommodationId).subscribe(x => {
+    //      this.accommodations = x.json();
+    //     this.accommodation = this.accommodations[0];
+    // });
 
   } 
 

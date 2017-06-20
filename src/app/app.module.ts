@@ -67,7 +67,7 @@ const ChildRoutesDashboard = [
 const ChildRoutesHome = [
   //  { path: "login", component: LoginComponent },
   //  { path: "register", component: RegisterComponent },
-   {path: "showAccomodation/:Id", component: ShowAccommodationComponent},
+  {path: "showAccomodation/:Id", component: ShowAccommodationComponent},
   { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },
