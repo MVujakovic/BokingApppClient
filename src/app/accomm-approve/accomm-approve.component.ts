@@ -69,8 +69,8 @@ export class AccommApproveComponent implements OnInit {
     //za prikaz smestaja sa sobama
     this.accomodationsService.getAccomodationsWithRooms().
       subscribe(
-      (c: any) => {
-        this.accomodations = c;
+      (a: any) => {
+        this.accomodations = a;
         console.log(this.accomodations)
       },
       error => {
@@ -81,8 +81,8 @@ export class AccommApproveComponent implements OnInit {
 
     this.placesService.getPlaces().
       subscribe(
-      (c: any) => {
-        this.Places = c;
+      (p: any) => {
+        this.Places = p;
         console.log(this.Places)
       },
       error => {
@@ -117,12 +117,6 @@ export class AccommApproveComponent implements OnInit {
       );
   }
   onEdit(acc: Accomodation) {
-    // if(acc.Approved){
-    //   this.Approved="true";
-    // }
-    // else{
-    //   this.Approved="false;"
-    // }
     this.dataContainer.nativeElement.innerHTML = acc.Name;
 
     this.Approved = acc.Approved;

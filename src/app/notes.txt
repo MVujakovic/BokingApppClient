@@ -10,9 +10,6 @@
 1. Videti kako cemo onu validaciju da sredimo, recimo za registraciju, namesteno je da ne moze da se submituje ako
   nisu sva polja puna, ali nema feedbacka nikakvog
 
-2. Edit usera kako radimo, kako pribavljamo sve podatke, menjamo sifru i ostalo? 
-
-
 **********************************************
 NAPOMENA:
 ako ne bude radilo pokreni cp kao admin i kucaj 
@@ -30,3 +27,7 @@ na odbrani je bitno da imamo internet, zbog bootstrapa, posto povlaci s neta
 Means that in the medium range of the grid system, the element will have a width of 6 colums and there will be 3 blank columns before the element (and as a consequence, will have 3 blank colums after).
 
 The result of this is a div of 6 colums width, centered in the container.
+
+git clean -f  delete untracked
+git clean -n
+git checkout -- . delete tracked

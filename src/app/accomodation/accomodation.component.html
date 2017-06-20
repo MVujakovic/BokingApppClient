@@ -8,15 +8,14 @@
         </ul>
 
         <div id="myTabContent" class="tab-content">
-            <!--
-ubaciti neku promenljivu koja je indikator sta je pritisnuto, 
-koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu-->
+
+            <!--prvi tab-->
             <div class="tab-pane active in row" id="first">
 
-
-
+                <!--prva kolona-->
                 <div class="col-md-6" id="tab">
                     <h3>Add new accomodation:</h3>
+
                     <!--<form #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)" enctype="multipart/form-data">-->
                     <form class="form-horizontal" #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)">
 
@@ -33,24 +32,28 @@ koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu--
                                 <input class="form-control" name="Description" type="text" ngModel/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="Address">Address:</label>
                             <div class="col-sm-4 col-sm-offset-1">
                                 <input class="form-control" name="Address" type="text" ngModel/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="AverageGrade">Average Grade:</label>
                             <div class="col-sm-4 col-sm-offset-1">
                                 <input class="form-control" name="AverageGrade" type="text" ngModel/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="Latitude">Latitude:</label>
                             <div class="col-sm-4 col-sm-offset-1">
                                 <input class="form-control" name="Latitude" type="text" ngModel/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="Longitude">Longitude:</label>
                             <div class="col-sm-4 col-sm-offset-1">
@@ -61,17 +64,18 @@ koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu--
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="Place">Place:</label>
                             <div class="col-sm-4 col-sm-offset-1">
-                                <select class="form-control" name="placeId" id="placeId" [(ngModel)]="placeId">
-        <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
-        </select> </div>
+                                <select class="form-control" name="placeId" id="placeId" [(ngModel)]="placeId"><option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
+                             </select> </div>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label col-sm-1" for="AccomodationTypeId">Accomodation<br/>Type:</label>
                             <div class="col-sm-4 col-sm-offset-1">
                                 <select class="form-control" name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
-        <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
-        </select> </div>
+                        <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
+                             </select> </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-6">
                                 <input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" ngModel/>
@@ -88,32 +92,18 @@ koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu--
                     </form>
 
                 </div>
+                
+                 <!--<button routerLink="dashboard/accommDetail" class="btn btn-primary">Back</button>-->
 
-                <!--pagianciju cemo primenjivati i ovde. treba mozda kao da budu klikabilne akomodacija
-                pa da se vide detalji kad se klikne, ili u tabeli da budu sve, pa da se sortira po grade-u...
-            
-                ovo je deo koji treba svi da vide, sve ostalo vezano za acomodation mora imati role...-->
-
+                <!--druga kolona-->
                 <div class="col-md-6">
                     <h3>List of all ccomodations:</h3>
                     <div>
                         <ul>
                             <li *ngFor="let accomodation of accomodations">
-
-                                {{accomodation.Name}} [grade: {{accomodation.AverageGrade}}] <br/> {{accomodation.Description}}
-                                <br/>
-
-
-                                <!-- Ovo je za prikaz soba koje su u tom smestaju -->
-                                <!--<ul>
-                                    <li *ngFor="let room od accomodation.Rooms">
-                                        {{room.Id}}<br/> {{room.RoomNumber}}
-                                        <br/> {{room.BedCount}}
-                                        <br/> {{room.Description}}
-                                        <br/> {{room.PricePerNight}}
-                                        <br/>
-                                    </li>
-                                </ul>-->
+                                <div>
+                                  {{accomodation.Name}}  <button [routerLink]="['accomDetails',accomodation.Id]" class="btn btn-link btn-sm">details </button>                                            
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -121,111 +111,101 @@ koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu--
 
             </div>
 
+            <!--drugi tab -->
             <div class="tab-pane fade form-user" id="second">
 
-                <div class=col-lg-4>
+                <!--prva kolona-->
+                <div class=col-md-6>
+                    <h3>Edit accomodation:</h3>
 
-                    <!--Edit smestaja(PUT) -->
-                    <!--mozda da ovde bude predlozeno vec ime smestaja, ona lista?? msm to nema smisla da se menja -->
-                    <div>
-                        <h3>Edit accomodation:</h3>
-                        <form class="form-horizontal" #f3="ngForm" (ngSubmit)="editAccomodation(f3.value, f3)">
+                    <form class="form-horizontal" #f3="ngForm" (ngSubmit)="editAccomodation(f3.value, f3)">
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="Name">Name: </label>
-                                <div class="col-sm-4 col-sm-offset-1">
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Name">Name: </label>
+                            <div class="col-sm-4 col-sm-offset-1">
 
-                                    <input class="form-control" name="Name" type="text" [(ngModel)]="Name" />
-                                </div>
+                                <input class="form-control" name="Name" type="text" [(ngModel)]="Name" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="Description">Description:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" name="Description" type="text" [(ngModel)]="Description" />
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Description">Description:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Description" type="text" [(ngModel)]="Description" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="Address">Address:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" name="Address" type="text" [(ngModel)]="Address" />
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Address">Address:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Address" type="text" [(ngModel)]="Address" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="AverageGrade">AverageGrade:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" name="AverageGrade" type="text" [(ngModel)]="AverageGrade" />
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="AverageGrade">AverageGrade:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="AverageGrade" type="text" [(ngModel)]="AverageGrade" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="Latitude">Latitude:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" name="Latitude" type="text" [(ngModel)]="Latitude" />
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Latitude">Latitude:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Latitude" type="text" [(ngModel)]="Latitude" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="Longitude">Longitude:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" name="Longitude" type="text" [(ngModel)]="Longitude" />
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Longitude">Longitude:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Longitude" type="text" [(ngModel)]="Longitude" />
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="place">Place:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <select class="form-control" name="PlaceIdEdit" id="PlaceIdEdit" [(ngModel)]="PlaceIdEdit">
-                <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
-            </select>
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="place">Place:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <select class="form-control" name="PlaceIdEdit" id="PlaceIdEdit" [(ngModel)]="PlaceIdEdit">
+                                 <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
+                                 </select>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-1" for="accomodationTypeIdEdit">Accomodation<br/>Type:</label>
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <select class="form-control" name="AccomodationTypeIdEdit" id="AccomodationTypeIdEdit" [(ngModel)]="AccomodationTypeIdEdit">
-                <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
-            </select>
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="accomodationTypeIdEdit">Accomodation<br/>Type:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <select class="form-control" name="AccomodationTypeIdEdit" id="AccomodationTypeIdEdit" [(ngModel)]="AccomodationTypeIdEdit">
+                             <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
+                                 </select>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-6">
-                                    <!-- Ovo za sliku razmisliti kako uraditi -->
-                                    <input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>
-                                    <!--<input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>-->
-                                </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+
+                                <input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>
+                                <!--<input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>-->
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <!--<div class="col-sm-3 col-sm-offset-4">-->
-                                <button type="submit" class="btn btn-default btn-lg">Save</button>
-                                <!--</div>-->
-                            </div>
-                            <!--<div class="form-group">
-                                <div class="col-sm-4 col-sm-offset-1">
-                                    <input class="form-control" type="submit" value="Save" />
-                                </div>
-                            </div>-->
-                        </form>
+                        <div class="form-group">
+                            <!--<div class="col-sm-3 col-sm-offset-4">-->
+                            <button type="submit" class="btn btn-default btn-lg">Save</button>
+                            <!--</div>-->
+                        </div>
 
-
-                    </div>
+                    </form>
 
                 </div>
 
-                <div class=col-lg-7>
-                    <!--ovo napraviti da bude kao lista ponudjena-->
-                    <h3>Accomodations for editing:</h3>
+                <!--druga kolona-->
+                <div class=col-md-6>
+                    <h3>Choose accomodation for edit:</h3>
                     <div>
                         <ul>
                             <li *ngFor="let acc of accomByOwner">
-                                <!--<span>{{acc.Name}}</span><br/>-->
-                                {{acc.Name}}
-                                <button class="btn btn-link" (click)="onEditAccomodation(acc)">Edit</button>
+                                <button class="btn btn-link" (click)="onEditAccomodation(acc)">{{acc.Name}}</button>
                                 <button class="btn btn-link" (click)="onDeleteAccomodation(acc)">Delete</button>
                             </li>
                         </ul>

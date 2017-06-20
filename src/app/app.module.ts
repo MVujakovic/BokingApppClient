@@ -53,6 +53,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ShowAccommodationComponent } from './showAccomodation/showAccomodation.component';
 import { AccommApproveComponent } from './accomm-approve/accomm-approve.component';
+import { AccomDetailsComponent } from './accom-details/accom-details.component';
+
+
 
 // localhost:4200/dashboard/path
 const ChildRoutesDashboard = [
@@ -64,14 +67,16 @@ const ChildRoutesDashboard = [
   { path: "accomApprove", component: AccommApproveComponent },
   { path: "room", component: RoomComponent },
   { path: "comments", component: CommentComponent },
-  { path: "manageReservations", component: RoomReservationsComponent }
+  { path: "manageReservations", component: RoomReservationsComponent },
+  { path: "accom/accomDetails/:Id",component:AccomDetailsComponent}
+  // { path: "accomDetails/:Id", component: AccommDetailsComponent },
 ]
 
 // localhost:4200/bookingApp/path
 const ChildRoutesHome = [
   //  { path: "login", component: LoginComponent },
   //  { path: "register", component: RegisterComponent },
-  {path: "showAccomodation/:Id", component: ShowAccommodationComponent},
+  { path: "showAccomodation/:Id", component: ShowAccommodationComponent },
   { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },
@@ -94,9 +99,9 @@ const Routes = [
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
   { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
 
-    // neku drugu komponentu napaviti ovde, msm da se drugacije zove i to sve
-    // i da u njoj ima RUD za odgovarajuce rezervacije vezane za usera
-   { path: "myReservations", component: RoomReservationsComponent },
+  // neku drugu komponentu napaviti ovde, msm da se drugacije zove i to sve
+  // i da u njoj ima RUD za odgovarajuce rezervacije vezane za usera
+  { path: "myReservations", component: RoomReservationsComponent },
 
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
@@ -126,7 +131,8 @@ const Routes = [
     FilteredAccommodationsComponent,
     FilterFormComponent,
     ShowAccommodationComponent,
-    AccommApproveComponent
+    AccommApproveComponent,
+    AccomDetailsComponent
   ],
   imports: [
     BrowserModule,
