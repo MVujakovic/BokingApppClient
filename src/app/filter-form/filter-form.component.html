@@ -1,0 +1,59 @@
+<h4> Filter accommodations </h4>
+
+<form #f = "ngForm" (ngSubmit)="onSubmit()">
+    <label for="Name"> Name: </label>
+    <textarea id="Name" name="Name" [(ngModel)]="Name"> </textarea> <br/>
+
+    <label for="Place"> Place: </label>
+    <textarea id="PlaceName" name="PlaceName" [(ngModel)]="PlaceName"> </textarea> <br/>
+
+    <label for="Region"> Region: </label>
+    <textarea id="RegionName" name="RegionName" [(ngModel)]="RegionName"> </textarea> <br/>
+
+    <label for="Country"> Country: </label>
+    <textarea id="CountryName" name="CountryName" [(ngModel)]="CountryName"> </textarea> <br/>
+
+    <label for="AverageGrade"> Average grade: </label>
+    <input type="text" id="AverageGrade" name="AverageGrade" [(ngModel)]="AverageGrade"> <br/>
+
+    <label for="BedCount"> Bed count: </label>
+    <input type="text" id="BedCount" name="BedCount" [(ngModel)]="BedCount"> <br/>
+
+    <label for="MinPrice"> Min price: </label>
+    <input type="text" id="MinPrice" name="MinPrice" [(ngModel)]="MinPrice"> <br/>
+
+    <label for="MaxPrice"> Min price: </label>
+    <input type="text" id="MaxPrice" name="MaxPrice" [(ngModel)]="MaxPrice"> <br/>
+
+    <input type="submit" value="Filter">
+</form>
+<br/>
+<br/>
+<!-- Pokusaj da sve strpam u istu komponentu -->
+<h3>Filtered accomodations:</h3>
+
+<!--<router-outlet></router-outlet>-->
+
+<ul>
+    <li *ngFor="let accommodation of Accommodations"> 
+        <p>{{accommodation.Name}}</p>
+    </li>
+</ul>
+
+<!--<div *ngFor="let accommodation of Accommodations"> 
+    <p>{{accommodation.Name}}</p>-->
+    <!--<a [routerLink]="['bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
+    <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
+<!--</div>-->
+
+<!--<div *ngFor="let c of counter; let i=index">
+    <button (click)="changePage((PageSet -1)*2 + i + 1)"> {{ (PageSet -1)*2 + i + 1 }}  </button>
+</div>
+
+<div *ngIf="showNext()"> 
+    <button (click)="nextPageSet()"> Next </button> 
+</div>
+
+<div *ngIf="showPrevious()"> 
+    <button (click)="previousPageSet()"> Previous </button> 
+</div>-->

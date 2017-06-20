@@ -20,6 +20,8 @@ import { CommentComponent } from './comment/comment.component';
 import { RoomComponent } from './room/room.component';
 import { RoomReservationsComponent } from './roomReservations/roomReservations.component';
 import { SearchComponent } from './search/search.component';
+import { FilteredAccommodationsComponent } from './filtered-acc/filtered-acc.component';
+import { FilterFormComponent } from './filter-form/filter-form.component';
 
 import { AuthenticationService } from './services/auth.service';
 import { LogInService } from './services/login.service';
@@ -45,10 +47,14 @@ import { AuthGuard } from './auth.guard';
 
 
 
+
 // import { AlertModule } from 'ngx-bootstrap';
 import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
+import { ShowAccommodationComponent } from './showAccomodation/showAccomodation.component';
+
+
 import{AgmCoreModule} from '@agm/core';
 
 const ChildRoutesDashboard = [
@@ -62,7 +68,7 @@ const ChildRoutesDashboard = [
 const ChildRoutesHome = [
   //  { path: "login", component: LoginComponent },
   //  { path: "register", component: RegisterComponent },
-
+   {path: "showAccomodation/:Id", component: ShowAccommodationComponent},
   { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },
@@ -99,6 +105,7 @@ const Routes = [
   // { path: "room", component: RoomComponent },
   // { path: "roomReservations", component: RoomReservationsComponent },
   // { path: "comment", component: CommentComponent }
+ 
 ]
 
 @NgModule({
@@ -120,7 +127,10 @@ const Routes = [
     SearchComponent,
     CarouselComponent,
     DashboardComponent,
-    MapComponent
+    MapComponent,
+    FilteredAccommodationsComponent,
+    FilterFormComponent,
+    ShowAccommodationComponent
   ],
   imports: [
     BrowserModule,
