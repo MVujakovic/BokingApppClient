@@ -53,17 +53,15 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ShowAccommodationComponent } from './showAccomodation/showAccomodation.component';
-
-
-import{AgmCoreModule} from '@agm/core';
-
 const ChildRoutesDashboard = [
   { path: "country", component: CountryComponent },
   { path: "region", component: RegionComponent },
   { path: "place", component: PlaceComponent },
   { path: "accomtype", component: AccomodationTypeComponent },
   { path: "accom", component: AccomodationComponent },
-  { path: "room", component: RoomComponent }
+  { path: "room", component: RoomComponent },
+  { path: "comments", component: CommentComponent },
+  { path: "reservations", component: RoomReservationsComponent }
 ]
 const ChildRoutesHome = [
   //  { path: "login", component: LoginComponent },
@@ -89,7 +87,7 @@ const Routes = [
   { path: "login", component: LoginComponent },
   { path: "edit", component: LoginComponent },
   { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
-  { path: "userDetails", component:  UserComponent }
+  { path: "userDetails", component: UserComponent }
   // { path: "appUser", component: AppUserComponent },
   // { path: "country", component: CountryComponent },
   // { path: "region", component: RegionComponent },
@@ -141,7 +139,7 @@ const Routes = [
     HttpModule,
     JsonpModule,
     //prilikom import-a mape prosleđujemo Google API key koji dobijamo preko google konzole
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk' })
   ],
 
 

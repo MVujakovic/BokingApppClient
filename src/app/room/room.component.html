@@ -1,53 +1,60 @@
 <h3>{{name}}</h3>
 <h3>Add new room:</h3>
-<form #f="ngForm"(ngSubmit)="addRoom(f.value, f)">
-    <div>
-        <label for="RoomNumber">RoomNumber: </label>
-        <input name="RoomNumber" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="BedCount">BedCount: </label>
-        <input name="BedCount" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Description">Description: </label>
-        <input name="Description" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="PricePerNight">PricePerNight: </label>
-        <input name="PricePerNight" type="text" ngModel/>
-    </div>
-    <div>
-         <label for="Accomodation">Accomodation:</label>
-        <select name="accId" id="accId" [(ngModel)]="accId">
+<div class="col-lg-4">
+    <form class="form-horizontal" #f="ngForm" (ngSubmit)="addRoom(f.value, f)">
+
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
+            <div class="col-sm-4 col-sm-offset-1">
+                <input name="RoomNumber" type="text" ngModel/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
+            <div class="col-sm-4 col-sm-offset-1">
+            <input name="BedCount" type="text" ngModel/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="Description">Description: </label>
+            <div class="col-sm-4 col-sm-offset-1">
+            <input name="Description" type="text" ngModel/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
+            <div class="col-sm-4 col-sm-offset-1">
+            <input name="PricePerNight" type="text" ngModel/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
+            <div class="col-sm-4 col-sm-offset-1">
+            <select name="accId" id="accId" [(ngModel)]="accId">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
-    </div>
-    <div>
-        <input type="submit" value="Create"/>
-    </div>
-</form>
-
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" />
+        </div>
+    </form>
+</div>
 <h3>List of all rooms:</h3>
 <div>
-  <ul>
-    <li *ngFor="let room of rooms">      
-        <!--{{room.Accomodation.Name}} <br/>-->
-        {{room.Id}} <br/>
-        {{room.RoomNumber}} <br/>
-        {{room.BedCount}} <br/>
-        {{room.Description}} <br/><br/>
-        <ul>
-        <li *ngFor="let roomRes of room.RoomReservations">
-            {{roomRes.Id}} <br/>
-            {{roomRes.StartDate}} <br/>
-            {{roomRes.EndDate}} <br/>
-            <!-- Verovatno se mora uraditi include AppUsera da bi moglo ovo da se prikaze -->
-            <!--{{roomRes.AppUser.Name}}<br/><br/>-->
-        </li> 
-        </ul>
-     </li>
-  </ul>
+    <ul>
+        <li *ngFor="let room of rooms">
+            <!--{{room.Accomodation.Name}} <br/>-->
+            {{room.Id}} <br/> {{room.RoomNumber}} <br/> {{room.BedCount}} <br/> {{room.Description}} <br/><br/>
+            <ul>
+                <li *ngFor="let roomRes of room.RoomReservations">
+                    {{roomRes.Id}} <br/> {{roomRes.StartDate}} <br/> {{roomRes.EndDate}} <br/>
+                    <!-- Verovatno se mora uraditi include AppUsera da bi moglo ovo da se prikaze -->
+                    <!--{{roomRes.AppUser.Name}}<br/><br/>-->
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
 
 <br/>
@@ -59,7 +66,7 @@
     <h3>Rooms for editing:</h3>
     <!-- ovde treba da izaberem prvo smestaj koji pripada vlasniku -->
     <div>
-         <label for="Accomodation">Accomodation:</label>
+        <label for="Accomodation">Accomodation:</label>
         <select name="accIdEdit" id="accIdEdit" [(ngModel)]="accIdEdit" (change)="accSelected()">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
@@ -81,47 +88,47 @@
     </div>-->
 
     <h3>Edit room:</h3>
-    <form #f2="ngForm"(ngSubmit)="editRoom(f2.value, f2)">
-    <div>
-        <label for="RoomNumber">RoomNumber: </label>
-        <input name="RoomNumber" type="text" [(ngModel)]="RoomNumber"/>
-    </div>
-    <div>
-        <label for="BedCount">BedCount: </label>
-        <input name="BedCount" type="text" [(ngModel)]="BedCount"/>
-    </div>
-    <div>
-        <label for="Description">Description: </label>
-        <input name="Description" type="text" [(ngModel)]="Description"/>
-    </div>
-    <div>
-        <label for="PricePerNight">PricePerNight: </label>
-        <input name="PricePerNight" type="text" [(ngModel)]="PricePerNight"/>
-    </div>
-    <!-- Nema poente menjati accomodation jer se soba nalazi u tom smestaju-->
-    <!--<div>
+    <form #f2="ngForm" (ngSubmit)="editRoom(f2.value, f2)">
+        <div>
+            <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
+            <input name="RoomNumber" type="text" [(ngModel)]="RoomNumber" />
+        </div>
+        <div>
+            <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
+            <input name="BedCount" type="text" [(ngModel)]="BedCount" />
+        </div>
+        <div>
+            <label class="control-label col-sm-1" for="Description">Description: </label>
+            <input name="Description" type="text" [(ngModel)]="Description" />
+        </div>
+        <div>
+            <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
+            <input name="PricePerNight" type="text" [(ngModel)]="PricePerNight" />
+        </div>
+        <!-- Nema poente menjati accomodation jer se soba nalazi u tom smestaju-->
+        <!--<div>
          <label for="Accomodation">Accomodation:</label>
         <select name="accId" id="accId" [(ngModel)]="accId">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
     </div>-->
-    <div>
-        <input type="submit" value="Create"/>
-    </div>
+        <div>
+            <input type="submit" value="Create" />
+        </div>
     </form>
-   
+
     <br/>
     <br/>
     <br/>
     <h3>Delete room:</h3>
     <div>
-         <label for="Accomodation">Accomodation:</label>
+        <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
         <select name="accIdDelete" id="accIdDelete" [(ngModel)]="accIdDelete" (change)="accDeleteSelected()">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
     </div>
     <div>
-        <label>Room:</label>
+        <label class="control-label col-sm-1">Room:</label>
         <select name="roomIdDelete" id="roomIdDelete" [(ngModel)]="roomIdDelete" (change)="roomSelectedDelete()">
             <option *ngFor="let room of roomsForDel" value={{room.Id}}>{{room.RoomNumber}}</option>
         </select>
