@@ -12,25 +12,25 @@
         <div class="form-group">
             <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
             <div class="col-sm-4 col-sm-offset-1">
-            <input name="BedCount" type="text" ngModel/>
+                <input name="BedCount" type="text" ngModel/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="Description">Description: </label>
             <div class="col-sm-4 col-sm-offset-1">
-            <input name="Description" type="text" ngModel/>
+                <input name="Description" type="text" ngModel/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
             <div class="col-sm-4 col-sm-offset-1">
-            <input name="PricePerNight" type="text" ngModel/>
+                <input name="PricePerNight" type="text" ngModel/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
             <div class="col-sm-4 col-sm-offset-1">
-            <select name="accId" id="accId" [(ngModel)]="accId">
+                <select name="accId" id="accId" [(ngModel)]="accId">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
             </div>

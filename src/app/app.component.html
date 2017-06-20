@@ -27,6 +27,9 @@
                 </li>-->
                
                 <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Dashboard</a></li>
+                
+                <!--dakle, ako je ulogovan, moze da vidi svoje rezervaicje i upravlja njima-->
+                <li *ngIf="isLoggedIn()"><a routerLink="/myReservations"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">My Reservations</a></li>
 
                 <!--<li><a routerLink="/bookingApp/country" (click)="goTo('content')"> country</a></li>
                 <li><a routerLink="/bookingApp/region">Region</a></li>

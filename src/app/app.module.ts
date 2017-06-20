@@ -44,9 +44,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
-import{AgmCoreModule} from '@agm/core';
-
-
+import { AgmCoreModule } from '@agm/core';
 
 
 // import { AlertModule } from 'ngx-bootstrap';
@@ -54,6 +52,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MapComponent } from './map/map.component';
 import { ShowAccommodationComponent } from './showAccomodation/showAccomodation.component';
+
+// localhost:4200/dashboard/path
 const ChildRoutesDashboard = [
   { path: "country", component: CountryComponent },
   { path: "region", component: RegionComponent },
@@ -62,8 +62,10 @@ const ChildRoutesDashboard = [
   { path: "accom", component: AccomodationComponent },
   { path: "room", component: RoomComponent },
   { path: "comments", component: CommentComponent },
-  { path: "reservations", component: RoomReservationsComponent }
+  { path: "manageReservations", component: RoomReservationsComponent }
 ]
+
+// localhost:4200/bookingApp/path
 const ChildRoutesHome = [
   //  { path: "login", component: LoginComponent },
   //  { path: "register", component: RegisterComponent },
@@ -78,33 +80,25 @@ const ChildRoutesHome = [
   { path: "roomReservations", component: RoomReservationsComponent },
   { path: "comment", component: CommentComponent },
 
+
+  // mozda ne treba appUser uospte
+  // { path: "appUser", component: AppUserComponent },
 ]
 
+// na njih navigiramo kroz localhost:4200/path
 const Routes = [
   { path: '', redirectTo: '/bookingApp', pathMatch: 'full' },
   { path: "other", redirectTo: "/bookingApp" },
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
+  { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
+
+    // neku drugu komponentu napaviti ovde, msm da se drugacije zove i to sve
+    // i da u njoj ima RUD za odgovarajuce rezervacije vezane za usera
+   { path: "myReservations", component: RoomReservationsComponent },
+
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-  { path: "edit", component: LoginComponent },
-  { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
   { path: "userDetails", component: UserComponent }
-  // { path: "appUser", component: AppUserComponent },
-  // { path: "country", component: CountryComponent },
-  // { path: "region", component: RegionComponent },
-  // { path: "place", component: PlaceComponent },
-  // { path: "accomodationType", component: AccomodationTypeComponent },
-
-  // { path: "accomodation", component: AccomodationComponent },
-  // // testing guards:
-  // // each time the home route is hit, the AuthGuard function
-  // // will be executed and decide whether or not a user can actually access the route.
-  // { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
-
-  // { path: "room", component: RoomComponent },
-  // { path: "roomReservations", component: RoomReservationsComponent },
-  // { path: "comment", component: CommentComponent }
- 
 ]
 
 @NgModule({
