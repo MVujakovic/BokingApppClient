@@ -61,35 +61,37 @@ ngOnInit() {
 }
 
 onSubmit() {
+    this.PageSet=1;
+    
     if (this.Name == undefined || this.Name == ""){
-      //this.Name = "undefined";
+      this.Name = undefined;
     }
     if (this.PlaceName == undefined || this.PlaceName == ""){
-      //this.PlaceName = "undefined";
+      this.PlaceName = undefined;
     }
 
     if (this.RegionName == undefined || this.RegionName == ""){
-      //this.RegionName = "undefined";
+      this.RegionName = undefined;
     }
 
     if (this.CountryName == undefined || this.CountryName == ""){
-      //this.CountryName = "undefined";
+      this.CountryName = undefined;
     }
 
-    if (this.AverageGrade == undefined){
-      //this.AverageGrade = -1;
+    if (this.AverageGrade == undefined || this.AverageGrade.toString()==""){
+      this.AverageGrade = undefined;
     }
 
-    if (this.BedCount == undefined){
-      //this.BedCount = -1;
+    if (this.BedCount == undefined || this.BedCount.toString()==""){
+      this.BedCount = undefined;
     }
 
-    if (this.MinPrice == undefined){
-      //this.MinPrice = -1;
+    if (this.MinPrice == undefined || this.MinPrice.toString()==""){
+      this.MinPrice = undefined;
     }
 
-    if (this.MaxPrice == undefined){
-      //this.MaxPrice = -1;
+    if (this.MaxPrice == undefined || this.MaxPrice.toString()==""){
+      this.MaxPrice = undefined;
     }
     // this.router.navigate(['/filteredAcc', this.Name, this.PlaceName, this.RegionName, this.CountryName, this.AverageGrade,
     //                       this.BedCount, this.MinPrice, this.MaxPrice]);
@@ -121,16 +123,16 @@ onSubmit() {
               this.counter = new Array(counterLength);      
     });
 
-    setTimeout(()=>{
-      this.Name=undefined;
-      this.PlaceName=undefined;
-      this.RegionName=undefined;
-      this.CountryName=undefined;
-      this.AverageGrade=undefined;
-      this.BedCount=undefined;
-      this.MinPrice=undefined;
-      this.MaxPrice=undefined;
-    },1000);
+    // setTimeout(()=>{
+    //   this.Name=undefined;
+    //   this.PlaceName=undefined;
+    //   this.RegionName=undefined;
+    //   this.CountryName=undefined;
+    //   this.AverageGrade=undefined;
+    //   this.BedCount=undefined;
+    //   this.MinPrice=undefined;
+    //   this.MaxPrice=undefined;
+    // },1000);
 
 }
 

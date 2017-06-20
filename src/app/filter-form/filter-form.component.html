@@ -22,7 +22,7 @@
     <label for="MinPrice"> Min price: </label>
     <input type="text" id="MinPrice" name="MinPrice" [(ngModel)]="MinPrice"> <br/>
 
-    <label for="MaxPrice"> Min price: </label>
+    <label for="MaxPrice"> Max price: </label>
     <input type="text" id="MaxPrice" name="MaxPrice" [(ngModel)]="MaxPrice"> <br/>
 
     <input type="submit" value="Filter">
@@ -42,7 +42,7 @@
 
 <div *ngFor="let accommodation of Accomodations"> 
     <!--<p>{{accommodation.Name}}</p>-->
-    <a [routerLink]="['bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
+    <a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
     <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
 </div>
 

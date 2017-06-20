@@ -69,9 +69,19 @@ const ChildRoutesDashboard = [
 
 // localhost:4200/bookingApp/path
 const ChildRoutesHome = [
+  //  { path: "login", component: LoginComponent },
+  //  { path: "register", component: RegisterComponent },
+  {path: "showAccomodation/:Id", component: ShowAccommodationComponent},
+  { path: "appUser", component: AppUserComponent },
+  // { path: "country", component: CountryComponent },
+  // { path: "region", component: RegionComponent },
+  // { path: "place", component: PlaceComponent },
+  { path: "accomodationType", component: AccomodationTypeComponent },
+  { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
+  { path: "room", component: RoomComponent },
+  { path: "roomReservations", component: RoomReservationsComponent },
+  { path: "comment", component: CommentComponent },
 
-// aha , ova ruta ne radi
-  { path: "showAccomodation/:Id", component: ShowAccommodationComponent }
 
   // mozda ne treba appUser uospte
   // { path: "appUser", component: AppUserComponent },
