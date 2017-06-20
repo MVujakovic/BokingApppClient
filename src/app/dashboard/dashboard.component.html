@@ -13,17 +13,19 @@
       <!--ja sam ovde svuda napisala admin, jer sam navikla da se logujem sa adminom,
       ali ovde zapravo treba da bude samo manger
       i treba zastiti ovu rutu '/dashboard'-->
-      <!--<li *ngIf="getRole()=='Admin' || getRole()=='Manager'" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">proba<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/accomodations">Accomodations</a></li>
-          <li><a routerLink="/regions">Regions</a></li>
-        </ul>
-      </li>-->
 
       <hr *ngIf="getRole()=='Admin'" class="half-rule" />
       <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accomtype" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation Type</a></li>
       <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/accom" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Accomodation</a></li>
       <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/room" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Room</a></li>
+       
+       <!--komentari takodje treba da budu dostupni svima, kad se izlistaju akomodation, treba da se klikne na details na primer, i onda
+       se vide svi komentari za taj smestaj. edit i delete da radi onaj koji je napravio, a ovde u dashboardu admin da moze sve?
+       isto razmisliti za room reservations, napraviti to ko sta moze gde da vidi i radi. ovo sam sad stavila oved samo za testiranje i to-->
+      <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/comments" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Comments</a></li>
+
+      <!--mozda je bolja ideja da idu ruter outleti za akomodation, pa da se tu vide i rezervacije, smisliti to danas sve-->
+      <li *ngIf="getRole()=='Admin' || getRole()=='Manager'"><a routerLink="/dashboard/reservations" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Room Reservations</a></li>
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->
