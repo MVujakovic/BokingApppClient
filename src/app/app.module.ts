@@ -44,6 +44,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { ComponentFixture } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
+import{AgmCoreModule} from '@agm/core';
 
 
 

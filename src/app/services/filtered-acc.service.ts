@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Accomodation } from '../accomodation/accomodation.model';
 
 @Injectable()
 export class FilteredAccommodationsService {
@@ -80,5 +81,11 @@ export class FilteredAccommodationsService {
         let urlAddress = `http://${host}/odata/AccomOData?$top=${pageSize}&$skip=${skip} &$filter=${filterPredicates} 
         &$expand=Place, Owner, AccomodationType &$inlinecount=allpages`;
         return this.http.get(urlAddress);
+        //return this.http.get(urlAddress).map(this.extractData);
+    }
+
+    private extractData(res: Response) {
+        let body = res.json();
+        return body || [];
     }
 }
