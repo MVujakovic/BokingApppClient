@@ -22,6 +22,7 @@ import {
 export class AccomodationComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
 
+   file: File;
   userId:number;
 
   accomodations: Accomodation[];
@@ -86,6 +87,38 @@ export class AccomodationComponent implements OnInit {
       (c: any) => {this.accomByOwner = c; console.log(this.accomByOwner)},//You can set the type to Country
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
+  }
+
+  // addAccomodation(newAccomodation: Accomodation, form: NgForm): void {
+  //   newAccomodation.AccomodationTypeId = this.accTypeId;
+  //   newAccomodation.PlaceId = this.placeId;
+  //   newAccomodation.OwnerId = 1; //ovde treba id onog koji kreira smesta
+  //   this.accomodationsService.postAccomodation(newAccomodation, this.file).subscribe(this.onPost);
+   
+  //  // form.reset();
+
+  //   setTimeout(() => {
+  //     //za refresh lista
+  //     this.accomodations = [];
+  //     this.accomodationsService.getAccomodationsWithRooms().subscribe(
+  //       (c: any) => { this.accomodations = c; console.log(this.accomodations) },
+  //       error => { alert("Unsuccessful fetch operation!"); console.log(error); }
+  //     );
+
+  //     this.accomByOwner = [];
+  //     this.accomodationsService.getAccomodationsByOwnerId(3).subscribe(
+  //       (c: any) => { this.accomByOwner = c; console.log(this.accomByOwner) },
+  //       error => { alert("Unsuccessful fetch operation!"); console.log(error); }
+  //     );
+  //   }, 1000);
+  // }
+
+  onChange(event: EventTarget) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
+    let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
+    let files: FileList = target.files;
+    this.file = files[0];
+    console.log(this.file);
   }
 
   addAccomodation(newAccomodation:Accomodation,form:NgForm):void{

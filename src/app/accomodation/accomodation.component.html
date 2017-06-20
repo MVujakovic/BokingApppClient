@@ -1,79 +1,104 @@
-<div class="роњ">
+<div class="row">
 
     <form class="form-user">
 
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">Add</a></li>
-            <li><a href="#profile" data-toggle="tab">Edit</a></li>
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active"><a href="#first" data-toggle="tab">Add</a></li>
+            <li><a href="#second" data-toggle="tab">Edit</a></li>
         </ul>
 
         <div id="myTabContent" class="tab-content">
+            <!--
+ubaciti neku promenljivu koja je indikator sta je pritisnuto, 
+koji tab, kad se uradi refresh da se refreshuje taj, tj. da ostane na tom tabu-->
+            <div class="tab-pane active in row" id="first">
 
-            <div class="tab-pane active in row" id="home">
-                <!--<legend>Add new accomodation:<br></legend>-->
-                <h3>Add new accomodation:</h3>
-                <div class="col-lg-6" id="tab">
 
+                <div class="col-lg-4" id="tab">
+                    <h3>Add new accomodation:</h3>
                     <!--<form #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)" enctype="multipart/form-data">-->
-                    <form #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)">
+                    <form class="form-horizontal" #f="ngForm" (ngSubmit)="addAccomodation(f.value, f)">
 
-                        <div class="row">
-                            <label for="Name">Name: </label>
-                            <input name="Name" type="text" ngModel/>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Name">Name:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Name" type="text" ngModel>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label for="Description">Description:</label>
-                            <input name="Description" type="text" ngModel/>
-                        </div>
-                        <div class="row">
-                            <label for="Address">Address:</label>
-                            <input name="Address" type="text" ngModel/>
-                        </div>
-                        <div class="row">
-                            <label for="AverageGrade">AverageGrade:</label>
-                            <input name="AverageGrade" type="text" ngModel/>
-                        </div>
-                        <div class="row">
-                            <label for="Latitude">Latitude:</label>
-                            <input name="Latitude" type="text" ngModel/>
-                        </div>
-                        <div class="row">
-                            <label for="Longitude">Longitude:</label>
-                            <input name="Longitude" type="text" ngModel/>
-                        </div>
-                        <div class="row">
-                            <!-- Ovo za sliku jos uvek ne radi,ostalo radi -->
-                            <input name="ImageUrl" type="file" value="Choose image" id="accImage" ngModel/>
 
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Description">Description:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Description" type="text" ngModel/>
+                            </div>
                         </div>
-                        <div class="row">
-                            <label for="Place">Place:</label>
-                            <select name="placeId" id="placeId" [(ngModel)]="placeId">
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Address">Address:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Address" type="text" ngModel/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="AverageGrade">Average Grade:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="AverageGrade" type="text" ngModel/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Latitude">Latitude:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Latitude" type="text" ngModel/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Longitude">Longitude:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <input class="form-control" name="Longitude" type="text" ngModel/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="Place">Place:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <select class="form-control" name="placeId" id="placeId" [(ngModel)]="placeId">
         <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
-        </select>
+        </select> </div>
                         </div>
-                        <div class="row">
-                            <label for="AccomodationTypeId">AccomodationType:</label>
-                            <select name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
+                        <div class="form-group">
+                            <label class="control-label col-sm-1" for="AccomodationTypeId">Accomodation<br/>Type:</label>
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <select class="form-control" name="accTypeId" id="accTypeId" [(ngModel)]="accTypeId">
         <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
-        </select>
+        </select> </div>
                         </div>
-                        <div class="row">
-                            <input type="submit" value="Create" />
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" ngModel/>
+                                <!--<input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!--<div class="col-sm-3 col-sm-offset-4">-->
+                            <button type="submit" class="btn btn-default btn-lg">Create</button>
+                            <!--</div>-->
                         </div>
                         <!-- Valjda ownerId treba da se smesti na osnovu korisnika koji unosi ove podatke -->
                     </form>
+
                 </div>
 
-                <!--pagianciju cemo primenjivati i ovde-->
-                <div class="col-lg-6">
+                <!--pagianciju cemo primenjivati i ovde. treba mozda kao da budu klikabilne akomodacija
+                pa da se vide detalji kad se klikne, ili u tabeli da budu sve, pa da se sortira po grade-u...-->
+                <div class="col-lg-8">
                     <h3>List of all ccomodations:</h3>
                     <div>
                         <ul>
                             <li *ngFor="let accomodation of accomodations">
 
-                                {{accomodation.Name}} <br/> {{accomodation.Description}} <br/> {{accomodation.AverageGrade}}
-                                <br/><br/>
+                                {{accomodation.Name}} [grade: {{accomodation.AverageGrade}}] <br/> {{accomodation.Description}}
+                                <br/>
+
 
                                 <!-- Ovo je za prikaz soba koje su u tom smestaju -->
                                 <!--<ul>
@@ -92,30 +117,185 @@
 
             </div>
 
-            <div class="tab-pane fade form-user" id="profile">
+            <div class="tab-pane fade form-user" id="second">
 
-                <form #f="ngForm" (ngSubmit)="f.form.valid && changePassword(f.value, f)" validate id="tab2">
+                <div class=col-lg-4>
 
-                    <div class="form-group">
-                        <label class="sr-only" for="OldPassword">Old Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Old Password" name="OldPassword" ngModel required/>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="NewPassword">New Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="New Password" name="NewPassword" ngModel required/>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="confirmPassword">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" name="ConfirmPassword" ngModel
-                            required/>
-                    </div>
+                    <!--Edit smestaja(PUT) -->
+                    <!--mozda da ovde bude predlozeno vec ime smestaja, ona lista?? msm to nema smisla da se menja -->
                     <div>
-                        <button type="submit" [disabled]="!f.form.valid" class="btn btn-primary">Update</button>
+                        <h3>Edit accomodation:</h3>
+                        <form class="form-horizontal" #f3="ngForm" (ngSubmit)="editAccomodation(f3.value, f3)">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="Name">Name: </label>
+                                <div class="col-sm-4 col-sm-offset-1">
+
+                                    <input class="form-control" name="Name" type="text" [(ngModel)]="Name" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="Description">Description:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" name="Description" type="text" [(ngModel)]="Description" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="Address">Address:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" name="Address" type="text" [(ngModel)]="Address" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="AverageGrade">AverageGrade:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" name="AverageGrade" type="text" [(ngModel)]="AverageGrade" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="Latitude">Latitude:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" name="Latitude" type="text" [(ngModel)]="Latitude" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="Longitude">Longitude:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" name="Longitude" type="text" [(ngModel)]="Longitude" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="place">Place:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <select class="form-control" name="PlaceIdEdit" id="PlaceIdEdit" [(ngModel)]="PlaceIdEdit">
+                <option *ngFor="let p of Places" value={{p.Id}}>{{p.Name}}</option>
+            </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-1" for="accomodationTypeIdEdit">Accomodation<br/>Type:</label>
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <select class="form-control" name="AccomodationTypeIdEdit" id="AccomodationTypeIdEdit" [(ngModel)]="AccomodationTypeIdEdit">
+                <option *ngFor="let accomodationType of AccomodationTypes" value={{accomodationType.Id}}>{{accomodationType.Name}}</option>
+            </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <!-- Ovo za sliku razmisliti kako uraditi -->
+                                    <input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>
+                                    <!--<input class="form-control" name="ImageUrl" type="file" value="Choose image" id="accImage" (change)="onChange($event)" ngModel/>-->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <!--<div class="col-sm-3 col-sm-offset-4">-->
+                                <button type="submit" class="btn btn-default btn-lg">Save</button>
+                                <!--</div>-->
+                            </div>
+                            <!--<div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input class="form-control" type="submit" value="Save" />
+                                </div>
+                            </div>-->
+                        </form>
+
+                        <!--ovo napraviti da bude kao lista ponudjena-->
+                        <h3>Accomodations for editing:</h3>
+                        <div>
+                            <ul>
+                                <li *ngFor="let acc of accomByOwner">
+                                    <!--<span>{{acc.Name}}</span><br/>-->
+                                    {{acc.Name}}
+                                    <button class="btn btn-link" (click)="onEditAccomodation(acc)">Edit</button>
+                                    <button class="btn btn-link" (click)="onDeleteAccomodation(acc)">Delete</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </form>
+
+                </div>
+
+                <div class=col-lg-7>
+
+                    <!-- Ovo je deo koji ce obavljati administrator - odobravanje smestaja -->
+                    <div>
+                        <h3>Approve accomodation:</h3>
+                        <form #f2="ngForm" (ngSubmit)="putAccomodation(f2.value, f2)">
+                            <!--<label class="control-label col-sm-1">Approved:</label>-->
+                            <div>
+                                <div #dataContainer [innerHTML]="theHtmlString">
+                                </div>
+                                <label class="control-label col-sm-1">
+        <input class="form-control" type="checkbox" name="Approved" [(ngModel)]="Approved">
+        <!--<input type="radio" name="Approved" [(ngModel)]="Approved"/>-->
+        Approved</label>
+                            </div>
+
+                            <!--<button type="submit" class="btn btn-default btn-lg">Change</button>-->
+                            <div>
+                                <input type="submit" value="Change" />
+                            </div>
+                        </form>
+
+                        <h3>Accomodations:</h3>
+                        <div>
+                            <ul>
+                                <li *ngFor="let acc of accomodations">
+                                    <span>{{acc.Id}}</span><br/>{{acc.Name}}
+                                    <button class="btn btn-link" (click)="onEdit(acc)">Edit</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
         </div>
 
     </form>
 </div>
+<script>
+    // ovo bi trebalo da radi, izdebagovati kasnije....
+
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    // store the currently selected tab in the hash value
+    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+        var id = $(e.target).attr("href").substr(1);
+        window.location.hash = id;
+    });
+
+    // on load of the page: switch to the currently selected tab
+    var hash = window.location.hash;
+    $('#myTab a[href="' + hash + '"]').tab('show');
+
+
+    // ili ovo probati
+    // $(document).ready(function () {
+    //     if (location.hash) {
+    //         $("a[href='" + location.hash + "']").tab("show");
+    //     }
+    //     $(document.body).on("click", "a[data-toggle]", function (event) {
+    //         location.hash = this.getAttribute("href");
+    //     });
+    // });
+    // $(window).on("popstate", function () {
+    //     var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+    //     $("a[href='" + anchor + "']").tab("show");
+    // });
+
+</script>
