@@ -8,6 +8,15 @@
     <p> Description: {{ acc.Description }} <p>
     <p> Adress: {{acc.Place.Name}},{{acc.Address}}</p>
 </div>
+<div>
+    <p> Comments: </p>
+    <ul>
+        <li *ngFor="let comm of acc.Comments">
+            <p>{{comm.Grade}}</p>
+            <p>{{comm.Text}}</p>
+        </li>
+    </ul>
+</div>
 </div>
 
 <!-- Dodati prikaz komentara -->

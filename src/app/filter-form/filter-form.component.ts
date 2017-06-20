@@ -78,19 +78,19 @@ onSubmit() {
       this.CountryName = undefined;
     }
 
-    if (this.AverageGrade == undefined){
+    if (this.AverageGrade == undefined || this.AverageGrade.toString()==""){
       this.AverageGrade = undefined;
     }
 
-    if (this.BedCount == undefined){
+    if (this.BedCount == undefined || this.BedCount.toString()==""){
       this.BedCount = undefined;
     }
 
-    if (this.MinPrice == undefined){
+    if (this.MinPrice == undefined || this.MinPrice.toString()==""){
       this.MinPrice = undefined;
     }
 
-    if (this.MaxPrice == undefined){
+    if (this.MaxPrice == undefined || this.MaxPrice.toString()==""){
       this.MaxPrice = undefined;
     }
     // this.router.navigate(['/filteredAcc', this.Name, this.PlaceName, this.RegionName, this.CountryName, this.AverageGrade,
