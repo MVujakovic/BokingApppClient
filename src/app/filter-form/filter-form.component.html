@@ -82,9 +82,24 @@
         </ul>-->
 
         <div *ngFor="let accommodation of Accomodations">
-            <!--<p>{{accommodation.Name}}</p>-->
-            <a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
-            <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
+            <p>{{accommodation.Name}}</p>
+            <p> Rating: {{ accommodation.AverageGrade }} </p>
+            <p> Accommodation type: {{ accommodation.AccomodationType.Name }} </p>
+            <p> Description: {{ accommodation.Description }} <p>
+            <p> Adress: {{accommodation.Place.Name}},{{accommodation.Address}}</p>
+            <!--<div>-->
+            <!--<p> Comments: </p>
+            <ul>
+                 <li *ngFor="let comm of accommodation.Comments">
+                    <p>{{comm.Grade}}</p>
+                    <p>{{comm.Text}}</p>
+                </li>
+            </ul>
+            </div>-->
+            <br/>
+            <br/>
+
+            <!--<a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
         </div>
 
         <ul class="pagination">
