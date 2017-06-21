@@ -1,6 +1,4 @@
-<h4> Filtered Accommodations </h4>
-
-<div *ngFor="let accommodation of Accommodations"> 
+<div *ngFor="let accommodation of Accommodations">
     <a [routerLink]="['/accommodation', accommodation.Id]"> {{accommodation.Name}} </a>
 </div>
 
@@ -8,10 +6,10 @@
     <button (click)="changePage((PageSet -1)*2 + i + 1)"> {{ (PageSet -1)*2 + i + 1 }}  </button>
 </div>
 
-<div *ngIf="showNext()"> 
-    <button (click)="nextPageSet()"> Next </button> 
+<div *ngIf="showNext()">
+    <button (click)="nextPageSet()"> Next </button>
 </div>
 
-<div *ngIf="showPrevious()"> 
-    <button (click)="previousPageSet()"> Previous </button> 
+<div *ngIf="showPrevious()">
+    <button (click)="previousPageSet()"> Previous </button>
 </div>

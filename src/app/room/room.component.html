@@ -1,142 +1,188 @@
-<h3>{{name}}</h3>
-<h3>Add new room:</h3>
-<div class="col-lg-4">
-    <form class="form-horizontal" #f="ngForm" (ngSubmit)="addRoom(f.value, f)">
+<div class="row">
 
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
-            <div class="col-sm-4 col-sm-offset-1">
-                <input name="RoomNumber" type="text" ngModel/>
+    <!--add new room-->
+    <div class="col-md-6">
+
+        <h3>Add new room:</h3>
+        <form class="form-horizontal" #f="ngForm" (ngSubmit)="addRoom(f.value, f)">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="RoomNumber" type="text" ngModel/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
-            <div class="col-sm-4 col-sm-offset-1">
-                <input name="BedCount" type="text" ngModel/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="BedCount" type="text" ngModel/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="Description">Description: </label>
-            <div class="col-sm-4 col-sm-offset-1">
-                <input name="Description" type="text" ngModel/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Description">Description: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="Description" type="text" ngModel/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
-            <div class="col-sm-4 col-sm-offset-1">
-                <input name="PricePerNight" type="text" ngModel/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="PricePerNight" type="text" ngModel/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
-            <div class="col-sm-4 col-sm-offset-1">
-                <select name="accId" id="accId" [(ngModel)]="accId">
-        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
-        </select>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="accId" id="accId" [(ngModel)]="accId">
+              <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+              </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" />
-        </div>
-    </form>
+
+            <div class="form-group">
+                <!--<div class="col-sm-3 col-sm-offset-4">-->
+                <button type="submit" class="btn btn-default">Create</button>
+                <!--</div>-->
+            </div>
+        </form>
+
+    </div>
+
+    <!--edit rooms-->
+    <div class="col-md-6">
+
+        <h3>Edit room:</h3>
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="accIdEdit" id="accIdEdit" [(ngModel)]="accIdEdit" (change)="accSelected()">
+            <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
+          </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1">Room:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="roomId" id="roomId" [(ngModel)]="roomId" (change)="roomSelected()">
+            <option *ngFor="let room of roomsByAccomodation" value={{room.Id}}>{{room.RoomNumber}}</option>
+             </select>
+                </div>
+            </div>
+
+        </form>
+
+        <form class="form-horizontal" #f2="ngForm" (ngSubmit)="editRoom(f2.value, f2)">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="RoomNumber" type="text" [(ngModel)]="RoomNumber" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="BedCount" type="text" [(ngModel)]="BedCount" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Description">Description: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="Description" type="text" [(ngModel)]="Description" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="PricePerNight" type="text" [(ngModel)]="PricePerNight" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!--<div class="col-sm-3 col-sm-offset-4">-->
+                <button type="submit" class="btn btn-default">Update</button>
+                <!--</div>-->
+            </div>
+        </form>
+
+    </div>
+
 </div>
-<h3>List of all rooms:</h3>
-<div>
-    <ul>
-        <li *ngFor="let room of rooms">
-            <!--{{room.Accomodation.Name}} <br/>-->
-            {{room.Id}} <br/> {{room.RoomNumber}} <br/> {{room.BedCount}} <br/> {{room.Description}} <br/><br/>
+
+<div class="row">
+
+    <!--show rooms-->
+    <div class="col-md-6">
+        <h3>List of all rooms:</h3>
+        <div>
             <ul>
-                <li *ngFor="let roomRes of room.RoomReservations">
-                    {{roomRes.Id}} <br/> {{roomRes.StartDate}} <br/> {{roomRes.EndDate}} <br/>
-                    <!-- Verovatno se mora uraditi include AppUsera da bi moglo ovo da se prikaze -->
-                    <!--{{roomRes.AppUser.Name}}<br/><br/>-->
+                <li *ngFor="let room of rooms">
+                    <!--{{room.Accomodation.Name}} <br/>-->
+                    Room Number:&nbsp;{{room.RoomNumber}},&nbsp; Bedcount:&nbsp;{{room.BedCount}} 
+                    <br/> Description:&nbsp;{{room.Description}}
+                    <br/>Reservations:&nbsp;
+
+                    <ul>
+                        <li *ngFor="let roomRes of room.RoomReservations">
+                            [{{roomRes.StartDate}}&nbsp;-&nbsp;{{roomRes.EndDate}}] <br/>
+                            <!-- Verovatno se mora uraditi include AppUsera da bi moglo ovo da se prikaze -->
+                            <!--{{roomRes.AppUser.Name}}<br/><br/>-->
+                        </li>
+                    </ul>
+
                 </li>
             </ul>
-        </li>
-    </ul>
-</div>
+        </div>
 
-<br/>
-<br/>
-<br/>
 
-<!-- Edit soba -->
-<div>
-    <h3>Rooms for editing:</h3>
-    <!-- ovde treba da izaberem prvo smestaj koji pripada vlasniku -->
-    <div>
-        <label for="Accomodation">Accomodation:</label>
-        <select name="accIdEdit" id="accIdEdit" [(ngModel)]="accIdEdit" (change)="accSelected()">
+    </div>
+
+
+    <!--delete room-->
+    <div class="col-md-6">
+        <h3>Delete room:</h3>
+
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="accIdDelete" id="accIdDelete" [(ngModel)]="accIdDelete" (change)="accDeleteSelected()">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
-    </div>
-    <div>
-        <label>Room:</label>
-        <select name="roomId" id="roomId" [(ngModel)]="roomId" (change)="roomSelected()">
-            <option *ngFor="let room of roomsByAccomodation" value={{room.Id}}>{{room.RoomNumber}}</option>
-        </select>
-    </div>
-    <!--<div *ngIf="isSelectedChanged()">
-    <ul>
-        
-        <li *ngFor="let room of roomsByAccomodation">
-            <span>{{room.RoomNumber}}</span>
-            <button (click)="onEditRoom(room)">Edit</button>
-        </li>
-    </ul>
-    </div>-->
+                </div>
+            </div>
 
-    <h3>Edit room:</h3>
-    <form #f2="ngForm" (ngSubmit)="editRoom(f2.value, f2)">
-        <div>
-            <label class="control-label col-sm-1" for="RoomNumber">RoomNumber: </label>
-            <input name="RoomNumber" type="text" [(ngModel)]="RoomNumber" />
-        </div>
-        <div>
-            <label class="control-label col-sm-1" for="BedCount">BedCount: </label>
-            <input name="BedCount" type="text" [(ngModel)]="BedCount" />
-        </div>
-        <div>
-            <label class="control-label col-sm-1" for="Description">Description: </label>
-            <input name="Description" type="text" [(ngModel)]="Description" />
-        </div>
-        <div>
-            <label class="control-label col-sm-1" for="PricePerNight">PricePerNight: </label>
-            <input name="PricePerNight" type="text" [(ngModel)]="PricePerNight" />
-        </div>
-        <!-- Nema poente menjati accomodation jer se soba nalazi u tom smestaju-->
-        <!--<div>
-         <label for="Accomodation">Accomodation:</label>
-        <select name="accId" id="accId" [(ngModel)]="accId">
-        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
-        </select>
-    </div>-->
-        <div>
-            <input type="submit" value="Create" />
-        </div>
-    </form>
-
-    <br/>
-    <br/>
-    <br/>
-    <h3>Delete room:</h3>
-    <div>
-        <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
-        <select name="accIdDelete" id="accIdDelete" [(ngModel)]="accIdDelete" (change)="accDeleteSelected()">
-        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
-        </select>
-    </div>
-    <div>
-        <label class="control-label col-sm-1">Room:</label>
-        <select name="roomIdDelete" id="roomIdDelete" [(ngModel)]="roomIdDelete" (change)="roomSelectedDelete()">
+            <div class="form-group">
+                <label class="control-label col-sm-1">Room:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="roomIdDelete" id="roomIdDelete" [(ngModel)]="roomIdDelete" (change)="roomSelectedDelete()">
             <option *ngFor="let room of roomsForDel" value={{room.Id}}>{{room.RoomNumber}}</option>
         </select>
-    </div>
-    <div>
-        <button (click)="deleteRoom()">Delete</button>
-    </div>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <button class="btn btn-default" (click)="deleteRoom()">Delete</button>
+            </div>
+        </form>
+
+
+    </div>
 
 </div>
-<!-- Kraj edita -->
+
+
+<!--<div class="row">
+
+</div>-->

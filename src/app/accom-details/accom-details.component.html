@@ -1,4 +1,48 @@
-<p>
-  accom-details works!
-  <button routerLink="/dashboard/accom" class="btn btn-primary">Back</button>
-</p>
+<div class="row">
+
+  <div class="col-md-5">
+    <form class="form-user form-horizontal">
+      <div class="form-group">
+        <label class="col-md-4 control-label">Name:</label>
+        <label class="col-md-5 control-label">{{accomodation.Name}}</label>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Description:</label>
+        <label class="col-md-5 control-label">{{accomodation.Description}}</label>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Average Grade:</label>
+        <label class="col-md-5 control-label">{{accomodation.AverageGrade}}</label>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-7">
+    <legend>Rooms:</legend>
+    <!--<table class="table table-hover table-responsive">-->
+    <table class="table table-hover table-responsive table-condensed">
+      <thead>
+        <tr>
+          <th>Room number</th>
+          <th>Bed count</th>
+          <th>Price per night</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of accomodation.Rooms">
+          <td> {{room.RoomNumber}}</td>
+          <td>{{room.BedCount}}</td>
+          <td>{{room.PricePerNight}}</td>
+          <td>{{room.Description}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<button routerLink="/dashboard/accom" class="btn btn-default">Back</button>

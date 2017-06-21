@@ -1,73 +1,111 @@
-<h3>{{name}}</h3>
-<form #f="ngForm"(ngSubmit)="addComment(f.value, f)">
-    <div>
-        <label for="Grade">Grade: </label>
-        <input name="Grade" type="text" ngModel/>
-    </div>
-    <div>
-        <label for="Text">Text: </label>
-        <input name="Text" type="text" ngModel/>
-    </div>
-    <div>
-         <label for="Accomodation">Accomodation:</label>
-        <select name="accomodationId" id="accomodationId" [(ngModel)]="accomodationId">
+<div class="row">
+
+    <!--add new comment-->
+    <div class="col-md-6">
+        <h3>Add new comment</h3>
+        <form class="form-horizontal" #f="ngForm" (ngSubmit)="addComment(f.value, f)">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Grade">Grade: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="Grade" type="text" ngModel/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Text">Text: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" name="Text" type="text" ngModel/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Accomodation">Accomodation:</label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <select class="form-control" name="accomodationId" id="accomodationId" [(ngModel)]="accomodationId">
         <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
         </select>
-    </div>
-    <div>
-        <input type="submit" [disabled]="isValid()" value="Create"/>
-    </div>
-</form>
-<div #dataContainer [innerHTML]="theHtmlString">
-</div>
+                </div>
+            </div>
 
-<!-- Obican ispis svih komentara -->
-<h3>Comments:</h3>
-<div>
-  <ul>
-    <li *ngFor="let comment of comments">      
-        {{comment.Id}} <br/>
-        {{comment.Grade}} <br/>
-        {{comment.Text}}<br/>
-        {{comment.Accomodation.Name}}<br/><br/>
-     </li>
-  </ul>
-</div>
-<!-- Kraj obicnog ispisa -->
+            <div class="form-group">
+                <!--<div class="col-sm-3 col-sm-offset-4">-->
+                <!--<input type="submit" [disabled]="isValid()" value="Create" />-->
+                <button [disabled]="isValid()" type="submit" class="btn btn-default">Create</button>
+                <!--</div>-->
+            </div>
+        </form>
 
-<!-- Edit komentara -->
-<div>
-    <h3>Edit comments:</h3>
-    <form #f2="ngForm"(ngSubmit)="editComment(f2.value, f2)">
-    <div>
-        <label for="Grade">Grade: </label>
-        <input name="Grade" type="text" [(ngModel)]="Grade"/>
+        <div #dataContainer [innerHTML]="theHtmlString">
+        </div>
+
     </div>
-    <div>
-        <label for="Text">Text: </label>
-        <input name="Text" type="text" [(ngModel)]="Text"/>
+
+    <!--edit comment-->
+    <div class="col-md-6">
+
+        <h3>Edit comments:</h3>
+        <form class="form-horizontal" #f2="ngForm" (ngSubmit)="editComment(f2.value, f2)">
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Grade">Grade: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input name="Grade" type="text" [(ngModel)]="Grade" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="Text">Text: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input name="Text" type="text" [(ngModel)]="Text" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!--<div class="col-sm-3 col-sm-offset-4">-->
+                <button type="submit" class="btn btn-default">Update</button>
+                <!--</div>-->
+            </div>
+
+        </form>
+
+
+        <!--ovo treba srediti izgled, nisam testirala kuci pa nisam bila sigurna sta 
+        da dodajem menjam-->
+        <h3>Comments for editing:</h3>
+        <div>
+            <ul>
+                <li *ngFor="let comm of commentsByOwner">
+                    <!--<span>{{acc.Name}}</span><br/>-->
+                    <span>{{comm.Id}}</span><br/>{{comm.Accomodation.Name}}
+                    <button (click)="onEditComment(comm)">Edit</button>
+                    <button (click)="onDeleteComment(comm)">Delete</button>
+                </li>
+            </ul>
+        </div>
     </div>
-    <!-- Nema mi poente da menjaju u komentaru smestaj koji komentarisu -->
-    <!--<div>
-         <label for="Accomodation">Accomodation:</label>
-        <select name="accomodationIdEdit" id="accomodationIdEdit" [(ngModel)]="accomodationIdEdit">
-        <option *ngFor="let acc of accomodations" value={{acc.Id}}>{{acc.Name}}</option>
-        </select>
-    </div>-->
-    <div>
-        <input type="submit" value="Create"/>
-    </div>
-    </form>
-    <h3>Comments for editing:</h3>
-    <div>
-    <ul>
-        <li *ngFor="let comm of commentsByOwner">
-            <!--<span>{{acc.Name}}</span><br/>-->
-            <span>{{comm.Id}}</span><br/>{{comm.Accomodation.Name}}
-            <button (click)="onEditComment(comm)">Edit</button>
-            <button (click)="onDeleteComment(comm)">Delete</button>
-        </li>
-    </ul>
-    </div>
+
 </div>
-<!-- Kraj edita -->
+<div class="row">
+
+    <!--comments list-->
+    <!--ni ovo nisam testirala, na slepo sam kucala kako izgleda-->
+    <div class="col-md-6">
+
+        <h3>Comments:</h3>
+        <div>
+            <ul>
+                <li *ngFor="let comment of comments">
+                    Grade:&nbsp;{{comment.Grade}},&nbsp; Accommodation:&nbsp;{{comment.Accomodation.Name}}
+                    <br/> {{comment.Text}}
+                    <br/>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--nista...-->
+    <div class="col-md-6">
+    </div>
+
+</div>

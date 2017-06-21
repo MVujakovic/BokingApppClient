@@ -1,60 +1,105 @@
-<h4> Filter accommodations </h4>
+<div class="row">
 
-<form #f = "ngForm" (ngSubmit)="onSubmit()">
-    <label for="Name"> Name: </label>
-    <textarea id="Name" name="Name" [(ngModel)]="Name"> </textarea> <br/>
+    <div class="col-md-12">
+        <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit()">
 
-    <label for="Place"> Place: </label>
-    <textarea id="PlaceName" name="PlaceName" [(ngModel)]="PlaceName"> </textarea> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="Name"> Name: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <textarea class="form-control" rows="1" id="Name" name="Name" [(ngModel)]="Name"> </textarea>
+                </div>
+            </div>
 
-    <label for="Region"> Region: </label>
-    <textarea id="RegionName" name="RegionName" [(ngModel)]="RegionName"> </textarea> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="Place"> Place: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <textarea class="form-control" rows="1" id="PlaceName" name="PlaceName" [(ngModel)]="PlaceName"> </textarea>
+                </div>
+            </div>
 
-    <label for="Country"> Country: </label>
-    <textarea id="CountryName" name="CountryName" [(ngModel)]="CountryName"> </textarea> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="Region"> Region: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <textarea class="form-control" rows="1" id="RegionName" name="RegionName" [(ngModel)]="RegionName"> </textarea>
+                </div>
+            </div>
 
-    <label for="AverageGrade"> Average grade: </label>
-    <input type="text" id="AverageGrade" name="AverageGrade" [(ngModel)]="AverageGrade"> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="Country"> Country: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <textarea class="form-control" rows="1" id="CountryName" name="CountryName" [(ngModel)]="CountryName"> </textarea>
+                </div>
+            </div>
 
-    <label for="BedCount"> Bed count: </label>
-    <input type="text" id="BedCount" name="BedCount" [(ngModel)]="BedCount"> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="AverageGrade"> Average grade: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" type="text" id="AverageGrade" name="AverageGrade" [(ngModel)]="AverageGrade">
+                </div>
+            </div>
 
-    <label for="MinPrice"> Min price: </label>
-    <input type="text" id="MinPrice" name="MinPrice" [(ngModel)]="MinPrice"> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="BedCount"> Bed count: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" type="text" id="BedCount" name="BedCount" [(ngModel)]="BedCount">
+                </div>
+            </div>
 
-    <label for="MaxPrice"> Max price: </label>
-    <input type="text" id="MaxPrice" name="MaxPrice" [(ngModel)]="MaxPrice"> <br/>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="MinPrice"> Min price: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" type="text" id="MinPrice" name="MinPrice" [(ngModel)]="MinPrice">
+                </div>
+            </div>
 
-    <input type="submit" value="Filter">
-</form>
-<br/>
-<br/>
-<!-- Pokusaj da sve strpam u istu komponentu -->
-<h3>Filtered accomodations:</h3>
+            <div class="form-group">
+                <label class="control-label col-sm-1 col-sm-offset-1" Name="MaxPrice"> Max price: </label>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <input class="form-control" type="text" id="MaxPrice" name="MaxPrice" [(ngModel)]="MaxPrice">
+                </div>
+            </div>
 
-<!--<router-outlet></router-outlet>-->
+            <div class="form-group">
+                <div class="col-sm-3 col-sm-offset-6">
+                    <!--<input class="form-control" type="submit" value="Filter">-->
+                    <button type="submit" class="btn btn-default">Filter</button>
+                </div>
+            </div>
 
-<!--<ul>
-    <li *ngFor="let accommodation of Accomodations"> 
-        <p>{{accommodation.Name}}</p>
-    </li>
-</ul>-->
+        </form>
 
-<div *ngFor="let accommodation of Accomodations"> 
-    <!--<p>{{accommodation.Name}}</p>-->
-    <a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
-    <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
-</div>
 
-<!-- treba u css podesiti da se ovi elementi ispisuju horizontalno, a ne vertikalno -->
-<div *ngFor="let c of counter; let i=index">
-    <button (click)="changePage((PageSet -1)*2 + i + 1)"> {{ (PageSet -1)*2 + i + 1 }}  </button>
-</div>
+        <br/><br/>
+        <!-- Pokusaj da sve strpam u istu komponentu -->
+        <h3>Filtered accomodations:</h3>
 
-<div *ngIf="showNext()"> 
-    <button (click)="nextPageSet()"> Next </button> 
-</div>
+        <!--<router-outlet></router-outlet>-->
 
-<div *ngIf="showPrevious()"> 
-    <button (click)="previousPageSet()"> Previous </button> 
+        <!--<ul>
+            <li *ngFor="let accommodation of Accomodations">
+                <p>{{accommodation.Name}}</p>
+            </li>
+        </ul>-->
+
+        <div *ngFor="let accommodation of Accomodations">
+            <!--<p>{{accommodation.Name}}</p>-->
+            <a [routerLink]="['/bookingApp/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>
+            <!--<a [routerLink]="['/showAccomodation', accommodation.Id]"> {{accommodation.Name}} </a>-->
+        </div>
+
+        <ul class="pagination">
+            <li *ngFor="let c of counter; let i=index"><button class="btn btn-link" (click)="changePage((PageSet -1)*2 + i + 1)"> {{ (PageSet -1)*2 + i + 1 }}  </button></li>
+            <!--<div *ngFor="let c of counter; let i=index">
+                <button class="btn btn-link" (click)="changePage((PageSet -1)*2 + i + 1)"> {{ (PageSet -1)*2 + i + 1 }}  </button>
+            </div>-->
+        </ul>
+
+        <div *ngIf="showNext()">
+            <button (click)="nextPageSet()"> Next </button>
+        </div>
+
+        <div *ngIf="showPrevious()">
+            <button (click)="previousPageSet()"> Previous </button>
+        </div>
+    </div>
 </div>

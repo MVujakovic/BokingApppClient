@@ -57,6 +57,7 @@ import { AccomDetailsComponent } from './accom-details/accom-details.component';
 
 
 
+
 // localhost:4200/dashboard/path
 const ChildRoutesDashboard = [
   { path: "country", component: CountryComponent },
@@ -69,7 +70,6 @@ const ChildRoutesDashboard = [
   { path: "comments", component: CommentComponent },
   { path: "manageReservations", component: RoomReservationsComponent },
   { path: "accom/accomDetails/:Id",component:AccomDetailsComponent}
-  // { path: "accomDetails/:Id", component: AccommDetailsComponent },
 ]
 
 // localhost:4200/bookingApp/path
@@ -78,18 +78,12 @@ const ChildRoutesHome = [
   //  { path: "register", component: RegisterComponent },
   { path: "showAccomodation/:Id", component: ShowAccommodationComponent },
   { path: "appUser", component: AppUserComponent },
-  // { path: "country", component: CountryComponent },
-  // { path: "region", component: RegionComponent },
-  // { path: "place", component: PlaceComponent },
   { path: "accomodationType", component: AccomodationTypeComponent },
   { path: "accomodation", component: AccomodationComponent, canActivate: [AuthGuard] },
   { path: "room", component: RoomComponent },
   { path: "roomReservations", component: RoomReservationsComponent },
   { path: "comment", component: CommentComponent },
 
-
-  // mozda ne treba appUser uospte
-  // { path: "appUser", component: AppUserComponent },
 ]
 
 // na njih navigiramo kroz localhost:4200/path
@@ -99,8 +93,6 @@ const Routes = [
   { path: "bookingApp", component: HomeComponent, children: ChildRoutesHome },
   { path: "dashboard", component: DashboardComponent, children: ChildRoutesDashboard },
 
-  // neku drugu komponentu napaviti ovde, msm da se drugacije zove i to sve
-  // i da u njoj ima RUD za odgovarajuce rezervacije vezane za usera
   { path: "myReservations", component: RoomReservationsComponent },
 
   { path: "register", component: RegisterComponent },
